@@ -1,8 +1,8 @@
-using System;
+п»їusing System;
 using UnityEngine;
 
 /// <summary>
-/// Класс для описания поведения игровой модели персонажа
+/// РљР»Р°СЃСЃ РґР»СЏ РѕРїРёСЃР°РЅРёСЏ РїРѕРІРµРґРµРЅРёСЏ РёРіСЂРѕРІРѕР№ РјРѕРґРµР»Рё РїРµСЂСЃРѕРЅР°Р¶Р°
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     {
         moveX = Input.GetAxisRaw("Horizontal");
 
-        // Обновление направления взгляда
+        // РћР±РЅРѕРІР»РµРЅРёРµ РЅР°РїСЂР°РІР»РµРЅРёСЏ РІР·РіР»СЏРґР°
         if (moveX != 0)
             facingDirection = (int)Mathf.Sign(moveX);
 
@@ -50,14 +50,14 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 canDoubleJump = true;
             }
-            //второй прыжок
+            //РІС‚РѕСЂРѕР№ РїСЂС‹Р¶РѕРє
             else if (canDoubleJump)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 canDoubleJump = false;
             }
         }
-        //деш на шифт
+        //РґРµС€ РЅР° С€РёС„С‚
         if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
         {
             StartDash();
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     // <summary>
-    // проверка на столкновение с землей
+    // РїСЂРѕРІРµСЂРєР° РЅР° СЃС‚РѕР»РєРЅРѕРІРµРЅРёРµ СЃ Р·РµРјР»РµР№
     // </summary>
     private void GroundCheck()
     {
@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
             canDoubleJump = true;
     }
     //<Summary>
-    //Старт дэша
+    //РЎС‚Р°СЂС‚ РґСЌС€Р°
     //</Summary>
     private void StartDash()
     {
@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(facingDirection * dashForce, 0f);
     }
     //<Summary>
-    //Конец дэша
+    //РљРѕРЅРµС† РґСЌС€Р°
     //</Summary>
     private void EndDash()
     {
@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Debug отрисовка гизмоса
+    /// Debug РѕС‚СЂРёСЃРѕРІРєР° РіРёР·РјРѕСЃР°
     /// </summary>
     private void OnDrawGizmosSelected()
     {
