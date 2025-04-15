@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -7,11 +8,14 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float jumpForce = 5f;
+    public float dashForce = 10f;
+    public float dashDuration = 0.2f;
 
     private Rigidbody2D rb;
     private bool isGrounded;
     private bool canDoubleJump;
-
+    private bool isDashing;
+    private float dashTime;
 
     [Header("Ground Check Settings")]
     public Transform groundCheck;
@@ -34,6 +38,9 @@ public class PlayerController : MonoBehaviour
         if (moveX != 0)
             facingDirection = (int)Mathf.Sign(moveX);
 
+        if (!isDashing)
+            rb.velocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
+
         GroundCheck();
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -49,6 +56,18 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 canDoubleJump = false;
             }
+        }
+        //деш на шифт
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
+        {
+            StartDash();
+        }
+
+        if (isDashing)
+        {
+            dashTime -= Time.deltaTime;
+            if (dashTime <= 0)
+                EndDash();
         }
     }
     // <summary>
@@ -71,6 +90,22 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded)
             canDoubleJump = true;
+    }
+    //<Summary>
+    //Старт дэша
+    //</Summary>
+    private void StartDash()
+    {
+        isDashing = true;
+        dashTime = dashDuration;
+        rb.velocity = new Vector2(facingDirection * dashForce, 0f);
+    }
+    //<Summary>
+    //Конец дэша
+    //</Summary>
+    private void EndDash()
+    {
+        isDashing = false;
     }
 
     /// <summary>
