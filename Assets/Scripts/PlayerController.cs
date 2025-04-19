@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
     //</Summary>
     private System.Collections.IEnumerator SlowRoutine(float duration, float slowFactor)
     {
-        moveSpeed = originalMoveSpeed / slowFactor;
+        moveSpeed = originalMoveSpeed * slowFactor;
         yield return new WaitForSeconds(duration);
         moveSpeed = originalMoveSpeed;
     }
