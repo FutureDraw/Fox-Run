@@ -1,9 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-/// <summary>
-/// Класс для описания поведения игровой модели персонажа
-/// </summary>
+// <summary>
+// Класс для описания поведения игровой модели персонажа
+// </summary>
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
@@ -25,17 +25,24 @@ public class PlayerController : MonoBehaviour
     private float moveX;
     private int facingDirection = 1;
 
+    // Переменные для контроля скорости
+    private float originalMoveSpeed;
+    private bool isStopped = false;
+    private Coroutine slowCoroutine;
+
     private void Start()
     {
         Application.targetFrameRate = 90;
         rb = GetComponent<Rigidbody2D>();
+        originalMoveSpeed = moveSpeed; // Сохраняем оригинальную скорость
     }
 
     private void Update()
     {
+        if (isStopped) return; // при остановке игрока не обрабатывается ввод
+
         moveX = Input.GetAxisRaw("Horizontal");
 
-        // Обновление направления взгляда
         if (moveX != 0)
             facingDirection = (int)Mathf.Sign(moveX);
 
@@ -44,6 +51,7 @@ public class PlayerController : MonoBehaviour
 
         GroundCheck();
 
+        //реализация прыжка на пробел
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (isGrounded)
@@ -51,14 +59,14 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 canDoubleJump = true;
             }
-            //второй прыжок
             else if (canDoubleJump)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 canDoubleJump = false;
             }
         }
-        //деш на шифт
+
+        //реализация дэша на шифт
         if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
         {
             StartDash();
@@ -71,9 +79,51 @@ public class PlayerController : MonoBehaviour
                 EndDash();
         }
     }
-    // <summary>
-    // проверка на столкновение с землей
-    // </summary>
+
+    //<Summary>
+    //Остановка игрока
+    //</Summary>
+    public void StopMovement(float duration)
+    {
+        if (isStopped) return;
+
+        isStopped = true;
+        rb.velocity = Vector2.zero;
+        Invoke(nameof(ResumeMovement), duration);
+    }
+
+    //<Summary>
+    //Замедление игрока
+    //</Summary>
+    public void SlowMovement(float duration, float slowFactor)
+    {
+        if (slowCoroutine != null)
+            StopCoroutine(slowCoroutine);
+
+        slowCoroutine = StartCoroutine(SlowRoutine(duration, slowFactor));
+    }
+
+    //<Summary>
+    //Рутина замедления игрока
+    //</Summary>
+    private System.Collections.IEnumerator SlowRoutine(float duration, float slowFactor)
+    {
+        moveSpeed = originalMoveSpeed / slowFactor;
+        yield return new WaitForSeconds(duration);
+        moveSpeed = originalMoveSpeed;
+    }
+
+    //<Summary>
+    //Разблокировка движения
+    //</Summary>
+    private void ResumeMovement()
+    {
+        isStopped = false;
+    }
+
+    //<Summary>
+    //Проверка приземления
+    //</Summary>
     private void GroundCheck()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, checkRadius, whatIsGround);
@@ -92,8 +142,9 @@ public class PlayerController : MonoBehaviour
         if (isGrounded)
             canDoubleJump = true;
     }
+
     //<Summary>
-    //Старт дэша
+    //Начало дэша
     //</Summary>
     private void StartDash()
     {
@@ -101,17 +152,18 @@ public class PlayerController : MonoBehaviour
         dashTime = dashDuration;
         rb.velocity = new Vector2(facingDirection * dashForce, 0f);
     }
+
     //<Summary>
-    //Конец дэша
+    //Завершение дэша
     //</Summary>
     private void EndDash()
     {
         isDashing = false;
     }
 
-    /// <summary>
-    /// Debug отрисовка гизмоса
-    /// </summary>
+    //<Summary>
+    //Дебаг отрисовка
+    //</Summary>
     private void OnDrawGizmosSelected()
     {
         if (groundCheck != null)
