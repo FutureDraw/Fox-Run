@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        Application.targetFrameRate = 90;
         rb = GetComponent<Rigidbody2D>();
     }
 
