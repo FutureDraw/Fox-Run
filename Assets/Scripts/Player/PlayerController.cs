@@ -118,6 +118,7 @@ public class PlayerController : MonoBehaviour
     //</Summary>
     private void ResumeMovement()
     {
+        rb.velocity = Vector2.zero;
         isStopped = false;
         isGrounded = true;
     }

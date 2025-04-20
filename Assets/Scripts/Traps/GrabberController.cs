@@ -18,7 +18,7 @@ public class GrabberController : MonoBehaviour, ITrap
         if (_grabbed)
         {
             _playerTransform.position = transform.position;
-            Debug.Log("grabbed");
+            //Debug.Log("grabbed");
         }
     }
 
@@ -28,9 +28,10 @@ public class GrabberController : MonoBehaviour, ITrap
     public void StopPlayer(float time)
     {
         var player = FindObjectOfType<PlayerController>();
+        GetComponent<CircleCollider2D>().isTrigger = false;
         if (player != null)
         {
-            player.StopMovement(time);
+            player.StopMovement(time);         
             Debug.Log($"Player movement frozen for {time} seconds");
         }
     }
@@ -55,9 +56,9 @@ public class GrabberController : MonoBehaviour, ITrap
         {
             Debug.Log("collision");
             _grabbed = false;
-            StopPlayer(_stopTime);
+            StopPlayer(_stopTime); 
+            Destroy(gameObject, _stopTime);
             _grabbed = true;
-            Destroy(gameObject, _stopTime + 0.2f);
         }
     }
 }
