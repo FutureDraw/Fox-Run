@@ -119,6 +119,7 @@ public class PlayerController : MonoBehaviour
     private void ResumeMovement()
     {
         isStopped = false;
+        isGrounded = true;
     }
 
     //<Summary>
