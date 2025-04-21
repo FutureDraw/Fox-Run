@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Ground Check Settings")]
     public Transform groundCheck;
-    public float checkRadius = 0.1f;
+    public Vector2 groundCheckSize = new Vector2(0.5f, 0.1f); // Настраиваемый размер прямоугольника
     public LayerMask whatIsGround;
 
     private float moveX;
@@ -128,7 +128,12 @@ public class PlayerController : MonoBehaviour
     //</Summary>
     private void GroundCheck()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, checkRadius, whatIsGround);
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(
+            groundCheck.position,
+            groundCheckSize,
+            0f,
+            whatIsGround);
+
         isGrounded = false;
 
         foreach (Collider2D col in colliders)
@@ -170,8 +175,8 @@ public class PlayerController : MonoBehaviour
     {
         if (groundCheck != null)
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
         }
     }
 }
