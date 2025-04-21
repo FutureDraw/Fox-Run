@@ -39,8 +39,12 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (isStopped) return; // при остановке игрока не обрабатывается ввод
 
+        if (isStopped)
+        {
+            rb.velocity = Vector2.zero;
+            return; // при остановке игрока не обрабатывается ввод
+        }
         moveX = Input.GetAxisRaw("Horizontal");
 
         if (moveX != 0)
@@ -86,9 +90,7 @@ public class PlayerController : MonoBehaviour
     public void StopMovement(float duration)
     {
         if (isStopped) return;
-
         isStopped = true;
-        rb.velocity = Vector2.zero;
         Invoke(nameof(ResumeMovement), duration);
     }
 
@@ -118,7 +120,6 @@ public class PlayerController : MonoBehaviour
     //</Summary>
     private void ResumeMovement()
     {
-        rb.velocity = Vector2.zero;
         isStopped = false;
         isGrounded = true;
     }
@@ -145,7 +146,6 @@ public class PlayerController : MonoBehaviour
                 break;
             }
         }
-
         if (isGrounded)
             canDoubleJump = true;
     }
