@@ -30,10 +30,16 @@ public class PlayerController : MonoBehaviour
     private bool isStopped = false;
     private Coroutine slowCoroutine;
 
+    // Переменные для управления анимацией
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+
     private void Start()
     {
         Application.targetFrameRate = 90;
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         originalMoveSpeed = moveSpeed; // Сохраняем оригинальную скорость
     }
 
@@ -48,29 +54,34 @@ public class PlayerController : MonoBehaviour
         moveX = Input.GetAxisRaw("Horizontal");
 
         if (moveX != 0)
+        {
             facingDirection = (int)Mathf.Sign(moveX);
+            spriteRenderer.flipX = moveX < 0;
+        }
 
         if (!isDashing)
             rb.velocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
 
         GroundCheck();
 
-        //реализация прыжка на пробел
+        // Реализация прыжка на пробел
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (isGrounded)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 canDoubleJump = true;
+                animator.SetBool("IsJumping", true);
             }
             else if (canDoubleJump)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 canDoubleJump = false;
+                animator.SetBool("IsJumping", true);
             }
         }
 
-        //реализация дэша на шифт
+        // Реализация дэша на шифт
         if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
         {
             StartDash();
@@ -82,6 +93,9 @@ public class PlayerController : MonoBehaviour
             if (dashTime <= 0)
                 EndDash();
         }
+
+        // Устанавливаем параметр скорости
+        animator.SetFloat("Speed", Mathf.Abs(moveX));
     }
 
     //<Summary>
@@ -147,7 +161,10 @@ public class PlayerController : MonoBehaviour
             }
         }
         if (isGrounded)
+        {
             canDoubleJump = true;
+            animator.SetBool("IsJumping", false);
+        }
     }
 
     //<Summary>
@@ -158,6 +175,9 @@ public class PlayerController : MonoBehaviour
         isDashing = true;
         dashTime = dashDuration;
         rb.velocity = new Vector2(facingDirection * dashForce, 0f);
+
+        animator.SetBool("IsDashing", true);
+        animator.SetInteger("LastMoveX", facingDirection);
     }
 
     //<Summary>
@@ -166,6 +186,7 @@ public class PlayerController : MonoBehaviour
     private void EndDash()
     {
         isDashing = false;
+        animator.SetBool("IsDashing", false);
     }
 
     //<Summary>
