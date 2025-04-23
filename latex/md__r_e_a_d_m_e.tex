@@ -1,0 +1,69 @@
+\chapter{Fox Run -\/ 2D Платформер}
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{Fox Run -\/ 2D Платформер@{Fox Run -\/ 2D Платформер}}
+\label{md__r_e_a_d_m_e_autotoc_md0}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md0}%
+
+
+{\bfseries{Fox Run}} — 2D мувмент-\/платформер в котором игрок управляет лисой, преодолевающей опасные уровни в таинственном лесу
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{\texorpdfstring{Участники}{Участники}}\label{md__r_e_a_d_m_e_autotoc_md2}
+
+\begin{DoxyItemize}
+\item {\bfseries{Авдеев А.\+Ю.}} — Руководитель группы, технический писатель и разработчик
+\item {\bfseries{Ахметов А.\+С.}} — Разработчик и дизайнер
+\item {\bfseries{Забавин С.\+К.}} — Аналитик и тестировщик
+\item {\bfseries{Туманова М.\+Б.}} — Руководитель
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysection{\texorpdfstring{Особенности}{Особенности}}\label{md__r_e_a_d_m_e_autotoc_md4}
+
+\begin{DoxyItemize}
+\item {\bfseries{5 уникальных уровней}} с возрастающей сложностью
+\item {\bfseries{Разнообразные ловушки и препятствия}}\+: капканы, стрелы, движущиеся платформы
+\item {\bfseries{Гибкое управление}}\+: прыжки, дэши, бег по стенам и взаимодействие с объектами
+\item {\bfseries{Система рекордов}} с таблицей лидеров в качестве соревновательного элемента
+\item {\bfseries{Автосохранение}} прогресса и поддержка ручного сохранения
+\item {\bfseries{Настраиваемый интерфейс}}\+: звук, графика и управление
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysection{\texorpdfstring{Технологический стек}{Технологический стек}}\label{md__r_e_a_d_m_e_autotoc_md6}
+
+\begin{DoxyItemize}
+\item {\bfseries{Движок}}\+: Unity 2022
+\item {\bfseries{Язык программирования}}\+: C\#
+\item {\bfseries{Хранение данных}}\+:
+\begin{DoxyItemize}
+\item Локально\+: json-\/file (для сохранений)
+\item Удаленная\+: My\+SQL (для рекордов)
+\end{DoxyItemize}
+\item {\bfseries{Сетевой модуль}}\+: HTTP-\/запросы через Unity\+Web\+Request
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md8}{}\doxysection{\texorpdfstring{Установка}{Установка}}\label{md__r_e_a_d_m_e_autotoc_md8}
+
+\begin{DoxyEnumerate}
+\item Скачайте последнюю версию игры при помощи команды {\ttfamily git clone \href{https://github.com/your-repo/fox-run/releases}{\texttt{ https\+://github.\+com/your-\/repo/fox-\/run/releases}}}
+\item Запустите проект Unity 
+\end{DoxyEnumerate}\hypertarget{md__r_e_a_d_m_e_autotoc_md9}{}\doxysection{\texorpdfstring{3. Соберите проект используя сцену Main\+Scene}{3. Соберите проект используя сцену Main\+Scene}}\label{md__r_e_a_d_m_e_autotoc_md9}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md10}{}\doxysection{\texorpdfstring{Управление}{Управление}}\label{md__r_e_a_d_m_e_autotoc_md10}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Действие   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Клавиши    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Действие   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Клавиши    }\\\cline{1-2}
+\endhead
+Передвижение   &{\ttfamily A/D} или {\ttfamily ←}/{\ttfamily →}    \\\cline{1-2}
+Прыжок   &{\ttfamily W} или {\ttfamily ↑}    \\\cline{1-2}
+Дэш   &{\ttfamily Shift} или {\ttfamily Z}    \\\cline{1-2}
+Взаимодействие   &{\ttfamily E} или {\ttfamily X}    \\\cline{1-2}
+Инвентарь   &{\ttfamily 1-\/5}    \\\cline{1-2}
+Пауза/Меню   &{\ttfamily Esc}   \\\cline{1-2}
+\end{longtabu}
