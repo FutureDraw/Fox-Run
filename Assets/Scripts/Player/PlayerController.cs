@@ -6,51 +6,81 @@ using UnityEngine;
 // </summary>
 public class PlayerController : MonoBehaviour
 {
+    [Header("Movement Settings")]
     public float moveSpeed = 5f;
     public float jumpForce = 5f;
     public float dashForce = 10f;
     public float dashDuration = 0.2f;
+    public float dashCooldown = 1f;
+    public float inertiaDecayRate = 0f; // скорость затухания инерции
 
-    private Rigidbody2D rb;
-    private bool isGrounded;
-    private bool canDoubleJump;
-    private bool isDashing;
-    private float dashTime;
+    [Header("Inertia Settings")]
+    public float inertiaDecayRateGround = 3f; // скорость затухания обычной инерции на земле
+    public float dashDecayRate = 10f; // скорость затухания после дэша
 
     [Header("Ground Check Settings")]
     public Transform groundCheck;
-    public Vector2 groundCheckSize = new Vector2(0.5f, 0.1f); // Настраиваемый размер прямоугольника
+    public Vector2 groundCheckSize = new Vector2(0.5f, 0.1f); // размер области проверки земли
     public LayerMask whatIsGround;
 
-    private float moveX;
-    private int facingDirection = 1;
+    [Header("Physics Settings")]
+    public float groundFriction = 5f; // трение на земле
+    public PhysicsMaterial2D zeroFrictionMaterial;
+    public PhysicsMaterial2D highFrictionMaterial;
 
-    // Переменные для контроля скорости
-    private float originalMoveSpeed;
-    private bool isStopped = false;
-    private Coroutine slowCoroutine;
-
-    // Переменные для управления анимацией
+    private Rigidbody2D rb;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    private Collider2D col;
+
+    private bool isGrounded;
+    private bool canDoubleJump;
+    private bool isDashing;
+    private bool isBoostedFromDash;
+    private bool isStopped;
+
+    private float dashTime;
+    private float nextDashTime;
+    private float moveX;
+    private float currentMoveSpeed;
+    private float originalMoveSpeed;
+
+    private int facingDirection = 1;
+    private Vector2 groundNormal = Vector2.up; // нормаль текущей поверхности
+
+    private Coroutine slowCoroutine;
 
     private void Start()
     {
         Application.targetFrameRate = 90;
+
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        originalMoveSpeed = moveSpeed; // Сохраняем оригинальную скорость
+        col = GetComponent<Collider2D>();
+
+        originalMoveSpeed = moveSpeed;
+        currentMoveSpeed = moveSpeed;
+
+        // Создание материалов при необходимости
+        if (zeroFrictionMaterial == null)
+            zeroFrictionMaterial = new PhysicsMaterial2D("ZeroFriction") { friction = 0f, bounciness = 0f };
+
+        if (highFrictionMaterial == null)
+            highFrictionMaterial = new PhysicsMaterial2D("HighFriction") { friction = groundFriction, bounciness = 0f };
+
+        // Устанавливаем материал без трения на старте
+        col.sharedMaterial = zeroFrictionMaterial;
     }
 
     private void Update()
     {
-
         if (isStopped)
         {
             rb.velocity = Vector2.zero;
-            return; // при остановке игрока не обрабатывается ввод
+            return;
         }
+
         moveX = Input.GetAxisRaw("Horizontal");
 
         if (moveX != 0)
@@ -60,32 +90,27 @@ public class PlayerController : MonoBehaviour
         }
 
         if (!isDashing)
-            rb.velocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
+        {
+            rb.velocity = new Vector2(moveX * currentMoveSpeed, rb.velocity.y);
+
+            // Затухание скорости
+            if (isGrounded && currentMoveSpeed > originalMoveSpeed)
+            {
+                float decayRate = isBoostedFromDash ? dashDecayRate : inertiaDecayRateGround;
+                currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, originalMoveSpeed, decayRate * Time.deltaTime);
+
+                if (Mathf.Approximately(currentMoveSpeed, originalMoveSpeed))
+                    isBoostedFromDash = false;
+            }
+        }
 
         GroundCheck();
 
-        // Реализация прыжка на пробел
         if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (isGrounded)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                canDoubleJump = true;
-                animator.SetBool("IsJumping", true);
-            }
-            else if (canDoubleJump)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                canDoubleJump = false;
-                animator.SetBool("IsJumping", true);
-            }
-        }
+            HandleJump();
 
-        // Реализация дэша на шифт
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
-        {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && Time.time >= nextDashTime)
             StartDash();
-        }
 
         if (isDashing)
         {
@@ -94,94 +119,140 @@ public class PlayerController : MonoBehaviour
                 EndDash();
         }
 
-        // Устанавливаем параметр скорости
         animator.SetFloat("Speed", Mathf.Abs(moveX));
     }
 
     //<Summary>
-    //Остановка игрока
+    //Обработка прыжка и двойного прыжка
+    //</Summary>
+    private void HandleJump()
+    {
+        if (isGrounded)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            canDoubleJump = true;
+            animator.SetBool("IsJumping", true);
+        }
+        else if (canDoubleJump)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            canDoubleJump = false;
+            animator.SetBool("IsJumping", true);
+        }
+    }
+
+    //<Summary>
+    //Остановка игрока на время
     //</Summary>
     public void StopMovement(float duration)
     {
         if (isStopped) return;
+
         isStopped = true;
+        currentMoveSpeed = originalMoveSpeed;
+        isBoostedFromDash = false;
         Invoke(nameof(ResumeMovement), duration);
     }
 
     //<Summary>
-    //Замедление игрока
+    //Замедление игрока на время
     //</Summary>
     public void SlowMovement(float duration, float slowFactor)
     {
         if (slowCoroutine != null)
             StopCoroutine(slowCoroutine);
 
-        slowCoroutine = StartCoroutine(SlowRoutine(duration, slowFactor));
+        currentMoveSpeed = originalMoveSpeed * slowFactor;
+        isBoostedFromDash = false;
+        slowCoroutine = StartCoroutine(SlowRoutine(duration));
     }
 
     //<Summary>
     //Рутина замедления игрока
     //</Summary>
-    private System.Collections.IEnumerator SlowRoutine(float duration, float slowFactor)
+    private System.Collections.IEnumerator SlowRoutine(float duration)
     {
-        moveSpeed = originalMoveSpeed * slowFactor;
+        moveSpeed = currentMoveSpeed;
         yield return new WaitForSeconds(duration);
         moveSpeed = originalMoveSpeed;
+        currentMoveSpeed = originalMoveSpeed; 
     }
 
+
     //<Summary>
-    //Разблокировка движения
+    //Разрешение движения после остановки
     //</Summary>
     private void ResumeMovement()
     {
         isStopped = false;
-        isGrounded = true;
     }
 
     //<Summary>
-    //Проверка приземления
+    //Проверка на землю
     //</Summary>
     private void GroundCheck()
     {
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(
-            groundCheck.position,
-            groundCheckSize,
-            0f,
-            whatIsGround);
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(groundCheck.position, groundCheckSize, 0f, whatIsGround);
 
         isGrounded = false;
+        groundNormal = Vector2.up;
 
-        foreach (Collider2D col in colliders)
+        foreach (Collider2D collider in colliders)
         {
-            Vector2 contactPoint = col.ClosestPoint(transform.position);
+            Vector2 contactPoint = collider.ClosestPoint(transform.position);
             if (contactPoint.y < transform.position.y - 0.1f)
             {
                 isGrounded = true;
+
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f, whatIsGround);
+                if (hit.collider != null)
+                    groundNormal = hit.normal;
+
                 break;
             }
         }
+
+        UpdateFriction();
+    }
+
+    //<Summary>
+    //Обновление трения в зависимости от состояния
+    //</Summary>
+    private void UpdateFriction()
+    {
         if (isGrounded)
         {
             canDoubleJump = true;
             animator.SetBool("IsJumping", false);
+            col.sharedMaterial = Mathf.Abs(moveX) > 0.01f ? zeroFrictionMaterial : highFrictionMaterial;
+        }
+        else
+        {
+            col.sharedMaterial = zeroFrictionMaterial;
         }
     }
 
     //<Summary>
-    //Начало дэша
+    //Запуск дэша
     //</Summary>
     private void StartDash()
     {
         isDashing = true;
         dashTime = dashDuration;
-        rb.velocity = new Vector2(facingDirection * dashForce, 0f);
+        nextDashTime = Time.time + dashCooldown;
+
+        Vector2 dashDirection = new Vector2(groundNormal.y, -groundNormal.x).normalized * facingDirection;
+        rb.velocity = dashDirection * dashForce;
+
+        currentMoveSpeed = Mathf.Max(currentMoveSpeed, dashForce);
+        isBoostedFromDash = true;
 
         animator.SetBool("IsDashing", true);
         animator.SetInteger("LastMoveX", facingDirection);
     }
 
     //<Summary>
-    //Завершение дэша
+    //Окончание дэша
     //</Summary>
     private void EndDash()
     {
@@ -190,14 +261,13 @@ public class PlayerController : MonoBehaviour
     }
 
     //<Summary>
-    //Дебаг отрисовка
+    //Отрисовка области проверки земли
     //</Summary>
     private void OnDrawGizmosSelected()
     {
-        if (groundCheck != null)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
-        }
+        if (groundCheck == null) return;
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
     }
 }
