@@ -51,10 +51,6 @@ public class PortalController : MonoBehaviour
         player.position = targetPortal.GetExitPosition();
 
         var player1 = FindObjectOfType<PlayerController>();
-        if (player1 != null)
-        {
-            player1.StopMovement(0.1f);
-        }
 
         // Запускаем кд телепортации
         Invoke(nameof(ResetTeleport), teleportCooldown);
