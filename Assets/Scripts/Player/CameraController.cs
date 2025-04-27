@@ -25,6 +25,7 @@ public class CameraController : MonoBehaviour
     private float currentHeight;             // Текущая высота камеры
     public float targetZoom;                 // Целевой зум камеры
     private bool isHeightTransition;         // Флаг перехода между уровнями высот
+    private bool isFollowingDueToExit;       // Флаг для отслеживания выхода игрока за границы камеры
 
     void Start()
     {
@@ -101,6 +102,7 @@ public class CameraController : MonoBehaviour
         // Если игрок на земле - меняем высоту камеры
         if (player.isGrounded)
         {
+            isFollowingDueToExit = false; // Сбрасываем флаг следования при приземлении
             var newHeight = GetHeightLevel();
             if (!isHeightTransition)
             {
@@ -112,9 +114,35 @@ public class CameraController : MonoBehaviour
         else
         {
             isHeightTransition = false;
+
+            // Проверяем, вышел ли игрок за границы камеры
+            if (IsPlayerOutOfCameraView())
+            {
+                isFollowingDueToExit = true; // Активируем режим следования
+            }
+
+            // Если игрок вышел за границы - следуем за ним по вертикали
+            if (isFollowingDueToExit)
+            {
+                targetY = target.position.y;
+                currentHeight = Mathf.Lerp(currentHeight, targetY, Time.deltaTime * heightChangeSpeed);
+            }
         }
 
         return new Vector3(targetX, currentHeight, transform.position.z);
+    }
+
+    /// <summary>
+    /// Проверяет, находится ли игрок за пределами видимости камеры
+    /// </summary>
+    /// <returns>True если игрок вышел за границы камеры</returns>
+    private bool IsPlayerOutOfCameraView()
+    {
+        if (target == null || cam == null) return false;
+
+        Vector3 viewportPos = cam.WorldToViewportPoint(target.position);
+        // Проверяем выход за верхнюю или нижнюю границу
+        return viewportPos.y < 0 || viewportPos.y > 1;
     }
 
     //<summary>
