@@ -2702,7 +2702,7 @@ Transform:
   m_GameObject: {fileID: 742425905}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 11.28, y: -1.6, z: 0.024662543}
+  m_LocalPosition: {x: 22.36, y: -1.36, z: 0.024662543}
   m_LocalScale: {x: 0.41664, y: 0.41664, z: 0.41664}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2775,9 +2775,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _arrowPrefab: {fileID: 1703477684337990738, guid: 286f525c61569ad4f8059a15c2f3b816, type: 3}
   _spawnInterval: 1
-  _arrowSpeed: 5
-  _arrowLifetime: 5
-  _spawnOffset: 0
+  _arrowSpeed: 10
+  _arrowLifetime: 4
+  _spawnOffset: 1
   _angleDegrees: 0
 --- !u!1 &764894957
 GameObject:
