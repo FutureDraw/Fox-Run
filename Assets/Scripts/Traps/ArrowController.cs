@@ -40,11 +40,19 @@ public class Arrow : MonoBehaviour, ITrap
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("collision");
+        // Не уничтожаем стрелу если это триггер
+        //if (other.isTrigger) return;
+        Debug.Log("Col");
         if (other.CompareTag("Player"))
         {
             SlowPlayer(_slowTime, _slowStrenght);
-            Destroy(gameObject, 0f);
         }
+
+        Destroy(gameObject, 0f);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(gameObject, 0f);
     }
 }
