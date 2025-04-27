@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     private bool isDashing;
     private bool isBoostedFromDash;
     private bool isStopped;
+    private bool isSlowed;
 
     private float dashTime;
     private float nextDashTime;
@@ -109,7 +110,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
             HandleJump();
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && Time.time >= nextDashTime)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && Time.time >= nextDashTime && !isSlowed)
             StartDash();
 
         if (isDashing)
@@ -164,6 +165,7 @@ public class PlayerController : MonoBehaviour
 
         currentMoveSpeed = originalMoveSpeed * slowFactor;
         isBoostedFromDash = false;
+        isSlowed = true;
         slowCoroutine = StartCoroutine(SlowRoutine(duration));
     }
 
@@ -175,7 +177,8 @@ public class PlayerController : MonoBehaviour
         moveSpeed = currentMoveSpeed;
         yield return new WaitForSeconds(duration);
         moveSpeed = originalMoveSpeed;
-        currentMoveSpeed = originalMoveSpeed; 
+        currentMoveSpeed = originalMoveSpeed;
+        isSlowed = false;
     }
 
 
