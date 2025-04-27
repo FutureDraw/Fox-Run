@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Collider2D col;
 
-    private bool isGrounded;
+    public bool isGrounded;
     private bool canDoubleJump;
     private bool isDashing;
     private bool isBoostedFromDash;
