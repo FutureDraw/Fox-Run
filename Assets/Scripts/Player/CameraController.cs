@@ -125,7 +125,7 @@ public class CameraController : MonoBehaviour
     {
         foreach (var level in heightLevels)
         {
-            if (target.position.y >= level)
+            if (target.position.y <= level)
             {
                 return level;
             }
