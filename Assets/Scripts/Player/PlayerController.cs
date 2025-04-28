@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEditor;
 using UnityEngine;
 
 // <summary>
@@ -272,7 +273,36 @@ public class PlayerController : MonoBehaviour
     {
         if (groundCheck == null) return;
 
+        // Отрисовка области проверки земли
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
+
+        // Если в редакторе, дополнительно рисуем направления
+        if (Application.isPlaying)
+        {
+            // Позиция игрока
+            Vector3 playerPos = transform.position;
+
+            // Вектор скорости
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(playerPos, playerPos + (Vector3)(rb.velocity * 0.5f));
+            Handles.Label(playerPos + (Vector3)(rb.velocity * 0.5f), $"Velocity: {rb.velocity}");
+
+            // Вектор нормали поверхности
+            Gizmos.color = Color.red; 
+            Gizmos.DrawLine(playerPos, playerPos + (Vector3)(groundNormal * 1f));
+            Handles.Label(playerPos + (Vector3)(groundNormal * 1f), $"Ground Normal: {groundNormal}");
+
+            // Дирекция движения
+            Vector2 moveDir = new Vector2(facingDirection, 0);
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(playerPos, playerPos + (Vector3)(moveDir * 1f));
+            Handles.Label(playerPos + (Vector3)(moveDir * 1f), $"Facing: {(facingDirection == 1 ? "Right" : "Left")}");
+
+            // Состояния
+            Gizmos.color = Color.white;
+            Handles.Label(playerPos + Vector3.up * 2f, $"Grounded: {isGrounded}\nDashing: {isDashing}\nMoveSpeed: {currentMoveSpeed:F2}");
+        }
     }
+
 }
