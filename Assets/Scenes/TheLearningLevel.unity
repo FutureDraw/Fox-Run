@@ -4279,6 +4279,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 8797093831608942295, guid: 0053f6b58ae76cb48a9a3266a4991e28, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797093831608942295, guid: 0053f6b58ae76cb48a9a3266a4991e28, type: 3}
+      propertyPath: m_Size.y
+      value: 1.0512149
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797093831608942295, guid: 0053f6b58ae76cb48a9a3266a4991e28, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.025607467
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
