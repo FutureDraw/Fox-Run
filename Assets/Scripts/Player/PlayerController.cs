@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEditor;
 using UnityEngine;
 
 // <summary>
@@ -7,12 +8,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float moveSpeed = 5f;
-    public float jumpForce = 5f;
-    public float dashForce = 10f;
+    public float moveSpeed = 3f;
+    public float jumpForce = 10f;
+    public float dashForce = 8f;
     public float dashDuration = 0.2f;
-    public float dashCooldown = 1f;
-    public float inertiaDecayRate = 0f; // скорость затухания инерции
+    public float dashCooldown = 0.5f;
+    public float inertiaDecayRate = 5f; // скорость затухания инерции
 
     [Header("Inertia Settings")]
     public float inertiaDecayRateGround = 3f; // скорость затухания обычной инерции на земле
@@ -20,8 +21,14 @@ public class PlayerController : MonoBehaviour
 
     [Header("Ground Check Settings")]
     public Transform groundCheck;
-    public Vector2 groundCheckSize = new Vector2(0.5f, 0.1f); // размер области проверки земли
+    public Vector2 groundCheckSize = new Vector2(0.34f, 0.04f); // размер области проверки земли
     public LayerMask whatIsGround;
+
+    [Header("Wall Grab Settings")]
+    public LayerMask wallLayer; // слой стен
+    public float wallCheckDistance = 0.22f; // дистанция для проверки стены
+    private int wallGrabCount = 0;
+    private const int maxWallGrabs = 3;
 
     [Header("Physics Settings")]
     public float groundFriction = 5f; // трение на земле
@@ -39,6 +46,9 @@ public class PlayerController : MonoBehaviour
     private bool isBoostedFromDash;
     private bool isStopped;
     private bool isSlowed;
+    private bool isGrabbingWall;
+    private bool isNearWall;
+    private int wallDirection; // направление стены (-1 влево, 1 вправо)
 
     private float dashTime;
     private float nextDashTime;
@@ -84,13 +94,13 @@ public class PlayerController : MonoBehaviour
 
         moveX = Input.GetAxisRaw("Horizontal");
 
-        if (moveX != 0)
+        if (moveX != 0 && !isGrabbingWall)
         {
             facingDirection = (int)Mathf.Sign(moveX);
             spriteRenderer.flipX = moveX < 0;
         }
 
-        if (!isDashing)
+        if (!isDashing && !isGrabbingWall)
         {
             rb.velocity = new Vector2(moveX * currentMoveSpeed, rb.velocity.y);
 
@@ -106,11 +116,14 @@ public class PlayerController : MonoBehaviour
         }
 
         GroundCheck();
+        WallCheck();
+
+        HandleWallGrabInput();
 
         if (Input.GetKeyDown(KeyCode.Space))
             HandleJump();
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && Time.time >= nextDashTime && !isSlowed)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && Time.time >= nextDashTime && !isSlowed && !isGrabbingWall)
             StartDash();
 
         if (isDashing)
@@ -120,7 +133,7 @@ public class PlayerController : MonoBehaviour
                 EndDash();
         }
 
-        animator.SetFloat("Speed", Mathf.Abs(moveX));
+        animator.SetFloat("Speed", isGrabbingWall ? 0f : Mathf.Abs(moveX));
     }
 
     //<Summary>
@@ -128,7 +141,14 @@ public class PlayerController : MonoBehaviour
     //</Summary>
     private void HandleJump()
     {
-        if (isGrounded)
+        if (isGrabbingWall)
+        {
+            Debug.Log("[WallJump] Прыжок со стены!");
+            rb.velocity = new Vector2(-wallDirection * moveSpeed, jumpForce);
+            isGrabbingWall = false;
+            canDoubleJump = true; // Разрешаем двойной прыжок после прыжка от стены
+        }
+        else if (isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             canDoubleJump = true;
@@ -139,6 +159,60 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             canDoubleJump = false;
             animator.SetBool("IsJumping", true);
+        }
+    }
+
+    //<Summary>
+    //Проверка на зажатие/отжатие стены
+    //</Summary>
+    private void HandleWallGrabInput()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (!isGrabbingWall && wallGrabCount < maxWallGrabs && isNearWall)
+            {
+                isGrabbingWall = true;
+                rb.velocity = Vector2.zero;
+                Debug.Log($"[WallGrab] Захват стены #{wallGrabCount + 1}");
+                wallGrabCount++;
+            }
+            else if (isGrabbingWall)
+            {
+                // Повторное нажатие — отпустить стену
+                isGrabbingWall = false;
+                Debug.Log("[WallGrab] Отпущена стена");
+            }
+        }
+
+
+        if (isGrabbingWall)
+        {
+            float wallSlideSpeed = 0.9f;
+            rb.velocity = new Vector2(0, wallSlideSpeed);
+        }
+    }
+
+    //<Summary>
+    //Проверка на наличие стены рядом
+    //</Summary>
+    private void WallCheck()
+    {
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, wallCheckDistance, wallLayer);
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, wallCheckDistance, wallLayer);
+
+        if (hitLeft.collider != null)
+        {
+            isNearWall = true;
+            wallDirection = -1;
+        }
+        else if (hitRight.collider != null)
+        {
+            isNearWall = true;
+            wallDirection = 1;
+        }
+        else
+        {
+            isNearWall = false;
         }
     }
 
@@ -181,7 +255,6 @@ public class PlayerController : MonoBehaviour
         isSlowed = false;
     }
 
-
     //<Summary>
     //Разрешение движения после остановки
     //</Summary>
@@ -195,25 +268,39 @@ public class PlayerController : MonoBehaviour
     //</Summary>
     private void GroundCheck()
     {
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(groundCheck.position, groundCheckSize, 0f, whatIsGround);
+        const float maxSlopeAngle = 75f;
+        RaycastHit2D hit = Physics2D.BoxCast(
+            groundCheck.position,
+            groundCheckSize,
+            0f,
+            Vector2.down,
+            0f,
+            whatIsGround
+        );
 
-        isGrounded = false;
-        groundNormal = Vector2.up;
-
-        foreach (Collider2D collider in colliders)
+        if (hit.collider != null)
         {
-            Vector2 contactPoint = collider.ClosestPoint(transform.position);
-            if (contactPoint.y < transform.position.y - 0.1f)
-            {
-                isGrounded = true;
-
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f, whatIsGround);
-                if (hit.collider != null)
-                    groundNormal = hit.normal;
-
-                break;
-            }
+            float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
+            isGrounded = slopeAngle <= maxSlopeAngle;
+            groundNormal = hit.normal;
         }
+        else
+        {
+            isGrounded = false;
+            groundNormal = Vector2.up;
+        }
+
+        if (isGrounded && isGrabbingWall)
+        {
+            isGrabbingWall = false;
+            Debug.Log("[WallGrab] Автоотцепление от стены при приземлении.");
+        }
+
+        if (isGrounded)
+        {
+            wallGrabCount = 0;
+        }
+
 
         UpdateFriction();
     }
@@ -264,13 +351,44 @@ public class PlayerController : MonoBehaviour
     }
 
     //<Summary>
-    //Отрисовка области проверки земли
+    //Отрисовка области проверки земли и стены
     //</Summary>
     private void OnDrawGizmosSelected()
     {
         if (groundCheck == null) return;
 
+        // Отрисовка области проверки земли
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
+
+        // Если в редакторе, дополнительно рисуем направления
+        if (Application.isPlaying)
+        {
+            // Позиция игрока
+            Vector3 playerPos = transform.position;
+
+            // Вектор скорости
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(playerPos, playerPos + (Vector3)(rb.velocity * 0.5f));
+            Handles.Label(playerPos + (Vector3)(rb.velocity * 0.5f), $"Velocity: {rb.velocity}");
+
+            // Вектор нормали поверхности
+            Gizmos.color = Color.red; 
+            Gizmos.DrawLine(playerPos, playerPos + (Vector3)(groundNormal * 1f));
+            Handles.Label(playerPos + (Vector3)(groundNormal * 1f), $"Ground Normal: {groundNormal}");
+
+            // Дирекция движения
+            Vector2 moveDir = new Vector2(facingDirection, 0);
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(playerPos, playerPos + (Vector3)(moveDir * 1f));
+            Handles.Label(playerPos + (Vector3)(moveDir * 1f), $"Facing: {(facingDirection == 1 ? "Right" : "Left")}");
+
+            // Состояния
+            Gizmos.DrawLine(playerPos, playerPos + Vector3.left * wallCheckDistance);
+            Gizmos.DrawLine(playerPos, playerPos + Vector3.right * wallCheckDistance);
+
+            Gizmos.color = Color.white;
+            Handles.Label(playerPos + Vector3.up * 2f, $"Grounded: {isGrounded}\nDashing: {isDashing}\nGrabbingWall: {isGrabbingWall}\nMoveSpeed: {currentMoveSpeed:F2}");
+        }
     }
 }

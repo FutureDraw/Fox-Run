@@ -102,7 +102,6 @@ public class CameraController : MonoBehaviour
         // Если игрок на земле - меняем высоту камеры
         if (player.isGrounded)
         {
-            isFollowingDueToExit = false; // Сбрасываем флаг следования при приземлении
             var newHeight = GetHeightLevel();
             if (!isHeightTransition)
             {
