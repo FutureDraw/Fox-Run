@@ -35,6 +35,15 @@ public class PlayButtonControll : MonoBehaviour
                 isMoving = false;
             }
         }
+
+        // Новая часть: проверка на нажатие Escape
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (currentPanel == PanelState.SaveMenu || currentPanel == PanelState.SettingsMenu)
+            {
+                OnBackButtonClicked();
+            }
+        }
     }
 
     public void OnPlayButtonClicked()
@@ -103,5 +112,4 @@ public class PlayButtonControll : MonoBehaviour
         }
         canvasGroup.alpha = 0f;
     }
-
 }
