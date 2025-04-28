@@ -195,24 +195,26 @@ public class PlayerController : MonoBehaviour
     //</Summary>
     private void GroundCheck()
     {
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(groundCheck.position, groundCheckSize, 0f, whatIsGround);
+        const float maxSlopeAngle = 75f;
+        RaycastHit2D hit = Physics2D.BoxCast(
+            groundCheck.position,
+            groundCheckSize,
+            0f,
+            Vector2.down,
+            0f,
+            whatIsGround
+        );
 
-        isGrounded = false;
-        groundNormal = Vector2.up;
-
-        foreach (Collider2D collider in colliders)
+        if (hit.collider != null)
         {
-            Vector2 contactPoint = collider.ClosestPoint(transform.position);
-            if (contactPoint.y < transform.position.y - 0.1f)
-            {
-                isGrounded = true;
-
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f, whatIsGround);
-                if (hit.collider != null)
-                    groundNormal = hit.normal;
-
-                break;
-            }
+            float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
+            isGrounded = slopeAngle <= maxSlopeAngle;
+            groundNormal = hit.normal;
+        }
+        else
+        {
+            isGrounded = false;
+            groundNormal = Vector2.up;
         }
 
         UpdateFriction();
