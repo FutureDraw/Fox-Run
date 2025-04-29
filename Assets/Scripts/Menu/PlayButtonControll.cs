@@ -11,6 +11,7 @@ public class PlayButtonControll : MonoBehaviour
 
     public CanvasGroup PlayButtonGroup;
     public CanvasGroup SettingButtonGroup;
+    public CanvasGroup ExitButtonGroup;
     public CanvasGroup SavesPanel;
     public CanvasGroup SettingPanel;
 
@@ -53,6 +54,7 @@ public class PlayButtonControll : MonoBehaviour
         currentPanel = PanelState.SaveMenu;
         StartCoroutine(FadeOut(PlayButtonGroup, 0.3f));
         StartCoroutine(FadeOut(SettingButtonGroup, 0.3f));
+        StartCoroutine(FadeOut(ExitButtonGroup, 0.3f));
         StartCoroutine(FadeIn(SavesPanel));
     }
 
@@ -63,6 +65,7 @@ public class PlayButtonControll : MonoBehaviour
         currentPanel = PanelState.SettingsMenu;
         StartCoroutine(FadeOut(PlayButtonGroup, 0.2f));
         StartCoroutine(FadeOut(SettingButtonGroup, 0.2f));
+        StartCoroutine(FadeOut(ExitButtonGroup, 0.2f));
         StartCoroutine(FadeIn(SettingPanel));
     }
 
@@ -73,6 +76,7 @@ public class PlayButtonControll : MonoBehaviour
 
         StartCoroutine(FadeIn(PlayButtonGroup, 0.8f));
         StartCoroutine(FadeIn(SettingButtonGroup, 0.8f));
+        StartCoroutine(FadeIn(ExitButtonGroup, 0.8f));
 
         if (currentPanel == PanelState.SaveMenu)
         {
