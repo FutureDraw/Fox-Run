@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
 
     private int facingDirection = 1;
     private Vector2 groundNormal = Vector2.up; // нормаль текущей поверхности
+    private bool wasJumping = false;
 
     private Coroutine slowCoroutine;
 
@@ -90,14 +91,6 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
             return;
-        }
-
-        moveX = Input.GetAxisRaw("Horizontal");
-
-        if (moveX != 0 && !isGrabbingWall)
-        {
-            facingDirection = (int)Mathf.Sign(moveX);
-            spriteRenderer.flipX = moveX < 0;
         }
 
         if (!isDashing && !isGrabbingWall)
@@ -133,6 +126,29 @@ public class PlayerController : MonoBehaviour
                 EndDash();
         }
 
+        
+
+        // Получаем значение оси для движения
+        moveX = Input.GetAxisRaw("Horizontal");
+
+        // Проверка на движение по оси X
+        float speed = Mathf.Abs(moveX) > 0.1f && !isGrabbingWall ? Mathf.Abs(moveX) * currentMoveSpeed : 0f;
+
+        // Смена направления персонажа в зависимости от движения
+        if (speed > 0)
+        {
+            facingDirection = (int)Mathf.Sign(moveX);
+            spriteRenderer.flipX = moveX < 0;
+        }
+
+        // Обновление параметра анимации Speed
+        animator.SetFloat("Speed", speed); // Устанавливаем параметр Speed в аниматоре
+
+        if (isGrounded && rb.velocity.y <= 0.1f)
+        {
+            animator.SetBool("IsJumping", false);
+        }
+
         animator.SetFloat("Speed", isGrabbingWall ? 0f : Mathf.Abs(moveX));
     }
 
@@ -147,18 +163,23 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(-wallDirection * moveSpeed, jumpForce);
             isGrabbingWall = false;
             canDoubleJump = true; // Разрешаем двойной прыжок после прыжка от стены
+            wasJumping = true;
+            animator.SetBool("IsJumping", true);
         }
         else if (isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             canDoubleJump = true;
+            wasJumping = true;
             animator.SetBool("IsJumping", true);
         }
         else if (canDoubleJump)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             canDoubleJump = false;
-            animator.SetBool("IsJumping", true);
+            wasJumping = true;
+
+            animator.SetTrigger("JumpTrigger");
         }
     }
 
@@ -173,6 +194,7 @@ public class PlayerController : MonoBehaviour
             {
                 isGrabbingWall = true;
                 rb.velocity = Vector2.zero;
+                animator.SetBool("IsJumping", false);
                 Debug.Log($"[WallGrab] Захват стены #{wallGrabCount + 1}");
                 wallGrabCount++;
             }
@@ -276,7 +298,7 @@ public class PlayerController : MonoBehaviour
             Vector2.down,
             0f,
             whatIsGround
-        );
+        ); ;
 
         if (hit.collider != null)
         {
@@ -313,7 +335,6 @@ public class PlayerController : MonoBehaviour
         if (isGrounded)
         {
             canDoubleJump = true;
-            animator.SetBool("IsJumping", false);
             col.sharedMaterial = Mathf.Abs(moveX) > 0.01f ? zeroFrictionMaterial : highFrictionMaterial;
         }
         else
