@@ -207,4 +207,22 @@ public class CameraController : MonoBehaviour
     //</summary>
     //<param name="value">Новое значение smoothTime</param>
     public void SetSmoothness(float value) => smoothTime = value;
+
+    //<summary>
+    // Запуск каст-сцены
+    //</summary>
+    public void PlayCutscene(Vector3 position, float zoom, float smoothness = 0.3f)
+    {
+        SetCameraLock(position);
+        SetZoom(zoom);
+        SetSmoothness(smoothness);
+    }
+
+    //<summary>
+    // Выход из каст-сцены
+    //</summary>
+    public void EndCutscene()
+    {
+        ReleaseCameraLock();
+    }
 }
