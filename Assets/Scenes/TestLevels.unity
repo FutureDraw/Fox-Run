@@ -216,7 +216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &136366821
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2021,7 +2021,7 @@ Transform:
   m_GameObject: {fileID: 1670806767}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.62, y: 3.77, z: -10}
+  m_LocalPosition: {x: -1.73, y: 3.77, z: -10}
   m_LocalScale: {x: 0.7, y: 0.24431014, z: 0.2595795}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2333,6 +2333,7 @@ MonoBehaviour:
   cameraLockPosition: {x: 5.62, y: 3.77, z: -10}
   cameraZoom: 4
   dialogue: {fileID: 11400000, guid: 9ad20305ce2fedb4aa580bac79ad4a3b, type: 2}
+  Canvas: {fileID: 136366820}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
