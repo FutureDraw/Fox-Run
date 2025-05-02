@@ -4,7 +4,7 @@ using UnityEngine;
 // <summary>
 // Разводит/опускает мост с процедурной анимацией
 // </summary>
-public class BridgeController : MonoBehaviour, IButtonListener
+public class BridgeController : MonoBehaviour
 {
     public List<ButtonController> buttons;
     [SerializeField] public GameObject AnchorFront;
