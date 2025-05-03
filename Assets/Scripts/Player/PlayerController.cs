@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     private Collider2D col;
 
     public bool isGrounded;
+    public bool isGravityFlipped = false;
     private bool canDoubleJump;
     private bool isDashing;
     private bool isBoostedFromDash;
@@ -303,7 +304,7 @@ public class PlayerController : MonoBehaviour
         if (hit.collider != null)
         {
             float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
-            isGrounded = slopeAngle <= maxSlopeAngle;
+            isGrounded = (slopeAngle <= maxSlopeAngle) || (slopeAngle >= -maxSlopeAngle);
             groundNormal = hit.normal;
         }
         else
@@ -352,7 +353,7 @@ public class PlayerController : MonoBehaviour
         dashTime = dashDuration;
         nextDashTime = Time.time + dashCooldown;
 
-        Vector2 dashDirection = new Vector2(groundNormal.y, -groundNormal.x).normalized * facingDirection;
+        Vector2 dashDirection = new Vector2(groundNormal.y, -groundNormal.x).normalized * facingDirection * (isGravityFlipped ? -1 : 1);
         rb.velocity = dashDirection * dashForce;
 
         currentMoveSpeed = Mathf.Max(currentMoveSpeed, dashForce);
