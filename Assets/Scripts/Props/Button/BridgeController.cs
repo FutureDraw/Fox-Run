@@ -10,6 +10,11 @@ public class BridgeController : MonoBehaviour
     [SerializeField] public GameObject AnchorFront;
     [SerializeField] public GameObject AnchorBack;
 
+    [Tooltip("Звук при переключении")]
+    public AudioClip openSound;
+    public AudioClip closeSound;
+    private AudioSource audioSource;
+
 
     private bool animating = false;
     private bool opening = false;
@@ -17,6 +22,12 @@ public class BridgeController : MonoBehaviour
     private int totalFrames = 18;
     private float anglePerFrame = 5f;
     bool isActive = true;
+
+    public void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+    }
 
     private void OnEnable()
     {
@@ -41,6 +52,7 @@ public class BridgeController : MonoBehaviour
     public void Activate()
     {
         Debug.Log("activate");
+        audioSource.PlayOneShot(openSound);
         if (!animating)
         {
             animating = true;
@@ -52,6 +64,7 @@ public class BridgeController : MonoBehaviour
     public void Deactivate()
     {
         Debug.Log("deactivate");
+        audioSource.PlayOneShot(closeSound);
         if (!animating)
         {
             animating = true;
