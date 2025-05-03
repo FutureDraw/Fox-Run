@@ -4,11 +4,17 @@ public class BearTrap : MonoBehaviour, ITrap
 {
     [SerializeField] private int _stopTime = 3;
     [SerializeField] private int _slowTime = 5;
-    [SerializeField][Range(0, 1)] private float _slowStrenght = 0.5f; 
+    [SerializeField][Range(0, 1)] private float _slowStrenght = 0.5f;
+
+    [Header("Звук")]
+    public AudioClip BearTrapSound;
+    private AudioSource audioSource;
 
     public void Start()
     {
         GetComponent<CircleCollider2D>().isTrigger = true;
+        audioSource = GetComponent<AudioSource>();
+        audioSource.playOnAwake = false;
         Debug.Log("Bear trap initialized and armed");
     }
 
@@ -50,6 +56,7 @@ public class BearTrap : MonoBehaviour, ITrap
         Debug.Log("collision");
         if (other.CompareTag("Player"))
         {
+            audioSource.PlayOneShot(BearTrapSound);
             other.transform.position = transform.position; // Телепортация к центру ловушки
             StopPlayer(_stopTime);
             SlowPlayer(_slowTime, _slowStrenght);

@@ -9,11 +9,16 @@ public class DoorTrapController : MonoBehaviour
     [SerializeField] public GameObject AnchorBack;
     private int frameCounter = 0;
     private bool isWorked = false;
-    
+
+    [Header("Звук")]
+    public AudioClip openSound;
+    private AudioSource audioSource;
 
     public void Start()
     {
         GetComponent<Collider2D>().isTrigger = true;
+        audioSource = GetComponent<AudioSource>();
+        audioSource.playOnAwake = false;
         Debug.Log("Door trap initialized and armed");
     }
 
@@ -36,6 +41,7 @@ public class DoorTrapController : MonoBehaviour
         Debug.Log("collision");
         if (other.CompareTag("Player"))
         {
+            audioSource.PlayOneShot(openSound);
             isWorked = true;
         }
     }

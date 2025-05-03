@@ -12,11 +12,21 @@ public class ArrowSpawner : MonoBehaviour
     [SerializeField] private float _arrowLifetime = 5f;    // ¬рем€ жизни стрелы
     [SerializeField] private float _spawnOffset = 0f;      // —мещение вдоль линии вылета
 
+    [Header("«вук")]
+    public AudioClip shootSound;
+    private AudioSource audioSource;
+
     [Space]
     [SerializeField, Range(0f, 360f)]
     private float _angleDegrees = 0f;                      // ”гол вылета (ползунок)
 
     private float _timer; // —чЄтчик времени до следующего спавна
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+    }
 
     private void Update()
     {
@@ -41,6 +51,8 @@ public class ArrowSpawner : MonoBehaviour
             spawnPosition,
             Quaternion.Euler(0f, 0f, _angleDegrees - 90f)
         );
+
+        audioSource.PlayOneShot(shootSound);
 
         var mover = arrowInstance.GetComponent<ArrowMover>();
         if (mover != null)

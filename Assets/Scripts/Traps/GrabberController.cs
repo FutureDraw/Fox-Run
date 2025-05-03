@@ -16,10 +16,17 @@ public class GrabberController : MonoBehaviour, ITrap
     private PlayerController _playerController;        // Ссылка на контроллер игрока
     private Vector3 _finalPosition;                    // Конечная позиция grabber'а
 
+    [Header("Звук при захвате")]
+    public AudioClip grabSound;
+    private AudioSource audioSource;
+
+
     private void Start()
     {
         // Настройка коллайдера как триггера
         GetComponent<CircleCollider2D>().isTrigger = true;
+        audioSource = GetComponent<AudioSource>();
+        audioSource.playOnAwake = false;
 
         // Получение ссылки на игрока
         _playerController = FindObjectOfType<PlayerController>();
@@ -79,6 +86,7 @@ public class GrabberController : MonoBehaviour, ITrap
         if (other.CompareTag("Player") && !_isGrabbed)
         {
             Debug.Log("Player grabbed");
+            audioSource.PlayOneShot(grabSound);
             _isGrabbed = true;    // Активируем захват
             _isPulling = true;    // Начинаем движение
             StopPlayer(_stopTime); // Останавливаем игрока

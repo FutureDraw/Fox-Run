@@ -8,10 +8,16 @@ public class WeakFloorController : MonoBehaviour
     private bool isWorked = false;
     public float duration;
 
+    [Header("Звук")]
+    public AudioClip crackingSound;
+    private AudioSource audioSource;
+
 
     public void Start()
     {
         GetComponent<Collider2D>().isTrigger = true;
+        audioSource = GetComponent<AudioSource>();
+        audioSource.playOnAwake = false;
         Debug.Log("Weak floor initialized and armed");
     }
 
@@ -20,6 +26,7 @@ public class WeakFloorController : MonoBehaviour
         Debug.Log("collision");
         if (other.CompareTag("Player"))
         {
+            audioSource.PlayOneShot(crackingSound);
             Destroy(gameObject, duration);
         }
     }
