@@ -3,7 +3,6 @@ using UnityEngine;
 public class GravityFlipper : MonoBehaviour
 {
     [Header("Объекты управления")]
-    public Camera mainCamera;
     public Transform characterVisual;
 
     [Header("Ground Check")]
@@ -23,9 +22,6 @@ public class GravityFlipper : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
-        if (mainCamera == null)
-            mainCamera = Camera.main;
 
         if (characterVisual == null)
             characterVisual = transform;
@@ -50,9 +46,6 @@ public class GravityFlipper : MonoBehaviour
         targetGroundCheckPos = originalGroundCheckLocalPos;
         targetGroundCheckPos.y = gravityInverted ? -0.22f : originalGroundCheckLocalPos.y;
 
-        // Поворачиваем камеру
-        float targetCameraRotation = mainCamera.transform.rotation.eulerAngles.z + 180f;
-
         // Инвертируем визуал персонажа
         Vector3 targetScale = characterVisual.localScale;
         targetScale.y *= -1;
@@ -64,10 +57,10 @@ public class GravityFlipper : MonoBehaviour
         }
 
         // Плавное изменение
-        StartCoroutine(AnimateFlip(targetCameraRotation, targetScale));
+        StartCoroutine(AnimateFlip(targetScale));
     }
 
-    private System.Collections.IEnumerator AnimateFlip(float targetCameraRotation, Vector3 targetScale)
+    private System.Collections.IEnumerator AnimateFlip(Vector3 targetScale)
     {
         float elapsedTime = 0f;
 
@@ -76,8 +69,7 @@ public class GravityFlipper : MonoBehaviour
         {
             float t = elapsedTime / flipDuration;
 
-            // Плавно интерполируем изменения для camera, groundCheck и visual
-            mainCamera.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.LerpAngle(mainCamera.transform.rotation.eulerAngles.z, targetCameraRotation, t));
+            // Плавно интерполируем изменения для groundCheck и visual
             characterVisual.localScale = Vector3.Lerp(characterVisual.localScale, targetScale, t);
             groundCheck.localPosition = Vector3.Lerp(groundCheck.localPosition, targetGroundCheckPos, t);
 
@@ -86,7 +78,6 @@ public class GravityFlipper : MonoBehaviour
         }
 
         // На всякий случай зафиксируем конечное состояние
-        mainCamera.transform.rotation = Quaternion.Euler(0f, 0f, targetCameraRotation);
         characterVisual.localScale = targetScale;
         groundCheck.localPosition = targetGroundCheckPos;
 
