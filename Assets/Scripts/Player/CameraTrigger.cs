@@ -61,4 +61,24 @@ public class CameraTrigger : MonoBehaviour
 
         _isActive = false;
     }
+
+    void OnDrawGizmosSelected()
+    {
+        if (!affectPosition) return;
+
+        Vector3 pos = useTriggerPosition ? transform.position : cameraPosition;
+
+        Camera cam = Camera.main;
+        if (cam == null || !cam.orthographic) return;
+
+        float size = affectZoom ? cameraZoom : cam.orthographicSize;
+        float aspect = cam.aspect;
+
+        float height = size * 2f;
+        float width = height * aspect;
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireCube(pos, new Vector3(width, height, 0f));
+    }
+
 }
