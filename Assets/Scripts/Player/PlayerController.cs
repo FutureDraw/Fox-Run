@@ -310,7 +310,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             isGrounded = false;
-            groundNormal = Vector2.up;
+            groundNormal = Vector2.up * (isGravityFlipped ? -1 : 1);
         }
 
         if (isGrounded && isGrabbingWall)
