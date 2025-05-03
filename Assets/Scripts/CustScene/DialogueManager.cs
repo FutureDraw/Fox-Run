@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class DialogueManager : MonoBehaviour
     private Queue<DialogueLine> lines = new Queue<DialogueLine>(); // Очередь для строк диалога
     private bool isTyping = false;     // Флаг, чтобы не начать новый диалог, пока старый не завершён
 
-    private bool dialogueActive = false; // Флаг активности диалога
+    private bool dialogueActive = false; // Флаг активности диалога 
+    private Action onDialogueEnd;
 
     public bool IsDialogueActive => dialogueActive; // Чтение активности
 
@@ -24,7 +26,8 @@ public class DialogueManager : MonoBehaviour
     {
         dialoguePanel.SetActive(true);  // Показываем панель
         lines.Clear();                  // Очищаем очередь
-        dialogueActive = true;          // Диалог активен
+        dialogueActive = true;       // Диалог активен
+        onDialogueEnd = onEnd;
 
         // Добавляем все строки в очередь
         foreach (var line in dialogue.lines)
@@ -70,7 +73,9 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         dialoguePanel.SetActive(false);  // Скрываем панель
-        dialogueActive = false;          // Диалог завершён
+        dialogueActive = false; // Диалог завершён
+        onDialogueEnd?.Invoke();
+        onDialogueEnd = null; 
     }
 
     void Update()
