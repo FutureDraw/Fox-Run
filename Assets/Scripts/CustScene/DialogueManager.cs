@@ -27,7 +27,6 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(true);  // Показываем панель
         lines.Clear();                  // Очищаем очередь
         dialogueActive = true;       // Диалог активен
-        onDialogueEnd = onEnd;
 
         // Добавляем все строки в очередь
         foreach (var line in dialogue.lines)
