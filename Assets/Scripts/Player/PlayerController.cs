@@ -375,6 +375,8 @@ public class PlayerController : MonoBehaviour
     //<Summary>
     //Отрисовка области проверки земли и стены
     //</Summary>
+    
+    /*
     private void OnDrawGizmosSelected()
     {
         if (groundCheck == null) return;
@@ -395,7 +397,7 @@ public class PlayerController : MonoBehaviour
             Handles.Label(playerPos + (Vector3)(rb.velocity * 0.5f), $"Velocity: {rb.velocity}");
 
             // Вектор нормали поверхности
-            Gizmos.color = Color.red; 
+            Gizmos.color = Color.red;
             Gizmos.DrawLine(playerPos, playerPos + (Vector3)(groundNormal * 1f));
             Handles.Label(playerPos + (Vector3)(groundNormal * 1f), $"Ground Normal: {groundNormal}");
 
@@ -412,5 +414,5 @@ public class PlayerController : MonoBehaviour
             Gizmos.color = Color.white;
             Handles.Label(playerPos + Vector3.up * 2f, $"Grounded: {isGrounded}\nDashing: {isDashing}\nGrabbingWall: {isGrabbingWall}\nMoveSpeed: {currentMoveSpeed:F2}");
         }
-    }
+    }*/
 }
