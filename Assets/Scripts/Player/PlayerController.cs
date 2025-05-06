@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public float dashDuration = 0.2f;
     public float dashCooldown = 0.5f;
     public float inertiaDecayRate = 5f; // скорость затухания инерции
+    public static int JumpCount { get; private set; } // счётчик прыжков
 
     [Header("Inertia Settings")]
     public float inertiaDecayRateGround = 3f; // скорость затухания обычной инерции на земле
@@ -66,7 +67,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Application.targetFrameRate = 90;
-
+        JumpCount = 0;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -161,6 +162,7 @@ public class PlayerController : MonoBehaviour
         if (isGrabbingWall)
         {
             Debug.Log("[WallJump] Прыжок со стены!");
+            JumpCount++;
             rb.velocity = new Vector2(-wallDirection * moveSpeed, jumpForce);
             isGrabbingWall = false;
             canDoubleJump = true; // Разрешаем двойной прыжок после прыжка от стены
@@ -170,6 +172,7 @@ public class PlayerController : MonoBehaviour
         else if (isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            JumpCount++;
             canDoubleJump = true;
             wasJumping = true;
             animator.SetBool("IsJumping", true);
@@ -177,6 +180,7 @@ public class PlayerController : MonoBehaviour
         else if (canDoubleJump)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            JumpCount++;
             canDoubleJump = false;
             wasJumping = true;
 
@@ -410,7 +414,7 @@ public class PlayerController : MonoBehaviour
             Gizmos.DrawLine(playerPos, playerPos + Vector3.right * wallCheckDistance);
 
             Gizmos.color = Color.white;
-            Handles.Label(playerPos + Vector3.up * 2f, $"Grounded: {isGrounded}\nDashing: {isDashing}\nGrabbingWall: {isGrabbingWall}\nMoveSpeed: {currentMoveSpeed:F2}");
+            Handles.Label(playerPos + Vector3.up * 2f, $"Grounded: {isGrounded}\nDashing: {isDashing}\nGrabbingWall: {isGrabbingWall}\nMoveSpeed: {currentMoveSpeed:F2}\nJumps: {JumpCount}");
         }
     }
 }
