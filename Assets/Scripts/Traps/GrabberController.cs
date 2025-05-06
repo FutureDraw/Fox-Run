@@ -10,10 +10,10 @@ public class GrabberController : MonoBehaviour, ITrap
     [Header("References")]
     [SerializeField] private Transform _targetPoint;   // Целевая точка перемещения
 
-    private Transform _playerTransform;                // Ссылка на трансформ игрока
+    public Transform _playerTransform;                // Ссылка на трансформ игрока
     private bool _isPulling;                           // Флаг активного перемещения
     private bool _isGrabbed;                           // Флаг захвата игрока
-    private PlayerController _playerController;        // Ссылка на контроллер игрока
+    public PlayerController _playerController;        // Ссылка на контроллер игрока
     private Vector3 _finalPosition;                    // Конечная позиция grabber'а
 
     [Header("Звук при захвате")]
@@ -29,7 +29,7 @@ public class GrabberController : MonoBehaviour, ITrap
         audioSource.playOnAwake = false;
 
         // Получение ссылки на игрока
-        _playerController = FindObjectOfType<PlayerController>();
+        //_playerController = FindObjectOfType<PlayerController>();
         if (_playerController != null)
         {
             _playerTransform = _playerController.transform;
@@ -86,7 +86,7 @@ public class GrabberController : MonoBehaviour, ITrap
         if (other.CompareTag("Player") && !_isGrabbed)
         {
             Debug.Log("Player grabbed");
-            audioSource.PlayOneShot(grabSound);
+            //audioSource.PlayOneShot(grabSound);
             _isGrabbed = true;    // Активируем захват
             _isPulling = true;    // Начинаем движение
             StopPlayer(_stopTime); // Останавливаем игрока
