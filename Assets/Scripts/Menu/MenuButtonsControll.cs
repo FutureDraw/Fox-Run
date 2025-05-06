@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayButtonControll : MonoBehaviour
+public class MenuButtonsControll : MonoBehaviour
 {
     public Camera mainCamera;
     public Vector3 playPosition;
@@ -88,6 +88,12 @@ public class PlayButtonControll : MonoBehaviour
         }
 
         currentPanel = PanelState.None;
+    }
+
+    public void OnExitButtonClicked()
+    {
+        Application.Quit();
+        Debug.Log("Игра завершена");
     }
 
     private IEnumerator FadeIn(CanvasGroup canvasGroup, float duration = 0.5f)
