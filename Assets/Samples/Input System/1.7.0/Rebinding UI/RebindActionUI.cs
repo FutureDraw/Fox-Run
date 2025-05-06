@@ -234,6 +234,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 action.RemoveBindingOverride(bindingIndex);
             }
             UpdateBindingDisplay();
+            SaveBindingOverride();
         }
 
         /// <summary>
@@ -277,6 +278,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                         m_RebindOverlay?.SetActive(false);
                         UpdateBindingDisplay();
                         CleanUp();
+                        SaveBindingOverride();
                     })
                 .OnComplete(
                     operation =>
