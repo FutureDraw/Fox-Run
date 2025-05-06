@@ -7,6 +7,7 @@ public class TrophyController : MonoBehaviour
 {
     public static TrophyController Instance { get; private set; }
     private int trophiesCollected = 0;
+    public int TrophiesCollected => trophiesCollected;
 
     [Header("Звук")]
     public AudioClip collectSound;
