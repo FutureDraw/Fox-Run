@@ -9,7 +9,8 @@ public class ScoreCalculator : MonoBehaviour
 
         // Останавливаем таймер и получаем значения
         PlayerTimer.Instance.StopTimer();
-        float time = PlayerTimer.Instance.ElapsedTime;                // сек.
+        string nick = "nickname"; // placeholder
+        float time = PlayerTimer.Instance.ElapsedTime;                  // сек.
         float trophies = TrophyController.Instance.TrophiesCollected;   // шт.
 
         if (trophies == 0)
@@ -24,5 +25,8 @@ public class ScoreCalculator : MonoBehaviour
                   $"Время: {time:F2} сек\n" +
                   $"Кубков: {trophies}\n" +
                   $"Очки: {score:F0}");
+
+        string jsonPayload = JsonPackager.Pack(nick, score, trophies, time);
+        Debug.Log("JSON для отправки: " + jsonPayload);
     }
 }
