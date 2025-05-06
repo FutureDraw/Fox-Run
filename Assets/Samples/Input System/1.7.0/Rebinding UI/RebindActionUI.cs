@@ -15,6 +15,11 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
     /// </summary>
     public class RebindActionUI : MonoBehaviour
     {
+        private void Start()
+        {
+            LoadBindingOverride();
+        }
+
         /// <summary>
         /// Reference to the action that is to be rebound.
         /// </summary>
@@ -280,6 +285,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                         m_RebindStopEvent?.Invoke(this, operation);
                         UpdateBindingDisplay();
                         CleanUp();
+                        SaveBindingOverride();
 
                         // If there's more composite parts we should bind, initiate a rebind
                         // for the next part.
@@ -301,21 +307,54 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             if (m_RebindText != null)
             {
                 var text = !string.IsNullOrEmpty(m_RebindOperation.expectedControlType)
-                    ? $"ќжидание ввода"
-                    : $"ќжидание ввода";
+                    ? $"Waiting for input"
+                    : $"Waiting for input";
                 m_RebindText.text = text;
             }
 
             // If we have no rebind overlay and no callback but we have a binding text label,
             // temporarily set the binding text label to "<Waiting>".
             if (m_RebindOverlay == null && m_RebindText == null && m_RebindStartEvent == null && m_BindingText != null)
-                m_BindingText.text = "<ќжидание...>";
+                m_BindingText.text = "<Waiting...>";
 
             // Give listeners a chance to act on the rebind starting.
             m_RebindStartEvent?.Invoke(this, m_RebindOperation);
 
             m_RebindOperation.Start();
         }
+
+        public void SaveBindingOverride()
+        {
+            if (!ResolveActionAndBinding(out var action, out var bindingIndex))
+                return;
+
+            string saveKey = $"{action.actionMap.name}.{action.name}.{bindingIndex}";
+            string overridePath = action.bindings[bindingIndex].overridePath;
+
+            if (!string.IsNullOrEmpty(overridePath))
+            {
+                PlayerPrefs.SetString(saveKey, overridePath);
+            }
+            else
+            {
+                PlayerPrefs.DeleteKey(saveKey);
+            }
+        }
+
+        public void LoadBindingOverride()
+        {
+            if (!ResolveActionAndBinding(out var action, out var bindingIndex))
+                return;
+
+            string saveKey = $"{action.actionMap.name}.{action.name}.{bindingIndex}";
+            if (PlayerPrefs.HasKey(saveKey))
+            {
+                string overridePath = PlayerPrefs.GetString(saveKey);
+                action.ApplyBindingOverride(bindingIndex, overridePath);
+                UpdateBindingDisplay();
+            }
+        }
+
 
         protected void OnEnable()
         {
