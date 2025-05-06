@@ -10,10 +10,10 @@ public class GrabberController : MonoBehaviour, ITrap
     [Header("References")]
     [SerializeField] private Transform _targetPoint;   // Целевая точка перемещения
 
-    private Transform _playerTransform;                // Ссылка на трансформ игрока
+    public Transform _playerTransform;                // Ссылка на трансформ игрока
     private bool _isPulling;                           // Флаг активного перемещения
     private bool _isGrabbed;                           // Флаг захвата игрока
-    private PlayerController _playerController;        // Ссылка на контроллер игрока
+    public PlayerController _playerController;        // Ссылка на контроллер игрока
     private Vector3 _finalPosition;                    // Конечная позиция grabber'а
 
     [Header("Звук при захвате")]
