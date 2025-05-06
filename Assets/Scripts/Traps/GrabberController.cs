@@ -29,7 +29,7 @@ public class GrabberController : MonoBehaviour, ITrap
         audioSource.playOnAwake = false;
 
         // Получение ссылки на игрока
-        //_playerController = FindObjectOfType<PlayerController>();
+        _playerController = FindObjectOfType<PlayerController>();
         if (_playerController != null)
         {
             _playerTransform = _playerController.transform;
@@ -86,7 +86,7 @@ public class GrabberController : MonoBehaviour, ITrap
         if (other.CompareTag("Player") && !_isGrabbed)
         {
             Debug.Log("Player grabbed");
-            //audioSource.PlayOneShot(grabSound);
+            audioSource.PlayOneShot(grabSound);
             _isGrabbed = true;    // Активируем захват
             _isPulling = true;    // Начинаем движение
             StopPlayer(_stopTime); // Останавливаем игрока
