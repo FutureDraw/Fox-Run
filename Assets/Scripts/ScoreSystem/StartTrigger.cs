@@ -7,8 +7,7 @@ public class StartTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerTimer.Instance.StartTimer();
-            // Чтобы триггер сработал только один раз, можно отключить коллайдер:
-            // GetComponent<Collider2D>().enabled = false;
+             GetComponent<Collider2D>().enabled = false;
         }
     }
 }

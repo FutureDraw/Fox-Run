@@ -5,6 +5,7 @@ public class PlayerTimer : MonoBehaviour
     public static PlayerTimer Instance { get; private set; }
 
     private float elapsedTime;
+    public float ElapsedTime => elapsedTime;
     private bool isRunning;
 
     private void Awake()
