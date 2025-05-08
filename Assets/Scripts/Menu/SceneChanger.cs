@@ -1,29 +1,36 @@
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    public string gameSceneName;
-    public Animator animator; // сюда привяжи твой Animator с анимацией затухания
-    public string fadeAnimationName = "Fade"; // название анимации затухания
-    public float delayBeforeSceneLoad = 0.5f; // сколько ждать до смены сцены (длина анимации)
+#if UNITY_EDITOR
+    public SceneAsset sceneAsset;
+#endif
+    public Animator animator;
+    public AnimationClip fadeAnimationClip;
+    public float delayBeforeSceneLoad = 0.5f;
 
     void Start()
     {
-        // Запускаем анимацию
-        animator.Play(fadeAnimationName);
+        animator.Play(fadeAnimationClip.name);
 
-        // Запускаем корутину для ожидания и смены сцены
         StartCoroutine(WaitAndLoadScene());
     }
 
     private IEnumerator WaitAndLoadScene()
     {
-        // Ждём нужное время
-        yield return new WaitForSeconds(delayBeforeSceneLoad);
+        yield return new WaitForSeconds(delayBeforeSceneLoad); // Время ошидания для смены сценны
 
-        // Меняем сцену
-        SceneManager.LoadScene(gameSceneName);
+#if UNITY_EDITOR
+        if (sceneAsset != null)
+        {
+            string sceneName = sceneAsset.name;
+            SceneManager.LoadScene(sceneName);
+        }
+#endif
     }
 }
