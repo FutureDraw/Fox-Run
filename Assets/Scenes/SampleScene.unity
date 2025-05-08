@@ -5290,6 +5290,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6722616651722495089, guid: 835eee858d987fc4d894520c22f893e7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 155.15002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6722616651722495089, guid: 835eee858d987fc4d894520c22f893e7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -38.787994
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174972999280287740, guid: 835eee858d987fc4d894520c22f893e7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8637161353743822207, guid: 835eee858d987fc4d894520c22f893e7, type: 3}
       propertyPath: m_Camera
       value: 
