@@ -1087,7 +1087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.46226418, g: 0.28564438, b: 0.28564438, a: 1}
+  m_Color: {r: 0.59607846, g: 0.2392157, b: 0.21960786, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2159,9 +2159,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d257bdaeae76b944abc5cb5e86c9e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSceneName: TestLevels
+  sceneAsset: {fileID: 102900000, guid: 14ccae75efa52f44881850a3fd4cb1e7, type: 3}
   animator: {fileID: 535578158}
-  fadeAnimationName: Fade
+  fadeAnimationClip: {fileID: 7400000, guid: 6c4e271d3aa18364f83ccb6aa0ce5ffb, type: 2}
   delayBeforeSceneLoad: 1
 --- !u!1001 &549240117
 PrefabInstance:
@@ -12779,7 +12779,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1933668677
 Transform:
   m_ObjectHideFlags: 0
