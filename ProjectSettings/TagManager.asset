@@ -44,6 +44,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: "\u0421\u0430\u043C\u044B\u0439 \u0437\u0430\u0434"
+    uniqueID: 404424577
+    locked: 0
   - name: "\u0424\u043E\u043D \u0437\u0430\u0434\u043D\u0438\u0439"
     uniqueID: 641445241
     locked: 0
@@ -61,4 +64,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3880031385
+    locked: 0
+  - name: UI
+    uniqueID: 1067669711
     locked: 0
