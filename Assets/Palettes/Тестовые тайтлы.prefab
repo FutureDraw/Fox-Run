@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8759413396204893408}
   - component: {fileID: 3634533210621105893}
   m_Layer: 0
-  m_Name: Textures
+  m_Name: "\u0422\u0435\u0441\u0442\u043E\u0432\u044B\u0435 \u0442\u0430\u0439\u0442\u043B\u044B"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
