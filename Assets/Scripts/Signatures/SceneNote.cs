@@ -1,72 +1,110 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using TMPro;
+using System.Collections;
+using UnityEngine.UI;
 
 public class SceneNote : MonoBehaviour
 {
-    [TextArea]
-    public string noteText = "Твой текст";
-    public float displayTime = 5f; // время удаления
-    public Canvas noteCanvasPrefab;
-    public bool NeedStop = false;
-    public float textHeightOffset = 1.5f; // насколько высоко
-    public float textRightOffset = 1.0f;  // насколько правее от игрока
+    [Header("Настройки текста")]
+    public GameObject noteCanvasPrefab;
+    public string noteText;
+    public float textHeightOffset = 2f;
+    public float textRightOffset = 1f;
+    public float showDuration = 5f;
+    public float fadeDuration = 1f;
 
-    private bool hasActivated = false;
-    private void StopPlayer(float time)
-    {
-        var player = FindObjectOfType<PlayerController>();
-        if (player != null)
-        {
-            player.StopMovement(time);
-            Debug.Log($"Player movement frozen for {time} seconds");
-        }
-    }
+    [Header("Остановка игрока")]
+    public bool stopPlayer = true;
+    public float stopDuration = 2f;
+
+    private static GameObject currentNoteCanvas;
+    private static Transform currentTarget;
+    private RectTransform canvasTransform;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!hasActivated && other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            hasActivated = true;
-            if (NeedStop == true)
-            {
-                StopPlayer(displayTime);
-            }
-            StartCoroutine(ShowNoteCoroutine(other.transform));
+            ShowNote(other.transform);
         }
-
     }
 
-    IEnumerator ShowNoteCoroutine(Transform playerTransform)
+    private void ShowNote(Transform playerTransform)
     {
-        Canvas spawnedCanvas = Instantiate(noteCanvasPrefab);
-
-        Text uiText = spawnedCanvas.GetComponentInChildren<Text>();
-        if (uiText != null)
-            uiText.text = noteText;
-
-        TextMeshProUGUI tmpText = spawnedCanvas.GetComponentInChildren<TextMeshProUGUI>();
-        if (tmpText != null)
-            tmpText.text = noteText;
-
-        float timer = 0f;
-        while (timer < displayTime)
+        if (currentNoteCanvas != null)
         {
-            if (spawnedCanvas != null && playerTransform != null)
-            {
-                spawnedCanvas.transform.position = playerTransform.position
-                                                   + Vector3.up * textHeightOffset
-                                                   + Vector3.right * textRightOffset;
-            }
-            timer += Time.deltaTime;
-            yield return null;
+            Destroy(currentNoteCanvas);
         }
 
-        if (spawnedCanvas != null)
+        currentTarget = playerTransform;
+
+        currentNoteCanvas = Instantiate(noteCanvasPrefab);
+        canvasTransform = currentNoteCanvas.GetComponent<RectTransform>();
+
+        TextMeshProUGUI textComponent = currentNoteCanvas.GetComponentInChildren<TextMeshProUGUI>();
+        if (textComponent != null)
         {
-            Destroy(spawnedCanvas.gameObject);
+            textComponent.text = noteText;
+        }
+
+        if (stopPlayer)
+        {
+            var controller = playerTransform.GetComponent<PlayerController>();
+            if (controller != null)
+            {
+                controller.StopMovement(stopDuration);
+            }
+        }
+
+        StartCoroutine(UpdatePosition());
+        StartCoroutine(HideNoteAfterDelay(currentNoteCanvas));
+    }
+
+    private IEnumerator UpdatePosition()
+    {
+        while (currentNoteCanvas != null && currentTarget != null)
+        {
+            Vector3 offset = Vector3.up * textHeightOffset + Vector3.right * textRightOffset;
+            currentNoteCanvas.transform.position = currentTarget.position + offset;
+            yield return null;
+        }
+    }
+
+    private IEnumerator HideNoteAfterDelay(GameObject noteObject)
+    {
+        yield return new WaitForSeconds(showDuration);
+
+        if (noteObject == null) yield break;
+
+        if (fadeDuration > 0f)
+        {
+            Graphic[] graphics = noteObject.GetComponentsInChildren<Graphic>();
+            float t = 0f;
+            while (t < fadeDuration)
+            {
+                float alpha = Mathf.Lerp(1f, 0f, t / fadeDuration);
+                foreach (Graphic g in graphics)
+                {
+                    if (g != null)
+                    {
+                        Color c = g.color;
+                        c.a = alpha;
+                        g.color = c;
+                    }
+                }
+                t += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        if (noteObject != null)
+        {
+            Destroy(noteObject);
+            if (noteObject == currentNoteCanvas)
+            {
+                currentNoteCanvas = null;
+                currentTarget = null;
+            }
         }
     }
 }
