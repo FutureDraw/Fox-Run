@@ -2159,7 +2159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d257bdaeae76b944abc5cb5e86c9e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneAsset: {fileID: 102900000, guid: 14ccae75efa52f44881850a3fd4cb1e7, type: 3}
+  sceneAsset: {fileID: 102900000, guid: a24843a16272e9442a33500daaa27691, type: 3}
   animator: {fileID: 535578158}
   fadeAnimationClip: {fileID: 7400000, guid: 6c4e271d3aa18364f83ccb6aa0ce5ffb, type: 2}
   delayBeforeSceneLoad: 1
