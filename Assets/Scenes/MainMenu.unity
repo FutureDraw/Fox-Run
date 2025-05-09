@@ -1322,7 +1322,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 3
+  m_ScrollSensitivity: 1
   m_Viewport: {fileID: 1959601938}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}
@@ -2159,7 +2159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d257bdaeae76b944abc5cb5e86c9e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneAsset: {fileID: 102900000, guid: a24843a16272e9442a33500daaa27691, type: 3}
+  sceneAsset: {fileID: 102900000, guid: 14ccae75efa52f44881850a3fd4cb1e7, type: 3}
   animator: {fileID: 535578158}
   fadeAnimationClip: {fileID: 7400000, guid: 6c4e271d3aa18364f83ccb6aa0ce5ffb, type: 2}
   delayBeforeSceneLoad: 1
@@ -6041,7 +6041,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1014358164}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -7447,7 +7447,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!225 &1143560660
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -12515,7 +12515,7 @@ SpriteRenderer:
   m_Size: {x: 0.09, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1910743057
@@ -13206,7 +13206,7 @@ SpriteRenderer:
   m_Size: {x: 0.09, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1973019598
