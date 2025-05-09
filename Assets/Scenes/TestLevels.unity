@@ -1001,6 +1001,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 142871300}
     m_Modifications:
+    - target: {fileID: 2551452281577636575, guid: 87a7ab91454675548ba9734be302deb5, type: 3}
+      propertyPath: m_SortingLayer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551452281577636575, guid: 87a7ab91454675548ba9734be302deb5, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -414935911
+      objectReference: {fileID: 0}
     - target: {fileID: 4768883169551163369, guid: 87a7ab91454675548ba9734be302deb5, type: 3}
       propertyPath: m_Name
       value: tropheySystem (4)
@@ -4163,6 +4171,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 142871300}
     m_Modifications:
+    - target: {fileID: 2551452281577636575, guid: 87a7ab91454675548ba9734be302deb5, type: 3}
+      propertyPath: m_SortingLayer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551452281577636575, guid: 87a7ab91454675548ba9734be302deb5, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -414935911
+      objectReference: {fileID: 0}
     - target: {fileID: 4768883169551163369, guid: 87a7ab91454675548ba9734be302deb5, type: 3}
       propertyPath: m_Name
       value: tropheySystem
@@ -8034,11 +8050,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2767223438805231349, guid: aeb174a9e450a554d8c18a26966be778, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 61.03
+      value: -20.23
       objectReference: {fileID: 0}
     - target: {fileID: 2767223438805231349, guid: aeb174a9e450a554d8c18a26966be778, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.41
+      value: 0.46
       objectReference: {fileID: 0}
     - target: {fileID: 2767223438805231349, guid: aeb174a9e450a554d8c18a26966be778, type: 3}
       propertyPath: m_LocalPosition.z
@@ -35396,6 +35412,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 142871300}
     m_Modifications:
+    - target: {fileID: 2551452281577636575, guid: 87a7ab91454675548ba9734be302deb5, type: 3}
+      propertyPath: m_SortingLayer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551452281577636575, guid: 87a7ab91454675548ba9734be302deb5, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -414935911
+      objectReference: {fileID: 0}
     - target: {fileID: 4768883169551163369, guid: 87a7ab91454675548ba9734be302deb5, type: 3}
       propertyPath: m_Name
       value: tropheySystem (1)
@@ -64315,11 +64339,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8301709947011707297, guid: 3e39518afe5023d4fb9093b6c2c2176c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 56.11
+      value: -22.28
       objectReference: {fileID: 0}
     - target: {fileID: 8301709947011707297, guid: 3e39518afe5023d4fb9093b6c2c2176c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.91
+      value: 4.68
       objectReference: {fileID: 0}
     - target: {fileID: 8301709947011707297, guid: 3e39518afe5023d4fb9093b6c2c2176c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -64627,6 +64651,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 142871300}
     m_Modifications:
+    - target: {fileID: 2551452281577636575, guid: 87a7ab91454675548ba9734be302deb5, type: 3}
+      propertyPath: m_SortingLayer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551452281577636575, guid: 87a7ab91454675548ba9734be302deb5, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -414935911
+      objectReference: {fileID: 0}
     - target: {fileID: 4768883169551163369, guid: 87a7ab91454675548ba9734be302deb5, type: 3}
       propertyPath: m_Name
       value: tropheySystem (2)
@@ -66483,6 +66515,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 142871300}
     m_Modifications:
+    - target: {fileID: 2551452281577636575, guid: 87a7ab91454675548ba9734be302deb5, type: 3}
+      propertyPath: m_SortingLayer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551452281577636575, guid: 87a7ab91454675548ba9734be302deb5, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -414935911
+      objectReference: {fileID: 0}
     - target: {fileID: 4768883169551163369, guid: 87a7ab91454675548ba9734be302deb5, type: 3}
       propertyPath: m_Name
       value: tropheySystem (5)
@@ -69850,6 +69890,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 142871300}
     m_Modifications:
+    - target: {fileID: 2551452281577636575, guid: 87a7ab91454675548ba9734be302deb5, type: 3}
+      propertyPath: m_SortingLayer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551452281577636575, guid: 87a7ab91454675548ba9734be302deb5, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -414935911
+      objectReference: {fileID: 0}
     - target: {fileID: 4768883169551163369, guid: 87a7ab91454675548ba9734be302deb5, type: 3}
       propertyPath: m_Name
       value: tropheySystem (6)
@@ -84832,6 +84880,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 142871300}
     m_Modifications:
+    - target: {fileID: 2551452281577636575, guid: 87a7ab91454675548ba9734be302deb5, type: 3}
+      propertyPath: m_SortingLayer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551452281577636575, guid: 87a7ab91454675548ba9734be302deb5, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -414935911
+      objectReference: {fileID: 0}
     - target: {fileID: 4768883169551163369, guid: 87a7ab91454675548ba9734be302deb5, type: 3}
       propertyPath: m_Name
       value: tropheySystem (3)

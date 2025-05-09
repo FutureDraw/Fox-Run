@@ -2159,7 +2159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d257bdaeae76b944abc5cb5e86c9e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneAsset: {fileID: 102900000, guid: 14ccae75efa52f44881850a3fd4cb1e7, type: 3}
+  sceneAsset: {fileID: 102900000, guid: a24843a16272e9442a33500daaa27691, type: 3}
   animator: {fileID: 535578158}
   fadeAnimationClip: {fileID: 7400000, guid: 6c4e271d3aa18364f83ccb6aa0ce5ffb, type: 2}
   delayBeforeSceneLoad: 1
@@ -7518,7 +7518,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 399.89655, y: 0}
+  m_AnchoredPosition: {x: 612.5, y: 0}
   m_SizeDelta: {x: 574.99646, y: 312.685}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1155229430
@@ -12515,7 +12515,7 @@ SpriteRenderer:
   m_Size: {x: 0.09, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1910743057
@@ -13206,7 +13206,7 @@ SpriteRenderer:
   m_Size: {x: 0.09, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1973019598
