@@ -2,10 +2,15 @@ using UnityEngine;
 
 public class PlayerTimer : MonoBehaviour
 {
-    public static PlayerTimer Instance { get; private set; }
+    public static PlayerTimer Instance { get; set; }
 
     private float elapsedTime;
-    public float ElapsedTime => elapsedTime;
+    public float ElapsedTime
+    {
+        get => elapsedTime;
+        set => elapsedTime = value;
+    }
+
     private bool isRunning;
 
     private void Awake()
@@ -13,7 +18,6 @@ public class PlayerTimer : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -21,6 +25,12 @@ public class PlayerTimer : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        elapsedTime = 0f;
+        StopTimer();
+        Debug.Log("таймер отключен");
+    }
     private void Update()
     {
         if (isRunning)
