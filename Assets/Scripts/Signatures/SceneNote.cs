@@ -20,12 +20,27 @@ public class SceneNote : MonoBehaviour
     private static GameObject currentNoteCanvas;
     private static Transform currentTarget;
     private RectTransform canvasTransform;
+    private bool hasTriggered = false;
+
+    private Collider2D triggerCollider;
+
+    private void Awake()
+    {
+        triggerCollider = GetComponent<Collider2D>();
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (hasTriggered) return;
+
         if (other.CompareTag("Player"))
         {
+            hasTriggered = true;
             ShowNote(other.transform);
+            if (triggerCollider != null)
+            {
+                triggerCollider.enabled = false; // Отключаем только коллайдер
+            }
         }
     }
 
