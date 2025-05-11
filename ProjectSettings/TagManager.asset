@@ -50,6 +50,15 @@ TagManager:
   - name: "\u0417\u0430\u0434\u043D\u0438\u0439 \u0444\u043E\u043D 2"
     uniqueID: 641445241
     locked: 0
+  - name: "\u0417\u0430\u0434\u043D\u0438\u0439 \u0444\u043E\u043D 2.0"
+    uniqueID: 1262645925
+    locked: 0
+  - name: "\u0417\u0434\u0430\u043D\u0438\u0439 \u0444\u043E\u043D 2.1"
+    uniqueID: 1059646695
+    locked: 0
+  - name: "\u0417\u0430\u0434\u043D\u0438\u0439 \u0444\u043E\u043D 2.2"
+    uniqueID: 2061865483
+    locked: 0
   - name: "\u0417\u0430\u0434\u043D\u0438\u0439 \u0444\u043E\u043D 3"
     uniqueID: 1506400331
     locked: 0
@@ -68,6 +77,9 @@ TagManager:
   - name: "\u041B\u0438\u0441\u0442\u0432\u0430 \u043D\u0430 walls"
     uniqueID: 2505652677
     locked: 0
+  - name: "\u0423\u043A\u0430\u0437\u0430\u0442\u0435\u043B\u0438"
+    uniqueID: 2150567475
+    locked: 0
   - name: "\u041F\u0435\u0440\u0435\u0434\u043D\u0438\u0439 \u0444\u043E\u043D 1"
     uniqueID: 330837777
     locked: 0
@@ -79,4 +91,10 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 1067669711
+    locked: 0
+  - name: "\u041F\u0435\u0440\u0435\u0434\u043D\u0438\u0439 \u0444\u043E\u043D 3"
+    uniqueID: 3716504495
+    locked: 0
+  - name: "\u041F\u0435\u0440\u0435\u0434\u043D\u0438\u0439 \u0444\u043E\u043D 4"
+    uniqueID: 433592105
     locked: 0
