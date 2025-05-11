@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 3787189708546748435}
   - component: {fileID: 2550028335197121250}
   - component: {fileID: 6300637450290800058}
+  - component: {fileID: 7521623813762302595}
   m_Layer: 0
   m_Name: PlayerLis
   m_TagString: Player
@@ -303,6 +304,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingsPanel: {fileID: 0}
   displayDuration: 0.005
+--- !u!114 &7521623813762302595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8010501347249976759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3ecae3948ddd504bb5f1dcf10c9da96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeParameter: MasterVolume
+  audioMixer: {fileID: 24100000, guid: 5a37e126b5c7b1b42afb4c0842b8fd25, type: 2}
 --- !u!1001 &4053892241009176000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -362,6 +377,22 @@ PrefabInstance:
     - target: {fileID: 37537271434310600, guid: 835eee858d987fc4d894520c22f893e7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003005808094715088, guid: 835eee858d987fc4d894520c22f893e7, type: 3}
+      propertyPath: m_text
+      value: "\u0423"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4142380458399627171, guid: 835eee858d987fc4d894520c22f893e7, type: 3}
+      propertyPath: m_text
+      value: "\u0423"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7163560511143696062, guid: 835eee858d987fc4d894520c22f893e7, type: 3}
+      propertyPath: m_text
+      value: "\u0412"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208803811881418591, guid: 835eee858d987fc4d894520c22f893e7, type: 3}
+      propertyPath: m_text
+      value: "\u0424"
       objectReference: {fileID: 0}
     - target: {fileID: 8842589408261832462, guid: 835eee858d987fc4d894520c22f893e7, type: 3}
       propertyPath: m_Name
