@@ -11,7 +11,6 @@ public class CutsceneTrigger : MonoBehaviour
     public GameObject Canvas;
     private CameraController _cameraController;
     private float _originalZoom;
-    private bool hasDialoguePlayed = false;
 
 
     void Start()

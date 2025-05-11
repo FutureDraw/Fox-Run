@@ -5,7 +5,6 @@ public class WeakFloorController : MonoBehaviour
 
 {
     [SerializeField] public GameObject WeakFloor;
-    private bool isWorked = false;
     public float duration;
 
     [Header("Звук")]
