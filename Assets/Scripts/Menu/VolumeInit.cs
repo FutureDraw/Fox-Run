@@ -5,12 +5,16 @@ using UnityEngine.Audio;
 
 public class VolumeInit : MonoBehaviour
 {
-    public string volumeParameter = "MasterVolume";
+    public List<string> volumeParameters = new List<string> { "MasterVolume", "Music", "Effects" };
     public AudioMixer audioMixer;
 
     void Start()
     {
-        var volumeValue = PlayerPrefs.GetFloat(volumeParameter, volumeParameter == "Effects" ? 0f : -80f);
-        audioMixer.SetFloat(volumeParameter, volumeValue);
+        foreach (var param in volumeParameters)
+        {
+            float defaultValue = param == "Effects" ? 0f : -80f;
+            float volumeValue = PlayerPrefs.GetFloat(param, defaultValue);
+            audioMixer.SetFloat(param, volumeValue);
+        }
     }
 }
