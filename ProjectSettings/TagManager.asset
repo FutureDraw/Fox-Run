@@ -86,6 +86,9 @@ TagManager:
   - name: "\u0423\u043A\u0430\u0437\u0430\u0442\u0435\u043B\u0438"
     uniqueID: 2150567475
     locked: 0
+  - name: "\u041B\u043E\u0432\u0443\u0448\u043A\u0438"
+    uniqueID: 2505364695
+    locked: 0
   - name: Player
     uniqueID: 3880031385
     locked: 0
