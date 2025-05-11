@@ -1,8 +1,20 @@
 using UnityEngine;
+using System.IO;
 
 [RequireComponent(typeof(Collider2D))]
 public class ScoreCalculator : MonoBehaviour
 {
+    public int levelIndex = 1; // установить в инспекторе
+
+    [System.Serializable]
+    public class PlayerRecord
+    {
+        public string playerName;
+        public float score;
+        public float trophies;
+        public float timeInSeconds;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
@@ -26,7 +38,19 @@ public class ScoreCalculator : MonoBehaviour
                   $"Кубков: {trophies}\n" +
                   $"Очки: {score:F0}");
 
-        string jsonPayload = JsonPackager.Pack(nick, score, trophies, time);
-        Debug.Log("JSON для отправки: " + jsonPayload);
+        PlayerRecord record = new PlayerRecord
+        {
+            playerName = nick,
+            score = score,
+            trophies = trophies,
+            timeInSeconds = time
+        };
+
+        string jsonPayload = JsonUtility.ToJson(record, true);
+        Debug.Log("JSON для сохранения: " + jsonPayload);
+
+        string path = Path.Combine(Application.persistentDataPath, $"level_{levelIndex}.json");
+        File.WriteAllText(path, jsonPayload);
+        Debug.Log("Файл сохранён по пути: " + path);
     }
 }

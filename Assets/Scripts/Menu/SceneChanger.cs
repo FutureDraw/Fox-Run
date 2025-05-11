@@ -14,11 +14,14 @@ public class SceneChanger : MonoBehaviour
     public AnimationClip fadeAnimationClip;
     public float delayBeforeSceneLoad = 0.5f;
 
+    public PlayerTimer timer;
+
     void Start()
     {
         animator.Play(fadeAnimationClip.name);
 
         StartCoroutine(WaitAndLoadScene());
+        PlayerTimer.Instance.ElapsedTime = 0f;
     }
 
     private IEnumerator WaitAndLoadScene()

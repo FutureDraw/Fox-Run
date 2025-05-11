@@ -7,7 +7,7 @@ public class StartTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerTimer.Instance.StartTimer();
-             GetComponent<Collider2D>().enabled = false;
+            GetComponent<Collider2D>().enabled = false;
         }
     }
 }
