@@ -1322,7 +1322,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 8
   m_Viewport: {fileID: 1959601938}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}
@@ -2163,6 +2163,7 @@ MonoBehaviour:
   animator: {fileID: 535578158}
   fadeAnimationClip: {fileID: 7400000, guid: 6c4e271d3aa18364f83ccb6aa0ce5ffb, type: 2}
   delayBeforeSceneLoad: 1
+  timer: {fileID: 0}
 --- !u!1001 &549240117
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4885,7 +4886,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 8
   m_Viewport: {fileID: 957607861}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 562363185}
@@ -6722,7 +6723,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1072398230}
   - component: {fileID: 1072398229}
-  - component: {fileID: 1072398231}
   - component: {fileID: 1072398232}
   m_Layer: 0
   m_Name: MainAudio
@@ -6842,20 +6842,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1072398231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1072398228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3ecae3948ddd504bb5f1dcf10c9da96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeParameter: Music
-  audioMixer: {fileID: 24100000, guid: 5a37e126b5c7b1b42afb4c0842b8fd25, type: 2}
 --- !u!114 &1072398232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6868,7 +6854,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3ecae3948ddd504bb5f1dcf10c9da96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeParameter: MasterVolume
+  volumeParameters:
+  - MasterVolume
+  - Music
+  - Effects
   audioMixer: {fileID: 24100000, guid: 5a37e126b5c7b1b42afb4c0842b8fd25, type: 2}
 --- !u!1 &1104760122
 GameObject:
@@ -8237,7 +8226,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1220820669}
   - component: {fileID: 1220820668}
-  - component: {fileID: 1220820670}
   m_Layer: 0
   m_Name: Effects Source
   m_TagString: Untagged
@@ -8356,20 +8344,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1220820670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1220820667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3ecae3948ddd504bb5f1dcf10c9da96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeParameter: Effects
-  audioMixer: {fileID: 24100000, guid: 5a37e126b5c7b1b42afb4c0842b8fd25, type: 2}
 --- !u!1 &1287223448
 GameObject:
   m_ObjectHideFlags: 0
@@ -8461,9 +8435,9 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 26
-  m_fontStyle: 8
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -9407,13 +9381,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23.15
+  m_fontSize: 22.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 8
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -11538,7 +11512,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 57.714256, y: -4.122447}
+  m_AnchoredPosition: {x: 61, y: -4.122447}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1718478967
