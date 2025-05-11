@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8559275332806035897}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AnchorFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 5807458652793540185}
   - component: {fileID: 6343324639559505032}
   - component: {fileID: 3063292350006634214}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FlapBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,8 +59,8 @@ Transform:
   m_GameObject: {fileID: 5927495011047951858}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.571, y: 0, z: 0.024662543}
-  m_LocalScale: {x: 1.207968, y: 0.1026, z: 1}
+  m_LocalPosition: {x: -1.769, y: 0, z: 0.024662543}
+  m_LocalScale: {x: 3.604009, y: 0.1026, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3101520916787652690}
@@ -103,8 +103,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -414935911
+  m_SortingLayer: 15
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.7924528, g: 0.36258456, b: 0.36258456, a: 1}
@@ -175,7 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3101520916787652690}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AnchorBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ Transform:
   m_GameObject: {fileID: 6789770736363246166}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7071065, w: 0.7071071}
-  m_LocalPosition: {x: 2.452, y: -0.394, z: 0}
+  m_LocalPosition: {x: 6.13, y: -0.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 5917512546203260597}
   - component: {fileID: 8190992645611113963}
   - component: {fileID: 8942547972854630472}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FlapFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,8 +225,8 @@ Transform:
   m_GameObject: {fileID: 7353322011279029714}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.616, y: 0, z: 0.024662543}
-  m_LocalScale: {x: 1.2068641, y: 0.1026, z: 1}
+  m_LocalPosition: {x: 1.8988, y: -0, z: 0.024662543}
+  m_LocalScale: {x: 3.6007154, y: 0.1026, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8559275332806035897}
@@ -269,8 +269,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -414935911
+  m_SortingLayer: 15
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.79215693, g: 0.3647059, b: 0.3647059, a: 1}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 1431489919652339819}
   - component: {fileID: 7039305552345359030}
   - component: {fileID: 6272154651839754871}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8096962145741776476}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 31.432968, y: -0.46437848, z: -0.024662543}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -380,7 +380,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttons:
-  - {fileID: 0}
   - {fileID: 0}
   AnchorFront: {fileID: 1540277656933131630}
   AnchorBack: {fileID: 6789770736363246166}
