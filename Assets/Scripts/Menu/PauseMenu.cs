@@ -88,4 +88,11 @@ public class PauseMenu : MonoBehaviour
     {
         StartCoroutine(WaitAndLoadScene());
     }
+
+    public void RestartLevel()
+    {
+        Time.timeScale = 1f;
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
+    }
 }
