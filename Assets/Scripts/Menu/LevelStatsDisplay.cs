@@ -54,7 +54,7 @@ public class LevelStatsDisplay : MonoBehaviour
 
         Debug.Log("данные:" + record + "трофеи: " + record.trophies + "время:" + record.timeInSeconds);
 
-        if (record != null && record.trophies > 0 && record.timeInSeconds > 0)
+        if (record != null && record.trophies >= 0 && record.timeInSeconds > 0)
         {
             ui.passedText.text = "Да";
             ui.passedText.color = Color.green;

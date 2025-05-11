@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.IO;
 
-[RequireComponent(typeof(Collider2D))]
 public class ScoreCalculator : MonoBehaviour
 {
     public int levelIndex = 1; // установить в инспекторе
@@ -15,12 +14,8 @@ public class ScoreCalculator : MonoBehaviour
         public float timeInSeconds;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void CalculateResult()
     {
-        if (!other.CompareTag("Player")) return;
-
-        // Останавливаем таймер и получаем значения
-        PlayerTimer.Instance.StopTimer();
         string nick = "nickname"; // placeholder
         float time = PlayerTimer.Instance.ElapsedTime;                  // сек.
         float trophies = TrophyController.Instance.TrophiesCollected;   // шт.
@@ -50,7 +45,29 @@ public class ScoreCalculator : MonoBehaviour
         Debug.Log("JSON для сохранения: " + jsonPayload);
 
         string path = Path.Combine(Application.persistentDataPath, $"level_{levelIndex}.json");
-        File.WriteAllText(path, jsonPayload);
-        Debug.Log("Файл сохранён по пути: " + path);
+
+        if (File.Exists(path))
+        {
+            // Читаем текущий результат из файла
+            string currentJson = File.ReadAllText(path);
+            PlayerRecord currentRecord = JsonUtility.FromJson<PlayerRecord>(currentJson);
+
+            // Сравниваем время: если новое время меньше текущего, сохраняем новый результат
+            if (time < currentRecord.timeInSeconds)
+            {
+                File.WriteAllText(path, jsonPayload);
+                Debug.Log("Новый результат сохранён по пути: " + path);
+            }
+            else
+            {
+                Debug.Log("Новое время больше или равно текущему, результат не сохранён.");
+            }
+        }
+        else
+        {
+            // Если файла ещё нет, создаём его и сохраняем результат
+            File.WriteAllText(path, jsonPayload);
+            Debug.Log("Файл сохранён по пути: " + path);
+        }
     }
 }
