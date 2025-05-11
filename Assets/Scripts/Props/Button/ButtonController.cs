@@ -25,7 +25,7 @@ public class ButtonController : MonoBehaviour
 
     private void Update()
     {
-        if (playerNearby && Input.GetKeyDown(KeyCode.E) && player.isGrounded)
+        if (playerNearby && player.interaction.action.triggered && player.isGrounded)
             Toggle();
     }
 

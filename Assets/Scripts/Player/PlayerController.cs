@@ -1,13 +1,21 @@
 ﻿using System;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 // <summary>
 // Класс для описания поведения игровой модели персонажа
 // </summary>
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement Settings")]
+    public InputActionReference move;
+    public InputActionReference jump;
+    public InputActionReference dash;
+    public InputActionReference interaction;
+    public InputActionReference grab;
+    private Vector2 _moveInput;
+
+    [Header("Movement Settings")]   
     public float moveSpeed = 3f;
     public float jumpForce = 10f;
     public float dashForce = 8f;
@@ -66,6 +74,12 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        move.action.Enable();
+        jump.action.Enable();
+        dash.action.Enable();
+        interaction.action.Enable();
+        grab.action.Enable();
+
         Application.targetFrameRate = 90;
         JumpCount = 0;
         rb = GetComponent<Rigidbody2D>();
@@ -115,10 +129,10 @@ public class PlayerController : MonoBehaviour
 
         HandleWallGrabInput();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (jump.action.triggered)
             HandleJump();
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && Time.time >= nextDashTime && !isSlowed && !isGrabbingWall)
+        if (dash.action.triggered && !isDashing && Time.time >= nextDashTime && !isSlowed && !isGrabbingWall)
             StartDash();
 
         if (isDashing)
@@ -128,10 +142,9 @@ public class PlayerController : MonoBehaviour
                 EndDash();
         }
 
-        
-
         // Получаем значение оси для движения
-        moveX = Input.GetAxisRaw("Horizontal");
+        _moveInput = move.action.ReadValue<Vector2>();
+        moveX = _moveInput.x;  
 
         // Проверка на движение по оси X
         float speed = Mathf.Abs(moveX) > 0.1f && !isGrabbingWall ? Mathf.Abs(moveX) * currentMoveSpeed : 0f;
@@ -193,7 +206,7 @@ public class PlayerController : MonoBehaviour
     //</Summary>
     private void HandleWallGrabInput()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (grab.action.triggered)
         {
             if (!isGrabbingWall && wallGrabCount < maxWallGrabs && isNearWall)
             {
