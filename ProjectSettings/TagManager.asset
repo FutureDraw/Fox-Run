@@ -77,14 +77,14 @@ TagManager:
   - name: "\u041B\u0438\u0441\u0442\u0432\u0430 \u043D\u0430 walls"
     uniqueID: 2505652677
     locked: 0
-  - name: "\u0423\u043A\u0430\u0437\u0430\u0442\u0435\u043B\u0438"
-    uniqueID: 2150567475
-    locked: 0
   - name: "\u041F\u0435\u0440\u0435\u0434\u043D\u0438\u0439 \u0444\u043E\u043D 1"
     uniqueID: 330837777
     locked: 0
   - name: "\u041F\u0435\u0440\u0435\u0434\u043D\u0438\u0439 \u0444\u043E\u043D 2"
     uniqueID: 3043612031
+    locked: 0
+  - name: "\u0423\u043A\u0430\u0437\u0430\u0442\u0435\u043B\u0438"
+    uniqueID: 2150567475
     locked: 0
   - name: Player
     uniqueID: 3880031385
