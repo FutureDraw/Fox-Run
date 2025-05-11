@@ -301,6 +301,8 @@ public class PlayerController : MonoBehaviour
     private void ResumeMovement()
     {
         isStopped = false;
+        animator.SetBool("IsIdle", false);
+        Debug.Log("IsIdle set to false");
     }
 
     //<Summary>

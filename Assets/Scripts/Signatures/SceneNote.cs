@@ -24,6 +24,8 @@ public class SceneNote : MonoBehaviour
 
     private Collider2D triggerCollider;
 
+    private Animator animator;
+
     private void Awake()
     {
         triggerCollider = GetComponent<Collider2D>();
@@ -53,6 +55,16 @@ public class SceneNote : MonoBehaviour
 
         currentTarget = playerTransform;
 
+        // Получаем аниматор и устанавливаем состояние Idle сразу
+        animator = playerTransform.GetComponent<Animator>();
+            
+            
+        if (animator != null)
+        {
+            animator.SetBool("IsIdle", true);
+            Debug.Log("IsIdle set to true");
+        }
+
         currentNoteCanvas = Instantiate(noteCanvasPrefab);
         canvasTransform = currentNoteCanvas.GetComponent<RectTransform>();
 
@@ -68,6 +80,14 @@ public class SceneNote : MonoBehaviour
             if (controller != null)
             {
                 controller.StopMovement(stopDuration);
+            }
+        }
+        else
+        {
+            if (animator != null)
+            {
+                animator.SetBool("IsIdle", false);
+                Debug.Log("IsIdle set to false2");
             }
         }
 
