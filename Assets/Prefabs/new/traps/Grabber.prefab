@@ -172,7 +172,7 @@ MonoBehaviour:
   _targetPoint: {fileID: 4192352883862544751}
   _playerTransform: {fileID: 0}
   _playerController: {fileID: 0}
-  grabSound: {fileID: 0}
+  grabSound: {fileID: 8300000, guid: 686f8b0d1a6c9574e99eec641e680174, type: 3}
 --- !u!82 &777145302039574846
 AudioSource:
   m_ObjectHideFlags: 0

@@ -136,7 +136,7 @@ MonoBehaviour:
   _arrowSpeed: 10
   _arrowLifetime: 4
   _spawnOffset: 1
-  shootSound: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: c41a2d843b7307442ad08c7a6c4151c2, type: 3}
   _angleDegrees: 75
 --- !u!114 &6054390296462013438
 MonoBehaviour:
@@ -164,8 +164,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.208
   m_Pitch: 1
   Loop: 0
   Mute: 0

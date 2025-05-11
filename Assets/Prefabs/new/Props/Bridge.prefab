@@ -384,8 +384,8 @@ MonoBehaviour:
   - {fileID: 0}
   AnchorFront: {fileID: 1540277656933131630}
   AnchorBack: {fileID: 6789770736363246166}
-  openSound: {fileID: 0}
-  closeSound: {fileID: 0}
+  openSound: {fileID: 8300000, guid: 3465b082f10e2e849b321bbd8e7c3c30, type: 3}
+  closeSound: {fileID: 8300000, guid: 44fc0e94f86aa9b49911009253fa6fab, type: 3}
 --- !u!82 &6272154651839754871
 AudioSource:
   m_ObjectHideFlags: 0
@@ -397,14 +397,14 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 58
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

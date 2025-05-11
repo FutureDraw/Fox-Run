@@ -446,7 +446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AnchorFront: {fileID: 2572676779273287755}
   AnchorBack: {fileID: 8268694112863592847}
-  openSound: {fileID: 0}
+  openSound: {fileID: 8300000, guid: 01ef201eafbccb54fba0ab5959f7e21b, type: 3}
 --- !u!82 &3053452023525168131
 AudioSource:
   m_ObjectHideFlags: 0

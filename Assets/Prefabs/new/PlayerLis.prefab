@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a51d30932cfd4e0458a7d91a905b205b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectSound: {fileID: 0}
+  collectSound: {fileID: 8300000, guid: 5d078c85a439ee243b221627d7d457bd, type: 3}
 --- !u!70 &3787189708546748435
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -399,20 +399,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1001 &4053892241009176000
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8010501347249976759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3ecae3948ddd504bb5f1dcf10c9da96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeParameters:
-  - MasterVolume
-  - Music
-  - Effects
-  audioMixer: {fileID: 24100000, guid: 5a37e126b5c7b1b42afb4c0842b8fd25, type: 2}
