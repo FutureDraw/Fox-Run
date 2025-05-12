@@ -2,6 +2,9 @@
 using TMPro;
 using System.IO;
 
+/// <summary>
+/// Класс для вывода статичтики уровня
+/// </summary>
 public class LevelStatsDisplay : MonoBehaviour
 {
     [System.Serializable]

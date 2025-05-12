@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Управляет проваливающимся полом
+/// </summary>
 public class WeakFloorController : MonoBehaviour
 
 {

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// <Summary>
-// Интерфейс для управления ловушками (капкан, летящая стрела, хваталка)
-// </Summary>
+/// <Summary>
+/// Интерфейс для управления ловушками (капкан, летящая стрела, хваталка)
+/// </Summary>
 internal interface ITrap
 {
     void StopPlayer(float Time);

@@ -3,9 +3,9 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// <summary>
-// Класс для описания поведения игровой модели персонажа
-// </summary>
+/// <summary>
+/// Класс для описания поведения игровой модели персонажа
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
     public InputActionReference move;

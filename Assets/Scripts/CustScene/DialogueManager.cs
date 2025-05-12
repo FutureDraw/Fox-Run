@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
+/// <summary>
+/// Менеджер диалоговых окон
+/// </summary>
 public class DialogueManager : MonoBehaviour
 {
     public GameObject dialoguePanel;   // Панель диалога

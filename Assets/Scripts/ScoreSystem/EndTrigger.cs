@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Триггер конца уровня
+/// </summary>
 public class EndTrigger : MonoBehaviour
 
 {

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
+/// <summary>
+/// Диалог
+/// </summary>
 public class DialogueLine
 {
     public string characterName;    // Имя персонажа

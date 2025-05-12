@@ -5,6 +5,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Класс для смены сцен
+/// </summary>
 public class SceneChanger : MonoBehaviour
 {
 #if UNITY_EDITOR

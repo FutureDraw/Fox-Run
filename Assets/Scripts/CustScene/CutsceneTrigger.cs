@@ -2,6 +2,9 @@
 using Unity.Properties;
 using UnityEngine;
 
+/// <summary>
+/// Триггер для катсцен
+/// </summary>
 public class CutsceneTrigger : MonoBehaviour
 {
     public bool affectCamera = true;

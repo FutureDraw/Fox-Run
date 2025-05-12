@@ -3,6 +3,9 @@ using TMPro;
 using System.Collections;
 using UnityEngine.UI;
 
+/// <summary>
+/// Класс записок на сцене
+/// </summary>
 public class SceneNote : MonoBehaviour
 {
     [Header("Настройки текста")]

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.IO;
 
+/// <summary>
+/// Класс для подсчёта рещультата на уровне
+/// </summary>
 public class ScoreCalculator : MonoBehaviour
 {
     public int levelIndex = 1; // установить в инспекторе

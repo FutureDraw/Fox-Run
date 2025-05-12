@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+/// <summary>
+/// Класс для вывода настроек
+/// </summary>
 public class DisplaySettings : MonoBehaviour
 {
     public TMP_Dropdown resolutionDropdown;

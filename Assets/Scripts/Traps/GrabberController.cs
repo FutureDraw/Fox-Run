@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Класс для управления граббера
+/// </summary>
 public class GrabberController : MonoBehaviour, ITrap
 {
     [Header("Settings")]
@@ -66,9 +69,9 @@ public class GrabberController : MonoBehaviour, ITrap
         }
     }
 
-    //<Summary>
-    // Полная остановка игрока
-    //</Summary>
+    ///<Summary>
+    /// Полная остановка игрока
+    ///</Summary>
     public void StopPlayer(float time)
     {
         if (_playerController != null)
@@ -78,9 +81,9 @@ public class GrabberController : MonoBehaviour, ITrap
         }
     }
 
-    //<Summary>
-    // Обработка столкновения с игроком
-    //</Summary>
+    ///<Summary>
+    /// Обработка столкновения с игроком
+    ///</Summary>
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && !_isGrabbed)
@@ -94,13 +97,13 @@ public class GrabberController : MonoBehaviour, ITrap
         }
     }
 
-    //<Summary>
-    // Нереализовано
-    //</Summary>
+    ////<Summary>
+    /// Нереализовано
+    ///</Summary>
     public void SlowPlayer(float time, float strength) { }
 
-    //<Summary>
-    // Нереализовано
-    //</Summary>
+    ///<Summary>
+    /// Нереализовано
+    ///</Summary>
     public void KillPlayer() { }
 }

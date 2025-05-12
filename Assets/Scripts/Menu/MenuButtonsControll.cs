@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Управляет кнопками в меню
+/// </summary>
 public class MenuButtonsControll : MonoBehaviour
 {
     public Camera mainCamera;

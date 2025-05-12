@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Триггер начала уровня
+/// </summary>
 public class StartTrigger : MonoBehaviour
 {
     private void OnTriggerExit2D(Collider2D other)

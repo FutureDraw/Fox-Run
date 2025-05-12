@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Управляет открывающимся люком
+/// </summary>
 public class DoorTrapController : MonoBehaviour
 {
     [SerializeField] public GameObject AnchorFront;
@@ -32,9 +35,6 @@ public class DoorTrapController : MonoBehaviour
         }
     }
 
-    //<Summary>
-    //
-    //</Summary>
 
     private void OnTriggerEnter2D(Collider2D other)
     {

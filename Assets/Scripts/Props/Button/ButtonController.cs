@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System;
 
-// <summary>
-// Управляет состоянием кнопки и оповещает подписчиков
-// </summary>
+/// <summary>
+/// Управляет состоянием кнопки и оповещает подписчиков
+/// </summary>
 [RequireComponent(typeof(Collider2D), typeof(AudioSource))]
 public class ButtonController : MonoBehaviour
 {

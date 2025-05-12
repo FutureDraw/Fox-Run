@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Переключатель гравитации по кнопке
+/// </summary>
 public class GravityButton : MonoBehaviour
 {
     public List<ButtonController> buttons;

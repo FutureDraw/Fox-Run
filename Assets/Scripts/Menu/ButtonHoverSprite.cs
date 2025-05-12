@@ -2,6 +2,9 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/// <summary>
+/// Переключатель спрайтов для кнопки
+/// </summary>
 public class ButtonHoverSprite : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Sprite normalSprite;

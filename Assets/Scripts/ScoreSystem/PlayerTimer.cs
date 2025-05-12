@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Класс для управления таймером на уровне
+/// </summary>
 public class PlayerTimer : MonoBehaviour
 {
     public static PlayerTimer Instance { get; set; }

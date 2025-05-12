@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// Вывод информации в селектор уровней
+/// </summary>
 public class InformationOutput : MonoBehaviour
 {
     public TextMeshProUGUI m_CollectedTrophies;

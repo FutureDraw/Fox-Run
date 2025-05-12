@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Управляет камерой
+/// </summary>
 public class CameraController : MonoBehaviour
 {
     [Header("Tracking")]

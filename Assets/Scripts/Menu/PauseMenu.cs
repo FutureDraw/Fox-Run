@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
+/// <summary>
+/// Класс меню паузы
+/// </summary>
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI;

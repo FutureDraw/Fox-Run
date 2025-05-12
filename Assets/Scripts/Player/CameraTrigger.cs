@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Триггер для камеры
+/// </summary>
 public class CameraTrigger : MonoBehaviour
 {
     [Header("Camera Settings")]

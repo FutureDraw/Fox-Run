@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Инициализатор скриптов
+/// </summary>
 public class Bindinit : MonoBehaviour
 {
     public GameObject settingsPanel;

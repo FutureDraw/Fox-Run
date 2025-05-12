@@ -1,9 +1,9 @@
 ﻿//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-// <summary>
-// Класс для исходящего портала
-// </summary>
+/// <summary>
+/// Класс для исходящего портала
+/// </summary>
 public class PortalOut : Portal
 {
     private void OnTriggerEnter2D(Collider2D other)

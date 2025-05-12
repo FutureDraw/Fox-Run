@@ -3,6 +3,9 @@ using UnityEngine.Networking;
 using System.Collections;
 using TMPro;
 
+/// <summary>
+/// Приёмщик лидербордов
+/// </summary>
 public class LeaderboardReceiver : MonoBehaviour
 {
     public TextMeshProUGUI leaderboardText;

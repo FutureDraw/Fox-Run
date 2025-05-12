@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Класс для упрвления раздатчика стрел
+/// </summary>
 public class NewBehaviourScript : MonoBehaviour
 {
     public List<ButtonController> buttons;

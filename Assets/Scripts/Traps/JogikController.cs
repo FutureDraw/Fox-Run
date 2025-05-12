@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+/// <summary>
+/// Управляет  Й О Ж И К О М
+/// </summary>
 public class JogikController : MonoBehaviour
 {
     [SerializeField] public GameObject PlaceToTp; // пустой объект к которому переместит игрока после "смерти"
@@ -20,23 +23,20 @@ public class JogikController : MonoBehaviour
     }
 
 
-    //<Summary>
-    // Не реализовано
-    //</Summary>
+    ///<Summary>
+    /// Не реализовано
+    ///</Summary>
     public void StopPlayer(float time)
     {
     }
 
-    //<Summary>
-    // Не реализовано
-    //</Summary>
+    ///<Summary>
+    /// Не реализовано
+    ///</Summary>
     public void SlowPlayer(float time, float strength)
     {
     }
 
-    //<Summary>
-    //
-    //</Summary>
     public void KillPlayer()
     {
         var player = FindObjectOfType<PlayerController>();

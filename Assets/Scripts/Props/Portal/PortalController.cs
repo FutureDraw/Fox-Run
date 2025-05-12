@@ -2,9 +2,9 @@
 using UnityEngine;
 
 
-// <summary>
-// Класс для управления парой порталов
-// </summary>
+/// <summary>
+/// Класс для управления парой порталов
+/// </summary>
 public class PortalController : MonoBehaviour
 {
     [Header("Portal References")]
@@ -15,9 +15,9 @@ public class PortalController : MonoBehaviour
     public float teleportCooldown = 0.5f; // Задержка перед повторным телепортом
     private bool isTeleporting;
 
-    // <summary>
-    // Инициализация порталов
-    // </summary>
+    /// <summary>
+    /// Инициализация порталов
+    /// </summary>
     private void Start()
     {
         if (portalIn == null || portalOut == null)
@@ -35,9 +35,9 @@ public class PortalController : MonoBehaviour
         portalOut.controller = this;
     }
 
-    // <summary>
-    // Телепортация игрока между порталами
-    // </summary>
+    /// <summary>
+    /// Телепортация игрока между порталами
+    /// </summary>
     public void TeleportPlayer(Transform player, bool isEnteringFromIn)
     {
         if (isTeleporting) return;
@@ -56,9 +56,9 @@ public class PortalController : MonoBehaviour
         Invoke(nameof(ResetTeleport), teleportCooldown);
     }
 
-    // <summary>
-    // Сброс флага телепортации
-    // </summary>
+    /// <summary>
+    /// Сброс флага телепортации
+    /// </summary>
     private void ResetTeleport()
     {
         isTeleporting = false;

@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Класс капкана
+/// </summary>
 public class BearTrap : MonoBehaviour, ITrap
 {
     [SerializeField] private int _stopTime = 3;
@@ -18,9 +21,9 @@ public class BearTrap : MonoBehaviour, ITrap
         Debug.Log("Bear trap initialized and armed");
     }
 
-    //<Summary>
-    // Полная остановка игрока
-    //</Summary>
+    ///<Summary>
+    /// Полная остановка игрока
+    ///</Summary>
     public void StopPlayer(float time)
     {
         var player = FindObjectOfType<PlayerController>();
@@ -31,9 +34,9 @@ public class BearTrap : MonoBehaviour, ITrap
         }
     }
 
-    //<Summary>
-    // Замедление игрока
-    //</Summary>
+    ///<Summary>
+    /// Замедление игрока
+    ///</Summary>
     public void SlowPlayer(float time, float strength)
     {
         var player = FindObjectOfType<PlayerController>();
@@ -44,9 +47,9 @@ public class BearTrap : MonoBehaviour, ITrap
         }
     }
 
-    //<Summary>
-    // Нереализовано
-    //</Summary>
+    ///<Summary>
+    /// Нереализовано
+    ///</Summary>
     public void KillPlayer()
     { 
     }

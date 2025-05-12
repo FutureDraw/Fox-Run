@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Класс для выбора уровня
+/// </summary>
 public class LevelSelector : MonoBehaviour
 {
     public Transform[] levelPositions; // Позиции уровней

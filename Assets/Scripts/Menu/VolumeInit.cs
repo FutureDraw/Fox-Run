@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
+/// <summary>
+/// Инициализтор громкости
+/// </summary>
 public class VolumeInit : MonoBehaviour
 {
     public List<string> volumeParameters = new List<string> { "MasterVolume", "Music", "Effects" };

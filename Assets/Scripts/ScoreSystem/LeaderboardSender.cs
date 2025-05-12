@@ -3,6 +3,9 @@ using UnityEngine.Networking;
 using System.Collections;
 using System.Text;
 
+/// <summary>
+/// Упаковщик данных статистики
+/// </summary>
 public class LeaderboardSender : MonoBehaviour
 {
     private const string url = "http://138.124.99.121:5000/submit_score";

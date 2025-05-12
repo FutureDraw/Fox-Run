@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Управляет состоянием гравитации
+/// </summary>
 public class GravityFlipper : MonoBehaviour
 {
     [Header("Объекты управления")]

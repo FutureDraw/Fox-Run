@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Вкладка настроек
+/// </summary>
 public class SettingsTabs : MonoBehaviour
 {
     public GameObject audioPanel;

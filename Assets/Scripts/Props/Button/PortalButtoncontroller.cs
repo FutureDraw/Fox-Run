@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// <summary>
-// Включает/выключает порталы
-// </summary>
+/// <summary>
+/// Включает/выключает порталы
+/// </summary>
 public class PortalButtoncontroller : MonoBehaviour
 {
     public List<ButtonController> buttons;

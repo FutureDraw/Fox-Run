@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
+
 [Serializable]
 public class PlayerRecord
 {
@@ -10,6 +11,9 @@ public class PlayerRecord
     public string time; // "мм:сс:fff"
 }
 
+/// <summary>
+/// Упаковщик данных в json
+/// </summary>
 public static class JsonPackager
 {
     /// <summary>
