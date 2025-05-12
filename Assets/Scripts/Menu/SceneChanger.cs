@@ -1,4 +1,4 @@
-#if UNITY_EDITOR
+п»ї#if UNITY_EDITOR
 using UnityEditor;
 #endif
 using System.Collections;
@@ -26,7 +26,7 @@ public class SceneChanger : MonoBehaviour
 
     private IEnumerator WaitAndLoadScene()
     {
-        yield return new WaitForSeconds(delayBeforeSceneLoad); // Время ошидания для смены сценны
+        yield return new WaitForSeconds(delayBeforeSceneLoad); // Р’СЂРµРјСЏ РѕС€РёРґР°РЅРёСЏ РґР»СЏ СЃРјРµРЅС‹ СЃС†РµРЅРЅС‹
 
 #if UNITY_EDITOR
         if (sceneAsset != null)

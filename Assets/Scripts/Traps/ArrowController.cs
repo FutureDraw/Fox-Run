@@ -1,4 +1,4 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 public class Arrow : MonoBehaviour, ITrap
 {
@@ -12,14 +12,14 @@ public class Arrow : MonoBehaviour, ITrap
     }
 
     //<Summary>
-    // Полная остановка игрока
+    // РџРѕР»РЅР°СЏ РѕСЃС‚Р°РЅРѕРІРєР° РёРіСЂРѕРєР°
     //</Summary>
     public void StopPlayer(float time)
     {
     }
 
     //<Summary>
-    // Замедление игрока
+    // Р—Р°РјРµРґР»РµРЅРёРµ РёРіСЂРѕРєР°
     //</Summary>
     public void SlowPlayer(float time, float strength)
     {
@@ -32,7 +32,7 @@ public class Arrow : MonoBehaviour, ITrap
     }
 
     //<Summary>
-    // Нереализовано
+    // РќРµСЂРµР°Р»РёР·РѕРІР°РЅРѕ
     //</Summary>
     public void KillPlayer()
     {
@@ -40,7 +40,7 @@ public class Arrow : MonoBehaviour, ITrap
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Не уничтожаем стрелу если это триггер
+        // РќРµ СѓРЅРёС‡С‚РѕР¶Р°РµРј СЃС‚СЂРµР»Сѓ РµСЃР»Рё СЌС‚Рѕ С‚СЂРёРіРіРµСЂ
         //if (other.isTrigger) return;
         Debug.Log("Col");
         if (other.CompareTag("Player"))

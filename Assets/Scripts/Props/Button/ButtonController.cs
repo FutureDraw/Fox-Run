@@ -1,16 +1,16 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using System;
 
 // <summary>
-// Управляет состоянием кнопки и оповещает подписчиков
+// РЈРїСЂР°РІР»СЏРµС‚ СЃРѕСЃС‚РѕСЏРЅРёРµРј РєРЅРѕРїРєРё Рё РѕРїРѕРІРµС‰Р°РµС‚ РїРѕРґРїРёСЃС‡РёРєРѕРІ
 // </summary>
 [RequireComponent(typeof(Collider2D), typeof(AudioSource))]
 public class ButtonController : MonoBehaviour
 {
-    [Tooltip("Звук при переключении")]
+    [Tooltip("Р—РІСѓРє РїСЂРё РїРµСЂРµРєР»СЋС‡РµРЅРёРё")]
     public AudioClip pressSound;
 
-    public event Action OnToggle;  // передаёт новое состояние
+    public event Action OnToggle;  // РїРµСЂРµРґР°С‘С‚ РЅРѕРІРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
 
     private AudioSource audioSource;
     private bool playerNearby = false;

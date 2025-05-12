@@ -1,34 +1,34 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 public class GrabberController : MonoBehaviour, ITrap
 {
     [Header("Settings")]
-    [SerializeField] private float _speed = 5f;        // Скорость движения grabber'а к цели
-    [SerializeField] private int _stopTime = 5;        // Время остановки игрока
-    [SerializeField] private float _reachThreshold = 0.1f;  // Порог достижения цели
+    [SerializeField] private float _speed = 5f;        // РЎРєРѕСЂРѕСЃС‚СЊ РґРІРёР¶РµРЅРёСЏ grabber'Р° Рє С†РµР»Рё
+    [SerializeField] private int _stopTime = 5;        // Р’СЂРµРјСЏ РѕСЃС‚Р°РЅРѕРІРєРё РёРіСЂРѕРєР°
+    [SerializeField] private float _reachThreshold = 0.1f;  // РџРѕСЂРѕРі РґРѕСЃС‚РёР¶РµРЅРёСЏ С†РµР»Рё
 
     [Header("References")]
-    [SerializeField] private Transform _targetPoint;   // Целевая точка перемещения
+    [SerializeField] private Transform _targetPoint;   // Р¦РµР»РµРІР°СЏ С‚РѕС‡РєР° РїРµСЂРµРјРµС‰РµРЅРёСЏ
 
-    public Transform _playerTransform;                // Ссылка на трансформ игрока
-    private bool _isPulling;                           // Флаг активного перемещения
-    private bool _isGrabbed;                           // Флаг захвата игрока
-    public PlayerController _playerController;        // Ссылка на контроллер игрока
-    private Vector3 _finalPosition;                    // Конечная позиция grabber'а
+    public Transform _playerTransform;                // РЎСЃС‹Р»РєР° РЅР° С‚СЂР°РЅСЃС„РѕСЂРј РёРіСЂРѕРєР°
+    private bool _isPulling;                           // Р¤Р»Р°Рі Р°РєС‚РёРІРЅРѕРіРѕ РїРµСЂРµРјРµС‰РµРЅРёСЏ
+    private bool _isGrabbed;                           // Р¤Р»Р°Рі Р·Р°С…РІР°С‚Р° РёРіСЂРѕРєР°
+    public PlayerController _playerController;        // РЎСЃС‹Р»РєР° РЅР° РєРѕРЅС‚СЂРѕР»Р»РµСЂ РёРіСЂРѕРєР°
+    private Vector3 _finalPosition;                    // РљРѕРЅРµС‡РЅР°СЏ РїРѕР·РёС†РёСЏ grabber'Р°
 
-    [Header("Звук при захвате")]
+    [Header("Р—РІСѓРє РїСЂРё Р·Р°С…РІР°С‚Рµ")]
     public AudioClip grabSound;
     private AudioSource audioSource;
 
 
     private void Start()
     {
-        // Настройка коллайдера как триггера
+        // РќР°СЃС‚СЂРѕР№РєР° РєРѕР»Р»Р°Р№РґРµСЂР° РєР°Рє С‚СЂРёРіРіРµСЂР°
         GetComponent<CircleCollider2D>().isTrigger = true;
         audioSource = GetComponent<AudioSource>();
         audioSource.playOnAwake = false;
 
-        // Получение ссылки на игрока
+        // РџРѕР»СѓС‡РµРЅРёРµ СЃСЃС‹Р»РєРё РЅР° РёРіСЂРѕРєР°
         _playerController = FindObjectOfType<PlayerController>();
         if (_playerController != null)
         {
@@ -40,34 +40,34 @@ public class GrabberController : MonoBehaviour, ITrap
 
     private void Update()
     {
-        // Если grabber движется к цели
+        // Р•СЃР»Рё grabber РґРІРёР¶РµС‚СЃСЏ Рє С†РµР»Рё
         if (_isPulling)
         {
-            // Двигаем grabber к цели с заданной скоростью
+            // Р”РІРёРіР°РµРј grabber Рє С†РµР»Рё СЃ Р·Р°РґР°РЅРЅРѕР№ СЃРєРѕСЂРѕСЃС‚СЊСЋ
             transform.position = Vector3.MoveTowards(
                 transform.position,
                 _targetPoint.position,
                 _speed * Time.deltaTime
             );
 
-            // Проверяем достижение цели
+            // РџСЂРѕРІРµСЂСЏРµРј РґРѕСЃС‚РёР¶РµРЅРёРµ С†РµР»Рё
             if (Vector3.Distance(transform.position, _targetPoint.position) < _reachThreshold)
             {
                 _isPulling = false;
-                _finalPosition = transform.position;  // Запоминаем конечную позицию
+                _finalPosition = transform.position;  // Р—Р°РїРѕРјРёРЅР°РµРј РєРѕРЅРµС‡РЅСѓСЋ РїРѕР·РёС†РёСЋ
             }
         }
 
-        // Если игрок захвачен
+        // Р•СЃР»Рё РёРіСЂРѕРє Р·Р°С…РІР°С‡РµРЅ
         if (_isGrabbed)
         {
-            // Привязываем игрока к текущей позиции grabber'а (если движется) или к конечной позиции
+            // РџСЂРёРІСЏР·С‹РІР°РµРј РёРіСЂРѕРєР° Рє С‚РµРєСѓС‰РµР№ РїРѕР·РёС†РёРё grabber'Р° (РµСЃР»Рё РґРІРёР¶РµС‚СЃСЏ) РёР»Рё Рє РєРѕРЅРµС‡РЅРѕР№ РїРѕР·РёС†РёРё
             _playerTransform.position = _isPulling ? transform.position : _finalPosition;
         }
     }
 
     //<Summary>
-    // Полная остановка игрока
+    // РџРѕР»РЅР°СЏ РѕСЃС‚Р°РЅРѕРІРєР° РёРіСЂРѕРєР°
     //</Summary>
     public void StopPlayer(float time)
     {
@@ -79,7 +79,7 @@ public class GrabberController : MonoBehaviour, ITrap
     }
 
     //<Summary>
-    // Обработка столкновения с игроком
+    // РћР±СЂР°Р±РѕС‚РєР° СЃС‚РѕР»РєРЅРѕРІРµРЅРёСЏ СЃ РёРіСЂРѕРєРѕРј
     //</Summary>
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -87,20 +87,20 @@ public class GrabberController : MonoBehaviour, ITrap
         {
             Debug.Log("Player grabbed");
             audioSource.PlayOneShot(grabSound);
-            _isGrabbed = true;    // Активируем захват
-            _isPulling = true;    // Начинаем движение
-            StopPlayer(_stopTime); // Останавливаем игрока
-            Destroy(gameObject, _stopTime); // Уничтожаем grabber через заданное время
+            _isGrabbed = true;    // РђРєС‚РёРІРёСЂСѓРµРј Р·Р°С…РІР°С‚
+            _isPulling = true;    // РќР°С‡РёРЅР°РµРј РґРІРёР¶РµРЅРёРµ
+            StopPlayer(_stopTime); // РћСЃС‚Р°РЅР°РІР»РёРІР°РµРј РёРіСЂРѕРєР°
+            Destroy(gameObject, _stopTime); // РЈРЅРёС‡С‚РѕР¶Р°РµРј grabber С‡РµСЂРµР· Р·Р°РґР°РЅРЅРѕРµ РІСЂРµРјСЏ
         }
     }
 
     //<Summary>
-    // Нереализовано
+    // РќРµСЂРµР°Р»РёР·РѕРІР°РЅРѕ
     //</Summary>
     public void SlowPlayer(float time, float strength) { }
 
     //<Summary>
-    // Нереализовано
+    // РќРµСЂРµР°Р»РёР·РѕРІР°РЅРѕ
     //</Summary>
     public void KillPlayer() { }
 }

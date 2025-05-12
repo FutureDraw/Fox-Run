@@ -1,8 +1,8 @@
-using System.Collections.Generic;
+п»їusing System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Разводит/опускает мост с процедурной анимацией
+/// Р Р°Р·РІРѕРґРёС‚/РѕРїСѓСЃРєР°РµС‚ РјРѕСЃС‚ СЃ РїСЂРѕС†РµРґСѓСЂРЅРѕР№ Р°РЅРёРјР°С†РёРµР№
 /// </summary>
 public class BridgeController : MonoBehaviour
 {
@@ -10,7 +10,7 @@ public class BridgeController : MonoBehaviour
     [SerializeField] public GameObject AnchorFront;
     [SerializeField] public GameObject AnchorBack;
 
-    [Tooltip("Звук при переключении")]
+    [Tooltip("Р—РІСѓРє РїСЂРё РїРµСЂРµРєР»СЋС‡РµРЅРёРё")]
     public AudioClip openSound;
     public AudioClip closeSound;
     private AudioSource audioSource;
@@ -43,7 +43,7 @@ public class BridgeController : MonoBehaviour
 
     private void HandleToggle()
     {
-        if (isCooldown || animating) return; // Блокируем спам
+        if (isCooldown || animating) return; // Р‘Р»РѕРєРёСЂСѓРµРј СЃРїР°Рј
 
         if (isActive)
             Activate();

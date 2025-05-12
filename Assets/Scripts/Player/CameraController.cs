@@ -1,37 +1,37 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
     [Header("Tracking")]
-    public Transform target;                 // Объект, за которым следует камера
-    public Vector2 horizontalOffset = new Vector2(2f, 0.3f);  // Смещение камеры по X (мин, макс)
-    public float smoothTime = 0.3f;          // Время сглаживания движения камеры
+    public Transform target;                 // РћР±СЉРµРєС‚, Р·Р° РєРѕС‚РѕСЂС‹Рј СЃР»РµРґСѓРµС‚ РєР°РјРµСЂР°
+    public Vector2 horizontalOffset = new Vector2(2f, 0.3f);  // РЎРјРµС‰РµРЅРёРµ РєР°РјРµСЂС‹ РїРѕ X (РјРёРЅ, РјР°РєСЃ)
+    public float smoothTime = 0.3f;          // Р’СЂРµРјСЏ СЃРіР»Р°Р¶РёРІР°РЅРёСЏ РґРІРёР¶РµРЅРёСЏ РєР°РјРµСЂС‹
 
     [Header("Vertical Tracking")]
     [Range(0f, 1f)]
-    public float viewportTargetY = 0.45f;    // Желаемая позиция игрока по вертикали в Viewport
+    public float viewportTargetY = 0.45f;    // Р–РµР»Р°РµРјР°СЏ РїРѕР·РёС†РёСЏ РёРіСЂРѕРєР° РїРѕ РІРµСЂС‚РёРєР°Р»Рё РІ Viewport
     private float lowerTertie = 1f / 3f;
     private float upperTertie = 2f / 3f;
-    public float baseVerticalSpeed = 10f;    // Базовая скорость слежения по вертикали
-    public float maxVerticalSpeed = 1000f;   // Максимальная скорость слежения по вертикали
+    public float baseVerticalSpeed = 10f;    // Р‘Р°Р·РѕРІР°СЏ СЃРєРѕСЂРѕСЃС‚СЊ СЃР»РµР¶РµРЅРёСЏ РїРѕ РІРµСЂС‚РёРєР°Р»Рё
+    public float maxVerticalSpeed = 1000f;   // РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ СЃРєРѕСЂРѕСЃС‚СЊ СЃР»РµР¶РµРЅРёСЏ РїРѕ РІРµСЂС‚РёРєР°Р»Рё
 
     [Header("Zoom")]
-    public float zoomSpeed = 3f;             // Скорость изменения зума
-    public float minZoom = 4f;               // Минимальный зум
-    public float maxZoom = 10f;              // Максимальный зум
-    public float targetZoom;                 // Целевой зум камеры
+    public float zoomSpeed = 3f;             // РЎРєРѕСЂРѕСЃС‚СЊ РёР·РјРµРЅРµРЅРёСЏ Р·СѓРјР°
+    public float minZoom = 4f;               // РњРёРЅРёРјР°Р»СЊРЅС‹Р№ Р·СѓРј
+    public float maxZoom = 10f;              // РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ Р·СѓРј
+    public float targetZoom;                 // Р¦РµР»РµРІРѕР№ Р·СѓРј РєР°РјРµСЂС‹
 
     [Header("Camera Lock")]
-    public bool isLocked;                    // Флаг блокировки камеры
-    public Vector3 lockedPosition;           // Позиция при блокировке камеры
+    public bool isLocked;                    // Р¤Р»Р°Рі Р±Р»РѕРєРёСЂРѕРІРєРё РєР°РјРµСЂС‹
+    public Vector3 lockedPosition;           // РџРѕР·РёС†РёСЏ РїСЂРё Р±Р»РѕРєРёСЂРѕРІРєРµ РєР°РјРµСЂС‹
 
-    private Camera cam;                      // Компонент камеры
-    private Vector3 velocity = Vector3.zero; // Вектор скорости для SmoothDamp по горизонтали
-    private float verticalVelocity = 0f;     // Скорость для сглаживания по вертикали
+    private Camera cam;                      // РљРѕРјРїРѕРЅРµРЅС‚ РєР°РјРµСЂС‹
+    private Vector3 velocity = Vector3.zero; // Р’РµРєС‚РѕСЂ СЃРєРѕСЂРѕСЃС‚Рё РґР»СЏ SmoothDamp РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё
+    private float verticalVelocity = 0f;     // РЎРєРѕСЂРѕСЃС‚СЊ РґР»СЏ СЃРіР»Р°Р¶РёРІР°РЅРёСЏ РїРѕ РІРµСЂС‚РёРєР°Р»Рё
 
     void Start()
     {
-        // Инициализация компонентов
+        // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РєРѕРјРїРѕРЅРµРЅС‚РѕРІ
         cam = GetComponent<Camera>();
         targetZoom = cam.orthographicSize;
     }
@@ -43,7 +43,7 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        // Выбор поведения камеры в зависимости от состояния блокировки
+        // Р’С‹Р±РѕСЂ РїРѕРІРµРґРµРЅРёСЏ РєР°РјРµСЂС‹ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СЃРѕСЃС‚РѕСЏРЅРёСЏ Р±Р»РѕРєРёСЂРѕРІРєРё
         if (isLocked)
             LockCameraBehavior();
         else
@@ -51,7 +51,7 @@ public class CameraController : MonoBehaviour
     }
 
     //<summary>
-    // Обрабатывает ввод для изменения зума камеры
+    // РћР±СЂР°Р±Р°С‚С‹РІР°РµС‚ РІРІРѕРґ РґР»СЏ РёР·РјРµРЅРµРЅРёСЏ Р·СѓРјР° РєР°РјРµСЂС‹
     //</summary>
     void HandleZoomInput()
     {
@@ -62,13 +62,13 @@ public class CameraController : MonoBehaviour
     }
 
     //<summary>
-    // Поведение камеры при следовании за игроком
+    // РџРѕРІРµРґРµРЅРёРµ РєР°РјРµСЂС‹ РїСЂРё СЃР»РµРґРѕРІР°РЅРёРё Р·Р° РёРіСЂРѕРєРѕРј
     //</summary>
     void FollowPlayerBehavior()
     {
         if (target == null) return;
 
-        // Горизонтальное смещение
+        // Р“РѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅРѕРµ СЃРјРµС‰РµРЅРёРµ
         float xOffset = Mathf.Lerp(
             horizontalOffset.x,
             horizontalOffset.y,
@@ -76,25 +76,25 @@ public class CameraController : MonoBehaviour
         );
         float targetX = target.position.x + xOffset;
 
-        // Вертикальное поведение
+        // Р’РµСЂС‚РёРєР°Р»СЊРЅРѕРµ РїРѕРІРµРґРµРЅРёРµ
         float viewportY = cam.WorldToViewportPoint(target.position).y;
         float targetY = transform.position.y;
 
         if (viewportY < lowerTertie || viewportY > upperTertie)
         {
-            // Игрок вышел за пределы третей - двигаем камеру
+            // РРіСЂРѕРє РІС‹С€РµР» Р·Р° РїСЂРµРґРµР»С‹ С‚СЂРµС‚РµР№ - РґРІРёРіР°РµРј РєР°РјРµСЂСѓ
             float idealCamY = target.position.y - (viewportTargetY - 0.5f) * (2f * cam.orthographicSize);
 
-            // Вычисляем нормализованное отклонение
+            // Р’С‹С‡РёСЃР»СЏРµРј РЅРѕСЂРјР°Р»РёР·РѕРІР°РЅРЅРѕРµ РѕС‚РєР»РѕРЅРµРЅРёРµ
             float deviation = viewportY > upperTertie
                 ? (viewportY - upperTertie) / (1f - upperTertie)
                 : (lowerTertie - viewportY) / lowerTertie;
             deviation = Mathf.Clamp01(deviation);
 
-            // Скорость слежения
+            // РЎРєРѕСЂРѕСЃС‚СЊ СЃР»РµР¶РµРЅРёСЏ
             float followSpeed = Mathf.Lerp(baseVerticalSpeed, maxVerticalSpeed, deviation);
 
-            // Плавное сглаживание по вертикали
+            // РџР»Р°РІРЅРѕРµ СЃРіР»Р°Р¶РёРІР°РЅРёРµ РїРѕ РІРµСЂС‚РёРєР°Р»Рё
             float newY = Mathf.SmoothDamp(
                 transform.position.y,
                 idealCamY,
@@ -103,7 +103,7 @@ public class CameraController : MonoBehaviour
             );
             targetY = newY;
         }
-        // иначе внутри третей - оставляем текущую высоту
+        // РёРЅР°С‡Рµ РІРЅСѓС‚СЂРё С‚СЂРµС‚РµР№ - РѕСЃС‚Р°РІР»СЏРµРј С‚РµРєСѓС‰СѓСЋ РІС‹СЃРѕС‚Сѓ
 
         Vector3 desiredPos = new Vector3(targetX, targetY, transform.position.z);
         transform.position = Vector3.SmoothDamp(
@@ -115,7 +115,7 @@ public class CameraController : MonoBehaviour
     }
 
     //<summary>
-    // Поведение камеры в заблокированном состоянии
+    // РџРѕРІРµРґРµРЅРёРµ РєР°РјРµСЂС‹ РІ Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅРЅРѕРј СЃРѕСЃС‚РѕСЏРЅРёРё
     //</summary>
     void LockCameraBehavior()
     {
@@ -127,12 +127,12 @@ public class CameraController : MonoBehaviour
         );
     }
 
-    // API для внешнего контроля
+    // API РґР»СЏ РІРЅРµС€РЅРµРіРѕ РєРѕРЅС‚СЂРѕР»СЏ
 
     //<summary>
-    // Блокирует камеру в указанной позиции
+    // Р‘Р»РѕРєРёСЂСѓРµС‚ РєР°РјРµСЂСѓ РІ СѓРєР°Р·Р°РЅРЅРѕР№ РїРѕР·РёС†РёРё
     //</summary>
-    //<param name="position">Позиция для блокировки камеры</param>
+    //<param name="position">РџРѕР·РёС†РёСЏ РґР»СЏ Р±Р»РѕРєРёСЂРѕРІРєРё РєР°РјРµСЂС‹</param>
     public void SetCameraLock(Vector3 position)
     {
         isLocked = true;
@@ -140,7 +140,7 @@ public class CameraController : MonoBehaviour
     }
 
     //<summary>
-    // Разблокирует камеру
+    // Р Р°Р·Р±Р»РѕРєРёСЂСѓРµС‚ РєР°РјРµСЂСѓ
     //</summary>
     public void ReleaseCameraLock()
     {
@@ -148,22 +148,22 @@ public class CameraController : MonoBehaviour
     }
 
     //<summary>
-    // Устанавливает целевой зум камеры
+    // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ С†РµР»РµРІРѕР№ Р·СѓРј РєР°РјРµСЂС‹
     //</summary>
-    //<param name="zoom">Значение зума (будет ограничено minZoom/maxZoom)</param>
+    //<param name="zoom">Р—РЅР°С‡РµРЅРёРµ Р·СѓРјР° (Р±СѓРґРµС‚ РѕРіСЂР°РЅРёС‡РµРЅРѕ minZoom/maxZoom)</param>
     public void SetZoom(float zoom)
     {
         targetZoom = Mathf.Clamp(zoom, minZoom, maxZoom);
     }
 
     //<summary>
-    // Устанавливает плавность движения камеры
+    // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РїР»Р°РІРЅРѕСЃС‚СЊ РґРІРёР¶РµРЅРёСЏ РєР°РјРµСЂС‹
     //</summary>
-    //<param name="value">Новое значение smoothTime</param>
+    //<param name="value">РќРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ smoothTime</param>
     public void SetSmoothness(float value) => smoothTime = value;
 
     //<summary>
-    // Запуск катсцены
+    // Р—Р°РїСѓСЃРє РєР°С‚СЃС†РµРЅС‹
     //</summary>
     public void PlayCutscene(Vector3 position, float zoom, float smoothness = 0.3f)
     {
@@ -173,7 +173,7 @@ public class CameraController : MonoBehaviour
     }
 
     //<summary>
-    // Выход из катсцены
+    // Р’С‹С…РѕРґ РёР· РєР°С‚СЃС†РµРЅС‹
     //</summary>
     public void EndCutscene()
     {

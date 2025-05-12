@@ -1,4 +1,4 @@
-using System.Collections;
+п»їusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,81 +7,81 @@ using System;
 
 public class DialogueManager : MonoBehaviour
 {
-    public GameObject dialoguePanel;   // Панель диалога
-    public TMP_Text dialogueText;      // Текст диалога
-    public Image characterIcon;        // Иконка персонажа
+    public GameObject dialoguePanel;   // РџР°РЅРµР»СЊ РґРёР°Р»РѕРіР°
+    public TMP_Text dialogueText;      // РўРµРєСЃС‚ РґРёР°Р»РѕРіР°
+    public Image characterIcon;        // РРєРѕРЅРєР° РїРµСЂСЃРѕРЅР°Р¶Р°
 
-    public float typingSpeed = 0.02f;  // Скорость печати
+    public float typingSpeed = 0.02f;  // РЎРєРѕСЂРѕСЃС‚СЊ РїРµС‡Р°С‚Рё
 
-    private Queue<DialogueLine> lines = new Queue<DialogueLine>(); // Очередь для строк диалога
-    private bool isTyping = false;     // Флаг, чтобы не начать новый диалог, пока старый не завершён
+    private Queue<DialogueLine> lines = new Queue<DialogueLine>(); // РћС‡РµСЂРµРґСЊ РґР»СЏ СЃС‚СЂРѕРє РґРёР°Р»РѕРіР°
+    private bool isTyping = false;     // Р¤Р»Р°Рі, С‡С‚РѕР±С‹ РЅРµ РЅР°С‡Р°С‚СЊ РЅРѕРІС‹Р№ РґРёР°Р»РѕРі, РїРѕРєР° СЃС‚Р°СЂС‹Р№ РЅРµ Р·Р°РІРµСЂС€С‘РЅ
 
-    private bool dialogueActive = false; // Флаг активности диалога 
+    private bool dialogueActive = false; // Р¤Р»Р°Рі Р°РєС‚РёРІРЅРѕСЃС‚Рё РґРёР°Р»РѕРіР° 
     private Action onDialogueEnd;
 
-    public bool IsDialogueActive => dialogueActive; // Чтение активности
+    public bool IsDialogueActive => dialogueActive; // Р§С‚РµРЅРёРµ Р°РєС‚РёРІРЅРѕСЃС‚Рё
 
-    // Метод для начала диалога
+    // РњРµС‚РѕРґ РґР»СЏ РЅР°С‡Р°Р»Р° РґРёР°Р»РѕРіР°
     public void StartDialogue(DialogueData dialogue)
     {
-        dialoguePanel.SetActive(true);  // Показываем панель
-        lines.Clear();                  // Очищаем очередь
-        dialogueActive = true;       // Диалог активен
+        dialoguePanel.SetActive(true);  // РџРѕРєР°Р·С‹РІР°РµРј РїР°РЅРµР»СЊ
+        lines.Clear();                  // РћС‡РёС‰Р°РµРј РѕС‡РµСЂРµРґСЊ
+        dialogueActive = true;       // Р”РёР°Р»РѕРі Р°РєС‚РёРІРµРЅ
 
-        // Добавляем все строки в очередь
+        // Р”РѕР±Р°РІР»СЏРµРј РІСЃРµ СЃС‚СЂРѕРєРё РІ РѕС‡РµСЂРµРґСЊ
         foreach (var line in dialogue.lines)
             lines.Enqueue(line);
 
-        DisplayNextLine(); // Показываем первую строку
+        DisplayNextLine(); // РџРѕРєР°Р·С‹РІР°РµРј РїРµСЂРІСѓСЋ СЃС‚СЂРѕРєСѓ
     }
 
-    // Показать следующую строку
+    // РџРѕРєР°Р·Р°С‚СЊ СЃР»РµРґСѓСЋС‰СѓСЋ СЃС‚СЂРѕРєСѓ
     public void DisplayNextLine()
     {
-        if (isTyping) return;  // Если в процессе печати, не продолжаем
+        if (isTyping) return;  // Р•СЃР»Рё РІ РїСЂРѕС†РµСЃСЃРµ РїРµС‡Р°С‚Рё, РЅРµ РїСЂРѕРґРѕР»Р¶Р°РµРј
 
-        if (lines.Count == 0)  // Если строки закончились
+        if (lines.Count == 0)  // Р•СЃР»Рё СЃС‚СЂРѕРєРё Р·Р°РєРѕРЅС‡РёР»РёСЃСЊ
         {
-            EndDialogue();  // Завершаем диалог
+            EndDialogue();  // Р—Р°РІРµСЂС€Р°РµРј РґРёР°Р»РѕРі
             return;
         }
 
-        DialogueLine line = lines.Dequeue(); // Получаем следующую строку
-        characterIcon.sprite = line.characterIcon; // Меняем иконку персонажа
+        DialogueLine line = lines.Dequeue(); // РџРѕР»СѓС‡Р°РµРј СЃР»РµРґСѓСЋС‰СѓСЋ СЃС‚СЂРѕРєСѓ
+        characterIcon.sprite = line.characterIcon; // РњРµРЅСЏРµРј РёРєРѕРЅРєСѓ РїРµСЂСЃРѕРЅР°Р¶Р°
 
-        StopAllCoroutines(); // Останавливаем все предыдущие корутины
-        StartCoroutine(TypeSentence(line.text)); // Запускаем корутину для печати текста
+        StopAllCoroutines(); // РћСЃС‚Р°РЅР°РІР»РёРІР°РµРј РІСЃРµ РїСЂРµРґС‹РґСѓС‰РёРµ РєРѕСЂСѓС‚РёРЅС‹
+        StartCoroutine(TypeSentence(line.text)); // Р—Р°РїСѓСЃРєР°РµРј РєРѕСЂСѓС‚РёРЅСѓ РґР»СЏ РїРµС‡Р°С‚Рё С‚РµРєСЃС‚Р°
     }
 
-    // Корутина для печати текста
+    // РљРѕСЂСѓС‚РёРЅР° РґР»СЏ РїРµС‡Р°С‚Рё С‚РµРєСЃС‚Р°
     IEnumerator TypeSentence(string sentence)
     {
         isTyping = true;
-        dialogueText.text = "";  // Очищаем текст
+        dialogueText.text = "";  // РћС‡РёС‰Р°РµРј С‚РµРєСЃС‚
 
-        foreach (char letter in sentence) // Печатаем каждый символ
+        foreach (char letter in sentence) // РџРµС‡Р°С‚Р°РµРј РєР°Р¶РґС‹Р№ СЃРёРјРІРѕР»
         {
             dialogueText.text += letter;
-            yield return new WaitForSeconds(typingSpeed);  // Задержка между символами
+            yield return new WaitForSeconds(typingSpeed);  // Р—Р°РґРµСЂР¶РєР° РјРµР¶РґСѓ СЃРёРјРІРѕР»Р°РјРё
         }
 
-        isTyping = false;  // Завершаем печать
+        isTyping = false;  // Р—Р°РІРµСЂС€Р°РµРј РїРµС‡Р°С‚СЊ
     }
 
-    // Завершение диалога
+    // Р—Р°РІРµСЂС€РµРЅРёРµ РґРёР°Р»РѕРіР°
     void EndDialogue()
     {
-        dialoguePanel.SetActive(false);  // Скрываем панель
-        dialogueActive = false; // Диалог завершён
+        dialoguePanel.SetActive(false);  // РЎРєСЂС‹РІР°РµРј РїР°РЅРµР»СЊ
+        dialogueActive = false; // Р”РёР°Р»РѕРі Р·Р°РІРµСЂС€С‘РЅ
         onDialogueEnd?.Invoke();
         onDialogueEnd = null; 
     }
 
     void Update()
     {
-        if (dialogueActive && Input.GetKeyDown(KeyCode.Space))  // При нажатии пробела
+        if (dialogueActive && Input.GetKeyDown(KeyCode.Space))  // РџСЂРё РЅР°Р¶Р°С‚РёРё РїСЂРѕР±РµР»Р°
         {
-            DisplayNextLine();  // Показать следующую строку
+            DisplayNextLine();  // РџРѕРєР°Р·Р°С‚СЊ СЃР»РµРґСѓСЋС‰СѓСЋ СЃС‚СЂРѕРєСѓ
         }
     }
 }

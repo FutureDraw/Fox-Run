@@ -1,4 +1,4 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
 using System.Text;
@@ -25,8 +25,8 @@ public class LeaderboardSender : MonoBehaviour
         yield return request.SendWebRequest();
 
         if (request.result == UnityWebRequest.Result.Success)
-            Debug.Log("Данные отправлены");
+            Debug.Log("Р”Р°РЅРЅС‹Рµ РѕС‚РїСЂР°РІР»РµРЅС‹");
         else
-            Debug.LogError("Ошибка отправки: " + request.error);
+            Debug.LogError("РћС€РёР±РєР° РѕС‚РїСЂР°РІРєРё: " + request.error);
     }
 }

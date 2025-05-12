@@ -1,9 +1,9 @@
-using System.Collections;
+п»їusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 // <Summary>
-// Интерфейс для управления ловушками (капкан, летящая стрела, хваталка)
+// РРЅС‚РµСЂС„РµР№СЃ РґР»СЏ СѓРїСЂР°РІР»РµРЅРёСЏ Р»РѕРІСѓС€РєР°РјРё (РєР°РїРєР°РЅ, Р»РµС‚СЏС‰Р°СЏ СЃС‚СЂРµР»Р°, С…РІР°С‚Р°Р»РєР°)
 // </Summary>
 internal interface ITrap
 {

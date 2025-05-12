@@ -1,9 +1,9 @@
-//using UnityEditor.Experimental.GraphView;
+п»ї//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 
 // <summary>
-// Класс для управления парой порталов
+// РљР»Р°СЃСЃ РґР»СЏ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂРѕР№ РїРѕСЂС‚Р°Р»РѕРІ
 // </summary>
 public class PortalController : MonoBehaviour
 {
@@ -12,11 +12,11 @@ public class PortalController : MonoBehaviour
     public PortalOut portalOut;
 
     [Header("Teleport Settings")]
-    public float teleportCooldown = 0.5f; // Задержка перед повторным телепортом
+    public float teleportCooldown = 0.5f; // Р—Р°РґРµСЂР¶РєР° РїРµСЂРµРґ РїРѕРІС‚РѕСЂРЅС‹Рј С‚РµР»РµРїРѕСЂС‚РѕРј
     private bool isTeleporting;
 
     // <summary>
-    // Инициализация порталов
+    // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РїРѕСЂС‚Р°Р»РѕРІ
     // </summary>
     private void Start()
     {
@@ -30,13 +30,13 @@ public class PortalController : MonoBehaviour
             Debug.Log("Portals initialized");
         }
 
-        // Назначаем ссылки на контроллер
+        // РќР°Р·РЅР°С‡Р°РµРј СЃСЃС‹Р»РєРё РЅР° РєРѕРЅС‚СЂРѕР»Р»РµСЂ
         portalIn.controller = this;
         portalOut.controller = this;
     }
 
     // <summary>
-    // Телепортация игрока между порталами
+    // РўРµР»РµРїРѕСЂС‚Р°С†РёСЏ РёРіСЂРѕРєР° РјРµР¶РґСѓ РїРѕСЂС‚Р°Р»Р°РјРё
     // </summary>
     public void TeleportPlayer(Transform player, bool isEnteringFromIn)
     {
@@ -44,20 +44,20 @@ public class PortalController : MonoBehaviour
 
         isTeleporting = true;
 
-        // Определяем целевой портал
+        // РћРїСЂРµРґРµР»СЏРµРј С†РµР»РµРІРѕР№ РїРѕСЂС‚Р°Р»
         Portal targetPortal = isEnteringFromIn ? (Portal)portalOut : portalIn;
 
-        // Перемещаем игрока
+        // РџРµСЂРµРјРµС‰Р°РµРј РёРіСЂРѕРєР°
         player.position = targetPortal.GetExitPosition();
 
         var player1 = FindObjectOfType<PlayerController>();
 
-        // Запускаем кд телепортации
+        // Р—Р°РїСѓСЃРєР°РµРј РєРґ С‚РµР»РµРїРѕСЂС‚Р°С†РёРё
         Invoke(nameof(ResetTeleport), teleportCooldown);
     }
 
     // <summary>
-    // Сброс флага телепортации
+    // РЎР±СЂРѕСЃ С„Р»Р°РіР° С‚РµР»РµРїРѕСЂС‚Р°С†РёРё
     // </summary>
     private void ResetTeleport()
     {

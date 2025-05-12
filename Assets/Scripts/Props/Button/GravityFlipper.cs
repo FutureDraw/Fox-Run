@@ -1,14 +1,14 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 public class GravityFlipper : MonoBehaviour
 {
-    [Header("Объекты управления")]
+    [Header("РћР±СЉРµРєС‚С‹ СѓРїСЂР°РІР»РµРЅРёСЏ")]
     public Transform characterVisual;
 
-    [Header("Параметры плавности")]
-    [SerializeField] private float flipDuration = 0.3f; // продолжительность плавности переворота
+    [Header("РџР°СЂР°РјРµС‚СЂС‹ РїР»Р°РІРЅРѕСЃС‚Рё")]
+    [SerializeField] private float flipDuration = 0.3f; // РїСЂРѕРґРѕР»Р¶РёС‚РµР»СЊРЅРѕСЃС‚СЊ РїР»Р°РІРЅРѕСЃС‚Рё РїРµСЂРµРІРѕСЂРѕС‚Р°
 
-    [Header("Компоненты персонажа")]
+    [Header("РљРѕРјРїРѕРЅРµРЅС‚С‹ РїРµСЂСЃРѕРЅР°Р¶Р°")]
     public PlayerController playerController;
 
     private Rigidbody2D rb;
@@ -30,21 +30,21 @@ public class GravityFlipper : MonoBehaviour
     {
         gravityInverted = !gravityInverted;
 
-        // Меняем гравитацию
+        // РњРµРЅСЏРµРј РіСЂР°РІРёС‚Р°С†РёСЋ
         Physics2D.gravity = new Vector2(0, gravityInverted ? 9.81f : -9.81f);
 
-        // Инвертируем визуал персонажа
+        // РРЅРІРµСЂС‚РёСЂСѓРµРј РІРёР·СѓР°Р» РїРµСЂСЃРѕРЅР°Р¶Р°
         Vector3 targetScale = characterVisual.localScale;
         targetScale.y *= -1;
 
-        // Инверсия силы прыжка
+        // РРЅРІРµСЂСЃРёСЏ СЃРёР»С‹ РїСЂС‹Р¶РєР°
         if (playerController != null)
         {
             playerController.jumpForce = gravityInverted ? -10f : 10f;
             playerController.isGravityFlipped = gravityInverted;
         }
 
-        // Плавное изменение
+        // РџР»Р°РІРЅРѕРµ РёР·РјРµРЅРµРЅРёРµ
         StartCoroutine(AnimateFlip(targetScale));
     }
 
@@ -52,19 +52,19 @@ public class GravityFlipper : MonoBehaviour
     {
         float elapsedTime = 0f;
 
-        // Плавно анимируем изменения в течение flipDuration
+        // РџР»Р°РІРЅРѕ Р°РЅРёРјРёСЂСѓРµРј РёР·РјРµРЅРµРЅРёСЏ РІ С‚РµС‡РµРЅРёРµ flipDuration
         while (elapsedTime < flipDuration)
         {
             float t = elapsedTime / flipDuration;
 
-            // Плавно интерполируем изменения для visual
+            // РџР»Р°РІРЅРѕ РёРЅС‚РµСЂРїРѕР»РёСЂСѓРµРј РёР·РјРµРЅРµРЅРёСЏ РґР»СЏ visual
             characterVisual.localScale = Vector3.Lerp(characterVisual.localScale, targetScale, t);
 
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        // На всякий случай зафиксируем конечное состояние
+        // РќР° РІСЃСЏРєРёР№ СЃР»СѓС‡Р°Р№ Р·Р°С„РёРєСЃРёСЂСѓРµРј РєРѕРЅРµС‡РЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
         characterVisual.localScale = targetScale;
 
         Debug.Log($"Gravity flipped: {(gravityInverted ? "Inverted" : "Normal")}");

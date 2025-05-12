@@ -1,4 +1,4 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using TMPro;
 using System.IO;
 
@@ -10,41 +10,41 @@ public class LevelStatsDisplay : MonoBehaviour
         public string playerName;
         public float score;
         public float trophies;
-        public float timeInSeconds; // Время в секундах
+        public float timeInSeconds; // Р’СЂРµРјСЏ РІ СЃРµРєСѓРЅРґР°С…
     }
 
     [System.Serializable]
     public class LevelUI
     {
-        public GameObject panel; // Вся панель уровня
+        public GameObject panel; // Р’СЃСЏ РїР°РЅРµР»СЊ СѓСЂРѕРІРЅСЏ
         public TextMeshProUGUI passedText;
         public TextMeshProUGUI bestTimeText;
         public TextMeshProUGUI trophiesText;
     }
 
-    public LevelUI[] levelUis; // Массив панелей под каждый уровень
+    public LevelUI[] levelUis; // РњР°СЃСЃРёРІ РїР°РЅРµР»РµР№ РїРѕРґ РєР°Р¶РґС‹Р№ СѓСЂРѕРІРµРЅСЊ
 
     public void LoadLevelStats(int levelIndex)
     {
-        Debug.Log("Загрузка статистики для уровня: " + levelIndex);
+        Debug.Log("Р—Р°РіСЂСѓР·РєР° СЃС‚Р°С‚РёСЃС‚РёРєРё РґР»СЏ СѓСЂРѕРІРЅСЏ: " + levelIndex);
 
         for (int i = 0; i < levelUis.Length; i++)
             levelUis[i].panel.SetActive(i == levelIndex - 1);
 
         if (levelIndex < 1 || levelIndex > levelUis.Length)
         {
-            Debug.LogWarning("Недопустимый индекс уровня: " + levelIndex);
+            Debug.LogWarning("РќРµРґРѕРїСѓСЃС‚РёРјС‹Р№ РёРЅРґРµРєСЃ СѓСЂРѕРІРЅСЏ: " + levelIndex);
             return;
         }
 
         var ui = levelUis[levelIndex - 1];
         string path = Path.Combine(Application.persistentDataPath, $"level_{levelIndex}.json");
 
-        Debug.Log("Путь к JSON: " + path);
+        Debug.Log("РџСѓС‚СЊ Рє JSON: " + path);
 
         if (!File.Exists(path))
         {
-            Debug.Log("Файл не найден, показываю дефолтные значения");
+            Debug.Log("Р¤Р°Р№Р» РЅРµ РЅР°Р№РґРµРЅ, РїРѕРєР°Р·С‹РІР°СЋ РґРµС„РѕР»С‚РЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ");
             SetDefaultUI(ui);
             return;
         }
@@ -52,11 +52,11 @@ public class LevelStatsDisplay : MonoBehaviour
         string json = File.ReadAllText(path);
         PlayerRecord record = JsonUtility.FromJson<PlayerRecord>(json);
 
-        Debug.Log("данные:" + record + "трофеи: " + record.trophies + "время:" + record.timeInSeconds);
+        Debug.Log("РґР°РЅРЅС‹Рµ:" + record + "С‚СЂРѕС„РµРё: " + record.trophies + "РІСЂРµРјСЏ:" + record.timeInSeconds);
 
-        if (record != null && record.trophies > 0 && record.timeInSeconds > 0)
+        if (record != null && record.trophies >= 0 && record.timeInSeconds > 0)
         {
-            ui.passedText.text = "Да";
+            ui.passedText.text = "Р”Р°";
             ui.passedText.color = Color.green;
 
             float currentDisplayedTime = ParseTime(ui.bestTimeText.text);
@@ -77,15 +77,15 @@ public class LevelStatsDisplay : MonoBehaviour
         }
         else
         {
-            Debug.Log("Не удалось загрузить данные");
+            Debug.Log("РќРµ СѓРґР°Р»РѕСЃСЊ Р·Р°РіСЂСѓР·РёС‚СЊ РґР°РЅРЅС‹Рµ");
             SetDefaultUI(ui);
         }
     }
 
     private void SetDefaultUI(LevelUI ui)
     {
-        ui.passedText.text = "Нет";
-        ui.bestTimeText.text = "—";
+        ui.passedText.text = "РќРµС‚";
+        ui.bestTimeText.text = "вЂ”";
         ui.trophiesText.text = "0";
 
         ui.passedText.color = Color.red;
@@ -95,7 +95,7 @@ public class LevelStatsDisplay : MonoBehaviour
 
     private float ParseTime(string timeText)
     {
-        if (string.IsNullOrWhiteSpace(timeText) || timeText == "—")
+        if (string.IsNullOrWhiteSpace(timeText) || timeText == "вЂ”")
             return -1;
 
         string[] parts = timeText.Split(':');

@@ -1,9 +1,9 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 [System.Serializable]
 public class DialogueLine
 {
-    public string characterName;    // Имя персонажа
-    public Sprite characterIcon;    // Иконка персонажа
-    [TextArea(2, 5)] public string text;  // Текст диалога
+    public string characterName;    // РРјСЏ РїРµСЂСЃРѕРЅР°Р¶Р°
+    public Sprite characterIcon;    // РРєРѕРЅРєР° РїРµСЂСЃРѕРЅР°Р¶Р°
+    [TextArea(2, 5)] public string text;  // РўРµРєСЃС‚ РґРёР°Р»РѕРіР°
 }

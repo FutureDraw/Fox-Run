@@ -1,4 +1,4 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 public class PlayerTimer : MonoBehaviour
 {
@@ -29,14 +29,14 @@ public class PlayerTimer : MonoBehaviour
     {
         elapsedTime = 0f;
         StopTimer();
-        Debug.Log("таймер отключен");
+        Debug.Log("С‚Р°Р№РјРµСЂ РѕС‚РєР»СЋС‡РµРЅ");
     }
     private void Update()
     {
         if (isRunning)
         {
             elapsedTime += Time.deltaTime;
-            Debug.Log($"Время: {elapsedTime:F2} сек");
+            Debug.Log($"Р’СЂРµРјСЏ: {elapsedTime:F2} СЃРµРє");
         }
     }
 
@@ -44,12 +44,12 @@ public class PlayerTimer : MonoBehaviour
     {
         elapsedTime = 0f;
         isRunning = true;
-        Debug.Log("Таймер запущен");
+        Debug.Log("РўР°Р№РјРµСЂ Р·Р°РїСѓС‰РµРЅ");
     }
 
     public void StopTimer()
     {
         isRunning = false;
-        Debug.Log($"Время прохождения: {elapsedTime:F2} сек");
+        Debug.Log($"Р’СЂРµРјСЏ РїСЂРѕС…РѕР¶РґРµРЅРёСЏ: {elapsedTime:F2} СЃРµРє");
     }
 }

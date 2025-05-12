@@ -1,14 +1,13 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using System.Collections;
 
 public class WeakFloorController : MonoBehaviour
 
 {
     [SerializeField] public GameObject WeakFloor;
-    private bool isWorked = false;
     public float duration;
 
-    [Header("«‚ÛÍ")]
+    [Header("–ó–≤—É–∫")]
     public AudioClip crackingSound;
     private AudioSource audioSource;
 

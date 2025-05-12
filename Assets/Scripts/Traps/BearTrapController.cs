@@ -1,4 +1,4 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 public class BearTrap : MonoBehaviour, ITrap
 {
@@ -6,7 +6,7 @@ public class BearTrap : MonoBehaviour, ITrap
     [SerializeField] private int _slowTime = 5;
     [SerializeField][Range(0, 1)] private float _slowStrenght = 0.5f;
 
-    [Header("Звук")]
+    [Header("Р—РІСѓРє")]
     public AudioClip BearTrapSound;
     private AudioSource audioSource;
 
@@ -19,7 +19,7 @@ public class BearTrap : MonoBehaviour, ITrap
     }
 
     //<Summary>
-    // Полная остановка игрока
+    // РџРѕР»РЅР°СЏ РѕСЃС‚Р°РЅРѕРІРєР° РёРіСЂРѕРєР°
     //</Summary>
     public void StopPlayer(float time)
     {
@@ -32,7 +32,7 @@ public class BearTrap : MonoBehaviour, ITrap
     }
 
     //<Summary>
-    // Замедление игрока
+    // Р—Р°РјРµРґР»РµРЅРёРµ РёРіСЂРѕРєР°
     //</Summary>
     public void SlowPlayer(float time, float strength)
     {
@@ -45,7 +45,7 @@ public class BearTrap : MonoBehaviour, ITrap
     }
 
     //<Summary>
-    // Нереализовано
+    // РќРµСЂРµР°Р»РёР·РѕРІР°РЅРѕ
     //</Summary>
     public void KillPlayer()
     { 
@@ -57,7 +57,7 @@ public class BearTrap : MonoBehaviour, ITrap
         if (other.CompareTag("Player"))
         {
             audioSource.PlayOneShot(BearTrapSound);
-            other.transform.position = transform.position; // Телепортация к центру ловушки
+            other.transform.position = transform.position; // РўРµР»РµРїРѕСЂС‚Р°С†РёСЏ Рє С†РµРЅС‚СЂСѓ Р»РѕРІСѓС€РєРё
             StopPlayer(_stopTime);
             SlowPlayer(_slowTime, _slowStrenght);
             Destroy(gameObject, _stopTime);

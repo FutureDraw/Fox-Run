@@ -1,7 +1,7 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 [CreateAssetMenu(menuName = "Cutscene/Dialogue")]
 public class DialogueData : ScriptableObject
 {
-    public DialogueLine[] lines; // Массив строк диалога
+    public DialogueLine[] lines; // РњР°СЃСЃРёРІ СЃС‚СЂРѕРє РґРёР°Р»РѕРіР°
 }
