@@ -1,0 +1,28 @@
+var class_player_controller =
+[
+    [ "SlowMovement", "class_player_controller.html#ac0551f2f28bc101ea06599c7f5e33ad1", null ],
+    [ "StopMovement", "class_player_controller.html#a25f6c9226c2cd9ba388c801a1531f0d3", null ],
+    [ "dash", "class_player_controller.html#a3d2cbc2ce7e7453528ee97691b21da60", null ],
+    [ "dashCooldown", "class_player_controller.html#a4325951e90eb678cb43ffef5325d8285", null ],
+    [ "dashDecayRate", "class_player_controller.html#adbe18bcf2971bd7dba706d086a23f9c8", null ],
+    [ "dashDuration", "class_player_controller.html#a811afbeb2222af9f49f07c38f3b943e6", null ],
+    [ "dashForce", "class_player_controller.html#adc3e31782154a48cd961ec72dd178453", null ],
+    [ "grab", "class_player_controller.html#a33bf5d59a054c3a2066ed551d6027d1f", null ],
+    [ "groundCheck", "class_player_controller.html#ad870c44af9544c057897c33e9ac1f708", null ],
+    [ "groundCheckSize", "class_player_controller.html#a36b3f4128e2a1a5c787ac8be08d6d445", null ],
+    [ "groundFriction", "class_player_controller.html#a8a7370aba8ac376d394aaa9544f37cc9", null ],
+    [ "highFrictionMaterial", "class_player_controller.html#a01f5d2fb5fed21cca619d218831104ba", null ],
+    [ "inertiaDecayRate", "class_player_controller.html#a5bdf8dd66990d59148110f06d3731c7b", null ],
+    [ "inertiaDecayRateGround", "class_player_controller.html#a3a65c42ee1849dd1a889feed05c28f53", null ],
+    [ "interaction", "class_player_controller.html#ab2ae6655a221e58e9f93bdf3e7627c13", null ],
+    [ "isGravityFlipped", "class_player_controller.html#af076ff1e719fc9fdeb20de658d410522", null ],
+    [ "isGrounded", "class_player_controller.html#a6b0ba9333666df73c8f88980a889adfc", null ],
+    [ "jump", "class_player_controller.html#aa701f529ae4f33e21f11cacdecf9e74c", null ],
+    [ "jumpForce", "class_player_controller.html#a7c109871eba0057fd2aa1856522a346d", null ],
+    [ "move", "class_player_controller.html#a0977aa206187e64525ba4ee50abe9dc2", null ],
+    [ "moveSpeed", "class_player_controller.html#abb12e85ca1b12efdbc8684bff2e19c4c", null ],
+    [ "wallCheckDistance", "class_player_controller.html#a756b23580eb450873808fdb183f570be", null ],
+    [ "wallLayer", "class_player_controller.html#ad93ec0eb938004166fa62afbdbfd0ad3", null ],
+    [ "whatIsGround", "class_player_controller.html#a5280def315a8ef1d16620890a1523273", null ],
+    [ "zeroFrictionMaterial", "class_player_controller.html#a845d1f3a1a4dbb3cec3f796ea7fe2335", null ]
+];

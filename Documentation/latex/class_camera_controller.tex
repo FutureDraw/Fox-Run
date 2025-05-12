@@ -1,0 +1,177 @@
+\doxysection{Camera\+Controller Class Reference}
+\hypertarget{class_camera_controller}{}\label{class_camera_controller}\index{CameraController@{CameraController}}
+
+
+Управляет камерой  
+
+
+Inheritance diagram for Camera\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_camera_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_camera_controller_a4c117dcd8031fee8f44b7afcf8d87009}{Set\+Camera\+Lock}} (Vector3 position)
+\item 
+void \mbox{\hyperlink{class_camera_controller_a2b754b3974a2a07bccbc6ff559949cdd}{Release\+Camera\+Lock}} ()
+\item 
+void \mbox{\hyperlink{class_camera_controller_aa3f9dfdc54836b29830702927e1b35c1}{Set\+Zoom}} (float zoom)
+\item 
+void \mbox{\hyperlink{class_camera_controller_aad17809b3a528120336e912e99b8b178}{Set\+Smoothness}} (float value)
+\item 
+void \mbox{\hyperlink{class_camera_controller_af9fe4a197f2a1e5ba4861b840049120f}{Play\+Cutscene}} (Vector3 position, float zoom, float smoothness=0.\+3f)
+\item 
+void \mbox{\hyperlink{class_camera_controller_a6bc49a33a92b8b04d224451f87a872c6}{End\+Cutscene}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Transform \mbox{\hyperlink{class_camera_controller_a0a48b454b4a2bb8dbfc08e64b8c3e8e6}{target}}
+\item 
+Vector2 \mbox{\hyperlink{class_camera_controller_a956adecf894490957517ac9308b52b39}{horizontal\+Offset}} = new Vector2(2f, 0.\+3f)
+\item 
+float \mbox{\hyperlink{class_camera_controller_ad0acde35e5f79d90e107f008d62d119b}{smooth\+Time}} = 0.\+3f
+\item 
+float \mbox{\hyperlink{class_camera_controller_ae3b8f1325865fc507cc323623f8d64a9}{viewport\+TargetY}} = 0.\+45f
+\item 
+float \mbox{\hyperlink{class_camera_controller_a80808e9f5bf0e3adc5edd9ba669d1f00}{base\+Vertical\+Speed}} = 10f
+\item 
+float \mbox{\hyperlink{class_camera_controller_a993d5106b1b1af864e3ad0237e434a51}{max\+Vertical\+Speed}} = 1000f
+\item 
+float \mbox{\hyperlink{class_camera_controller_ac5e7f931dc646e4a643f850da622c7c1}{zoom\+Speed}} = 3f
+\item 
+float \mbox{\hyperlink{class_camera_controller_a6c1a8c2ca7e67154970931ed2a88563e}{min\+Zoom}} = 4f
+\item 
+float \mbox{\hyperlink{class_camera_controller_a5ede1338f553ab75fb61f85405fda8e7}{max\+Zoom}} = 10f
+\item 
+float \mbox{\hyperlink{class_camera_controller_a4bdf468362b515061a2a0cf52cff1d30}{target\+Zoom}}
+\item 
+bool \mbox{\hyperlink{class_camera_controller_ab40840da357d8b90d23bef3fe0f7201d}{is\+Locked}}
+\item 
+Vector3 \mbox{\hyperlink{class_camera_controller_a341e2ad7f3a3ca0bea6ed3a5c1a5fe65}{locked\+Position}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Управляет камерой 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_camera_controller_a6bc49a33a92b8b04d224451f87a872c6}\index{CameraController@{CameraController}!EndCutscene@{EndCutscene}}
+\index{EndCutscene@{EndCutscene}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{EndCutscene()}{EndCutscene()}}
+{\footnotesize\ttfamily \label{class_camera_controller_a6bc49a33a92b8b04d224451f87a872c6} 
+void Camera\+Controller.\+End\+Cutscene (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_camera_controller_af9fe4a197f2a1e5ba4861b840049120f}\index{CameraController@{CameraController}!PlayCutscene@{PlayCutscene}}
+\index{PlayCutscene@{PlayCutscene}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{PlayCutscene()}{PlayCutscene()}}
+{\footnotesize\ttfamily \label{class_camera_controller_af9fe4a197f2a1e5ba4861b840049120f} 
+void Camera\+Controller.\+Play\+Cutscene (\begin{DoxyParamCaption}\item[{Vector3}]{position}{, }\item[{float}]{zoom}{, }\item[{float}]{smoothness}{ = {\ttfamily 0\+:\+:3f}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_camera_controller_a2b754b3974a2a07bccbc6ff559949cdd}\index{CameraController@{CameraController}!ReleaseCameraLock@{ReleaseCameraLock}}
+\index{ReleaseCameraLock@{ReleaseCameraLock}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{ReleaseCameraLock()}{ReleaseCameraLock()}}
+{\footnotesize\ttfamily \label{class_camera_controller_a2b754b3974a2a07bccbc6ff559949cdd} 
+void Camera\+Controller.\+Release\+Camera\+Lock (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_camera_controller_a4c117dcd8031fee8f44b7afcf8d87009}\index{CameraController@{CameraController}!SetCameraLock@{SetCameraLock}}
+\index{SetCameraLock@{SetCameraLock}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{SetCameraLock()}{SetCameraLock()}}
+{\footnotesize\ttfamily \label{class_camera_controller_a4c117dcd8031fee8f44b7afcf8d87009} 
+void Camera\+Controller.\+Set\+Camera\+Lock (\begin{DoxyParamCaption}\item[{Vector3}]{position}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_camera_controller_aad17809b3a528120336e912e99b8b178}\index{CameraController@{CameraController}!SetSmoothness@{SetSmoothness}}
+\index{SetSmoothness@{SetSmoothness}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{SetSmoothness()}{SetSmoothness()}}
+{\footnotesize\ttfamily \label{class_camera_controller_aad17809b3a528120336e912e99b8b178} 
+void Camera\+Controller.\+Set\+Smoothness (\begin{DoxyParamCaption}\item[{float}]{value}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_camera_controller_aa3f9dfdc54836b29830702927e1b35c1}\index{CameraController@{CameraController}!SetZoom@{SetZoom}}
+\index{SetZoom@{SetZoom}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{SetZoom()}{SetZoom()}}
+{\footnotesize\ttfamily \label{class_camera_controller_aa3f9dfdc54836b29830702927e1b35c1} 
+void Camera\+Controller.\+Set\+Zoom (\begin{DoxyParamCaption}\item[{float}]{zoom}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_camera_controller_a80808e9f5bf0e3adc5edd9ba669d1f00}\index{CameraController@{CameraController}!baseVerticalSpeed@{baseVerticalSpeed}}
+\index{baseVerticalSpeed@{baseVerticalSpeed}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{baseVerticalSpeed}{baseVerticalSpeed}}
+{\footnotesize\ttfamily \label{class_camera_controller_a80808e9f5bf0e3adc5edd9ba669d1f00} 
+float Camera\+Controller.\+base\+Vertical\+Speed = 10f}
+
+\Hypertarget{class_camera_controller_a956adecf894490957517ac9308b52b39}\index{CameraController@{CameraController}!horizontalOffset@{horizontalOffset}}
+\index{horizontalOffset@{horizontalOffset}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{horizontalOffset}{horizontalOffset}}
+{\footnotesize\ttfamily \label{class_camera_controller_a956adecf894490957517ac9308b52b39} 
+Vector2 Camera\+Controller.\+horizontal\+Offset = new Vector2(2f, 0.\+3f)}
+
+\Hypertarget{class_camera_controller_ab40840da357d8b90d23bef3fe0f7201d}\index{CameraController@{CameraController}!isLocked@{isLocked}}
+\index{isLocked@{isLocked}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{isLocked}{isLocked}}
+{\footnotesize\ttfamily \label{class_camera_controller_ab40840da357d8b90d23bef3fe0f7201d} 
+bool Camera\+Controller.\+is\+Locked}
+
+\Hypertarget{class_camera_controller_a341e2ad7f3a3ca0bea6ed3a5c1a5fe65}\index{CameraController@{CameraController}!lockedPosition@{lockedPosition}}
+\index{lockedPosition@{lockedPosition}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{lockedPosition}{lockedPosition}}
+{\footnotesize\ttfamily \label{class_camera_controller_a341e2ad7f3a3ca0bea6ed3a5c1a5fe65} 
+Vector3 Camera\+Controller.\+locked\+Position}
+
+\Hypertarget{class_camera_controller_a993d5106b1b1af864e3ad0237e434a51}\index{CameraController@{CameraController}!maxVerticalSpeed@{maxVerticalSpeed}}
+\index{maxVerticalSpeed@{maxVerticalSpeed}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{maxVerticalSpeed}{maxVerticalSpeed}}
+{\footnotesize\ttfamily \label{class_camera_controller_a993d5106b1b1af864e3ad0237e434a51} 
+float Camera\+Controller.\+max\+Vertical\+Speed = 1000f}
+
+\Hypertarget{class_camera_controller_a5ede1338f553ab75fb61f85405fda8e7}\index{CameraController@{CameraController}!maxZoom@{maxZoom}}
+\index{maxZoom@{maxZoom}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{maxZoom}{maxZoom}}
+{\footnotesize\ttfamily \label{class_camera_controller_a5ede1338f553ab75fb61f85405fda8e7} 
+float Camera\+Controller.\+max\+Zoom = 10f}
+
+\Hypertarget{class_camera_controller_a6c1a8c2ca7e67154970931ed2a88563e}\index{CameraController@{CameraController}!minZoom@{minZoom}}
+\index{minZoom@{minZoom}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{minZoom}{minZoom}}
+{\footnotesize\ttfamily \label{class_camera_controller_a6c1a8c2ca7e67154970931ed2a88563e} 
+float Camera\+Controller.\+min\+Zoom = 4f}
+
+\Hypertarget{class_camera_controller_ad0acde35e5f79d90e107f008d62d119b}\index{CameraController@{CameraController}!smoothTime@{smoothTime}}
+\index{smoothTime@{smoothTime}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{smoothTime}{smoothTime}}
+{\footnotesize\ttfamily \label{class_camera_controller_ad0acde35e5f79d90e107f008d62d119b} 
+float Camera\+Controller.\+smooth\+Time = 0.\+3f}
+
+\Hypertarget{class_camera_controller_a0a48b454b4a2bb8dbfc08e64b8c3e8e6}\index{CameraController@{CameraController}!target@{target}}
+\index{target@{target}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{target}{target}}
+{\footnotesize\ttfamily \label{class_camera_controller_a0a48b454b4a2bb8dbfc08e64b8c3e8e6} 
+Transform Camera\+Controller.\+target}
+
+\Hypertarget{class_camera_controller_a4bdf468362b515061a2a0cf52cff1d30}\index{CameraController@{CameraController}!targetZoom@{targetZoom}}
+\index{targetZoom@{targetZoom}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{targetZoom}{targetZoom}}
+{\footnotesize\ttfamily \label{class_camera_controller_a4bdf468362b515061a2a0cf52cff1d30} 
+float Camera\+Controller.\+target\+Zoom}
+
+\Hypertarget{class_camera_controller_ae3b8f1325865fc507cc323623f8d64a9}\index{CameraController@{CameraController}!viewportTargetY@{viewportTargetY}}
+\index{viewportTargetY@{viewportTargetY}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{viewportTargetY}{viewportTargetY}}
+{\footnotesize\ttfamily \label{class_camera_controller_ae3b8f1325865fc507cc323623f8d64a9} 
+float Camera\+Controller.\+viewport\+TargetY = 0.\+45f}
+
+\Hypertarget{class_camera_controller_ac5e7f931dc646e4a643f850da622c7c1}\index{CameraController@{CameraController}!zoomSpeed@{zoomSpeed}}
+\index{zoomSpeed@{zoomSpeed}!CameraController@{CameraController}}
+\doxysubsubsection{\texorpdfstring{zoomSpeed}{zoomSpeed}}
+{\footnotesize\ttfamily \label{class_camera_controller_ac5e7f931dc646e4a643f850da622c7c1} 
+float Camera\+Controller.\+zoom\+Speed = 3f}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/unity/\+Fox\+Run/\+Fox-\/\+Run/\+Assets/\+Scripts/\+Player/\mbox{\hyperlink{_camera_controller_8cs}{Camera\+Controller.\+cs}}\end{DoxyCompactItemize}
