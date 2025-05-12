@@ -1,26 +1,26 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 /// <Summary>
-/// Спавнит префаб стрел с заданной скоростью, периодичностью, углом вылета и оффсетом.
-/// Отрисовывает в редакторе дебажный вектор направления.
+/// РЎРїР°РІРЅРёС‚ РїСЂРµС„Р°Р± СЃС‚СЂРµР» СЃ Р·Р°РґР°РЅРЅРѕР№ СЃРєРѕСЂРѕСЃС‚СЊСЋ, РїРµСЂРёРѕРґРёС‡РЅРѕСЃС‚СЊСЋ, СѓРіР»РѕРј РІС‹Р»РµС‚Р° Рё РѕС„С„СЃРµС‚РѕРј.
+/// РћС‚СЂРёСЃРѕРІС‹РІР°РµС‚ РІ СЂРµРґР°РєС‚РѕСЂРµ РґРµР±Р°Р¶РЅС‹Р№ РІРµРєС‚РѕСЂ РЅР°РїСЂР°РІР»РµРЅРёСЏ.
 /// </Summary>
 public class ArrowSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _arrowPrefab;      // Префаб стрелы
-    [SerializeField] private float _spawnInterval = 1f;    // Период между спавнами
-    [SerializeField] private float _arrowSpeed = 5f;       // Скорость полёта
-    [SerializeField] private float _arrowLifetime = 5f;    // Время жизни стрелы
-    [SerializeField] private float _spawnOffset = 0f;      // Смещение вдоль линии вылета
+    [SerializeField] private GameObject _arrowPrefab;      // РџСЂРµС„Р°Р± СЃС‚СЂРµР»С‹
+    [SerializeField] private float _spawnInterval = 1f;    // РџРµСЂРёРѕРґ РјРµР¶РґСѓ СЃРїР°РІРЅР°РјРё
+    [SerializeField] private float _arrowSpeed = 5f;       // РЎРєРѕСЂРѕСЃС‚СЊ РїРѕР»С‘С‚Р°
+    [SerializeField] private float _arrowLifetime = 5f;    // Р’СЂРµРјСЏ Р¶РёР·РЅРё СЃС‚СЂРµР»С‹
+    [SerializeField] private float _spawnOffset = 0f;      // РЎРјРµС‰РµРЅРёРµ РІРґРѕР»СЊ Р»РёРЅРёРё РІС‹Р»РµС‚Р°
 
-    [Header("Звук")]
+    [Header("Р—РІСѓРє")]
     public AudioClip shootSound;
     private AudioSource audioSource;
 
     [Space]
     [SerializeField, Range(0f, 360f)]
-    private float _angleDegrees = 0f;                      // Угол вылета (ползунок)
+    private float _angleDegrees = 0f;                      // РЈРіРѕР» РІС‹Р»РµС‚Р° (РїРѕР»Р·СѓРЅРѕРє)
 
-    private float _timer; // Счётчик времени до следующего спавна
+    private float _timer; // РЎС‡С‘С‚С‡РёРє РІСЂРµРјРµРЅРё РґРѕ СЃР»РµРґСѓСЋС‰РµРіРѕ СЃРїР°РІРЅР°
 
     private void Start()
     {
@@ -43,7 +43,7 @@ public class ArrowSpawner : MonoBehaviour
         float rad = _angleDegrees * Mathf.Deg2Rad;
         Vector2 dir = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)).normalized;
 
-        // Вычисляем позицию спавна с учётом оффсета
+        // Р’С‹С‡РёСЃР»СЏРµРј РїРѕР·РёС†РёСЋ СЃРїР°РІРЅР° СЃ СѓС‡С‘С‚РѕРј РѕС„С„СЃРµС‚Р°
         Vector3 spawnPosition = transform.position + (Vector3)(dir * _spawnOffset);
 
         GameObject arrowInstance = Instantiate(
@@ -69,13 +69,13 @@ public class ArrowSpawner : MonoBehaviour
         Vector3 to = from + dir;
         Gizmos.DrawLine(from, to);
 
-        // Стрелка на конце
+        // РЎС‚СЂРµР»РєР° РЅР° РєРѕРЅС†Рµ
         Vector3 right = Quaternion.Euler(0, 0, _angleDegrees + 45f) * Vector3.up;
         Vector3 left = Quaternion.Euler(0, 0, _angleDegrees - 225f) * Vector3.up;
         Gizmos.DrawLine(to, to + right * 0.2f);
         Gizmos.DrawLine(to, to + left * 0.2f);
 
-        // Отметка места спавна с учётом оффсета
+        // РћС‚РјРµС‚РєР° РјРµСЃС‚Р° СЃРїР°РІРЅР° СЃ СѓС‡С‘С‚РѕРј РѕС„С„СЃРµС‚Р°
         Gizmos.color = Color.red;
         Vector3 spawnPoint = from + dir * _spawnOffset;
         Gizmos.DrawSphere(spawnPoint, 0.1f);

@@ -1,11 +1,11 @@
-using System.Collections;
+п»їusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class JogikController : MonoBehaviour
 {
-    [SerializeField] public GameObject PlaceToTp; // пустой объект к которому переместит игрока после "смерти"
+    [SerializeField] public GameObject PlaceToTp; // РїСѓСЃС‚РѕР№ РѕР±СЉРµРєС‚ Рє РєРѕС‚РѕСЂРѕРјСѓ РїРµСЂРµРјРµСЃС‚РёС‚ РёРіСЂРѕРєР° РїРѕСЃР»Рµ "СЃРјРµСЂС‚Рё"
     [SerializeField] AudioSource killSound;
     [SerializeField] public float rotationSpeed = 500;
     public void Start()
@@ -21,14 +21,14 @@ public class JogikController : MonoBehaviour
 
 
     //<Summary>
-    // Не реализовано
+    // РќРµ СЂРµР°Р»РёР·РѕРІР°РЅРѕ
     //</Summary>
     public void StopPlayer(float time)
     {
     }
 
     //<Summary>
-    // Не реализовано
+    // РќРµ СЂРµР°Р»РёР·РѕРІР°РЅРѕ
     //</Summary>
     public void SlowPlayer(float time, float strength)
     {

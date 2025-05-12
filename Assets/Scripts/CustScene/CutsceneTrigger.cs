@@ -1,4 +1,4 @@
-using System.Collections;
+п»їusing System.Collections;
 using Unity.Properties;
 using UnityEngine;
 
@@ -28,18 +28,18 @@ public class CutsceneTrigger : MonoBehaviour
 
     IEnumerator PlayCutscene()
     {
-        // Камера
+        // РљР°РјРµСЂР°
         _originalZoom = _cameraController.targetZoom;
         _cameraController.SetCameraLock(cameraLockPosition);
         _cameraController.SetZoom(cameraZoom);
 
-        // Диалог
+        // Р”РёР°Р»РѕРі
         DialogueManager dialogueManager = FindObjectOfType<DialogueManager>();
         dialogueManager.StartDialogue(dialogue);
 
-        yield return new WaitUntil(() => !dialogueManager.IsDialogueActive);  // Ждём завершения диалога
+        yield return new WaitUntil(() => !dialogueManager.IsDialogueActive);  // Р–РґС‘Рј Р·Р°РІРµСЂС€РµРЅРёСЏ РґРёР°Р»РѕРіР°
 
-        // Возвращение камеры
+        // Р’РѕР·РІСЂР°С‰РµРЅРёРµ РєР°РјРµСЂС‹
         _cameraController.ReleaseCameraLock();
         _cameraController.SetZoom(_originalZoom);
     }

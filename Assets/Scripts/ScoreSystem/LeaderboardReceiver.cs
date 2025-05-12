@@ -1,4 +1,4 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
 using TMPro;
@@ -26,7 +26,7 @@ public class LeaderboardReceiver : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Ошибка загрузки таблицы лидеров: " + request.error);
+            Debug.LogError("РћС€РёР±РєР° Р·Р°РіСЂСѓР·РєРё С‚Р°Р±Р»РёС†С‹ Р»РёРґРµСЂРѕРІ: " + request.error);
         }
     }
 

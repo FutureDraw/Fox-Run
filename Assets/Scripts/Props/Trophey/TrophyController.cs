@@ -1,7 +1,7 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 /// <summary>
-/// Класс для описания работы системы кубков
+/// РљР»Р°СЃСЃ РґР»СЏ РѕРїРёСЃР°РЅРёСЏ СЂР°Р±РѕС‚С‹ СЃРёСЃС‚РµРјС‹ РєСѓР±РєРѕРІ
 /// </summary>
 public class TrophyController : MonoBehaviour
 {
@@ -9,7 +9,7 @@ public class TrophyController : MonoBehaviour
     private int trophiesCollected = 0;
     public int TrophiesCollected => trophiesCollected;
 
-    [Header("Звук")]
+    [Header("Р—РІСѓРє")]
     public AudioClip collectSound;
     private AudioSource audioSource;
 
@@ -35,6 +35,6 @@ public class TrophyController : MonoBehaviour
     {
         trophiesCollected++;
         audioSource.PlayOneShot(collectSound);
-        Debug.Log($"Кубков собрано: {trophiesCollected}");
+        Debug.Log($"РљСѓР±РєРѕРІ СЃРѕР±СЂР°РЅРѕ: {trophiesCollected}");
     }
 }

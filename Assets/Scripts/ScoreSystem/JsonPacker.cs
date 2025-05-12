@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using UnityEngine;
 
 [Serializable]
@@ -7,19 +7,19 @@ public class PlayerRecord
     public string playerName;
     public float score;
     public float trophies;
-    public string time; // "мм:сс:fff"
+    public string time; // "РјРј:СЃСЃ:fff"
 }
 
 public static class JsonPackager
 {
     /// <summary>
-    /// Упаковать данные в JSON-строку.
+    /// РЈРїР°РєРѕРІР°С‚СЊ РґР°РЅРЅС‹Рµ РІ JSON-СЃС‚СЂРѕРєСѓ.
     /// </summary>
-    /// <param name="nick">Ник игрока.</param>
-    /// <param name="score">Количество очков.</param>
-    /// <param name="trophies">Собранные кубки.</param>
-    /// <param name="elapsedSeconds">Время прохождения в секундах (float).</param>
-    /// <returns>JSON-строка вида {"playerName":"...","score":...,"trophies":...,"time":"мм:сс:fff"}</returns>
+    /// <param name="nick">РќРёРє РёРіСЂРѕРєР°.</param>
+    /// <param name="score">РљРѕР»РёС‡РµСЃС‚РІРѕ РѕС‡РєРѕРІ.</param>
+    /// <param name="trophies">РЎРѕР±СЂР°РЅРЅС‹Рµ РєСѓР±РєРё.</param>
+    /// <param name="elapsedSeconds">Р’СЂРµРјСЏ РїСЂРѕС…РѕР¶РґРµРЅРёСЏ РІ СЃРµРєСѓРЅРґР°С… (float).</param>
+    /// <returns>JSON-СЃС‚СЂРѕРєР° РІРёРґР° {"playerName":"...","score":...,"trophies":...,"time":"РјРј:СЃСЃ:fff"}</returns>
     public static string Pack(string nick, float score, float trophies, float elapsedSeconds)
     {
         var record = new PlayerRecord
@@ -30,18 +30,18 @@ public static class JsonPackager
             time = FormatTime(elapsedSeconds)
         };
 
-        // UnityEngine.JsonUtility работает быстро, но не поддерживает Dictionary и некоторые коллекции.
+        // UnityEngine.JsonUtility СЂР°Р±РѕС‚Р°РµС‚ Р±С‹СЃС‚СЂРѕ, РЅРѕ РЅРµ РїРѕРґРґРµСЂР¶РёРІР°РµС‚ Dictionary Рё РЅРµРєРѕС‚РѕСЂС‹Рµ РєРѕР»Р»РµРєС†РёРё.
         return JsonUtility.ToJson(record);
     }
 
     /// <summary>
-    /// Форматирует число секунд в строку "мм:сс:fff".
+    /// Р¤РѕСЂРјР°С‚РёСЂСѓРµС‚ С‡РёСЃР»Рѕ СЃРµРєСѓРЅРґ РІ СЃС‚СЂРѕРєСѓ "РјРј:СЃСЃ:fff".
     /// </summary>
     private static string FormatTime(float totalSeconds)
     {
-        // Создадим TimeSpan для удобного форматирования
+        // РЎРѕР·РґР°РґРёРј TimeSpan РґР»СЏ СѓРґРѕР±РЅРѕРіРѕ С„РѕСЂРјР°С‚РёСЂРѕРІР°РЅРёСЏ
         TimeSpan ts = TimeSpan.FromSeconds(totalSeconds);
-        // mm – минуты, ss – секунды, fff – миллисекунды
+        // mm вЂ“ РјРёРЅСѓС‚С‹, ss вЂ“ СЃРµРєСѓРЅРґС‹, fff вЂ“ РјРёР»Р»РёСЃРµРєСѓРЅРґС‹
         return string.Format("{0:D2}:{1:D2}:{2:D3}",
                              ts.Minutes,
                              ts.Seconds,

@@ -1,9 +1,9 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 public class LevelSelector : MonoBehaviour
 {
-    public Transform[] levelPositions; // Позиции уровней
-    public float moveSpeed = 5f; // Скорость перемещения камеры
+    public Transform[] levelPositions; // РџРѕР·РёС†РёРё СѓСЂРѕРІРЅРµР№
+    public float moveSpeed = 5f; // РЎРєРѕСЂРѕСЃС‚СЊ РїРµСЂРµРјРµС‰РµРЅРёСЏ РєР°РјРµСЂС‹
 
     public LevelStatsDisplay statsDisplay;
 
@@ -16,7 +16,7 @@ public class LevelSelector : MonoBehaviour
         {
             transform.position = levelPositions[0].position;
             targetPosition = levelPositions[0];
-            statsDisplay.LoadLevelStats(1); // первый уровень
+            statsDisplay.LoadLevelStats(1); // РїРµСЂРІС‹Р№ СѓСЂРѕРІРµРЅСЊ
         }
     }
 
@@ -34,7 +34,7 @@ public class LevelSelector : MonoBehaviour
         {
             currentIndex++;
             targetPosition = levelPositions[currentIndex];
-            statsDisplay.LoadLevelStats(currentIndex + 1); // Индекс уровней с 1
+            statsDisplay.LoadLevelStats(currentIndex + 1); // РРЅРґРµРєСЃ СѓСЂРѕРІРЅРµР№ СЃ 1
         }
     }
 
@@ -44,7 +44,7 @@ public class LevelSelector : MonoBehaviour
         {
             currentIndex--;
             targetPosition = levelPositions[currentIndex];
-            statsDisplay.LoadLevelStats(currentIndex + 1); // Индекс уровней с 1
+            statsDisplay.LoadLevelStats(currentIndex + 1); // РРЅРґРµРєСЃ СѓСЂРѕРІРЅРµР№ СЃ 1
         }
     }
 }

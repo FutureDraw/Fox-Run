@@ -1,8 +1,8 @@
-//using UnityEditor.Experimental.GraphView;
+п»ї//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 // <summary>
-// Класс для входящего портала
+// РљР»Р°СЃСЃ РґР»СЏ РІС…РѕРґСЏС‰РµРіРѕ РїРѕСЂС‚Р°Р»Р°
 // </summary>
 public class PortalIn : Portal
 {

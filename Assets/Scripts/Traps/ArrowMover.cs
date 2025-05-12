@@ -1,8 +1,8 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 /// <Summary>
-/// Управляет движением стрелы по прямой,
-/// уничтожает по таймауту или при столкновении.
+/// РЈРїСЂР°РІР»СЏРµС‚ РґРІРёР¶РµРЅРёРµРј СЃС‚СЂРµР»С‹ РїРѕ РїСЂСЏРјРѕР№,
+/// СѓРЅРёС‡С‚РѕР¶Р°РµС‚ РїРѕ С‚Р°Р№РјР°СѓС‚Сѓ РёР»Рё РїСЂРё СЃС‚РѕР»РєРЅРѕРІРµРЅРёРё.
 /// </Summary>
 public class ArrowMover : MonoBehaviour
 {
@@ -11,26 +11,26 @@ public class ArrowMover : MonoBehaviour
     private float _lifetime;
 
     /// <Summary>
-    /// Инициализация параметров полёта стрелы
+    /// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РїР°СЂР°РјРµС‚СЂРѕРІ РїРѕР»С‘С‚Р° СЃС‚СЂРµР»С‹
     /// </Summary>
     public void Initialize(Vector2 direction, float speed, float lifetime)
     {
         _direction = direction.normalized;
         _speed = speed;
         _lifetime = lifetime;
-        // Уничтожаем стрелу через _lifetime секунд
+        // РЈРЅРёС‡С‚РѕР¶Р°РµРј СЃС‚СЂРµР»Сѓ С‡РµСЂРµР· _lifetime СЃРµРєСѓРЅРґ
         Destroy(gameObject, _lifetime);
     }
 
     private void Update()
     {
-        // Двигаем стрелу вперёд
+        // Р”РІРёРіР°РµРј СЃС‚СЂРµР»Сѓ РІРїРµСЂС‘Рґ
         transform.Translate(_direction * _speed * Time.deltaTime, Space.World);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // При любом столкновении уничтожаем стрелу
+        // РџСЂРё Р»СЋР±РѕРј СЃС‚РѕР»РєРЅРѕРІРµРЅРёРё СѓРЅРёС‡С‚РѕР¶Р°РµРј СЃС‚СЂРµР»Сѓ
         Destroy(gameObject);
     }
 

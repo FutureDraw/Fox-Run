@@ -1,4 +1,4 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using System.Collections;
 
 public class WeakFloorController : MonoBehaviour
@@ -7,7 +7,7 @@ public class WeakFloorController : MonoBehaviour
     [SerializeField] public GameObject WeakFloor;
     public float duration;
 
-    [Header("«‚ÛÍ")]
+    [Header("–ó–≤—É–∫")]
     public AudioClip crackingSound;
     private AudioSource audioSource;
 

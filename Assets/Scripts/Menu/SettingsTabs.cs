@@ -1,4 +1,4 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.UI;
 
 public class SettingsTabs : MonoBehaviour
@@ -11,7 +11,7 @@ public class SettingsTabs : MonoBehaviour
     public Image displayButtonImage;
     public Image controlsButtonImage;
 
-    public float activeAlpha = 0.6f;  // Затемнённая кнопка (например, 150/255)
+    public float activeAlpha = 0.6f;  // Р—Р°С‚РµРјРЅС‘РЅРЅР°СЏ РєРЅРѕРїРєР° (РЅР°РїСЂРёРјРµСЂ, 150/255)
     public float inactiveAlpha = 0f;
 
     public void ShowAudio()

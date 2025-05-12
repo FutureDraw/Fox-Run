@@ -1,4 +1,4 @@
-using System.Collections;
+п»їusing System.Collections;
 using UnityEngine;
 
 public class MenuButtonsControll : MonoBehaviour
@@ -37,7 +37,7 @@ public class MenuButtonsControll : MonoBehaviour
             }
         }
 
-        // Новая часть: проверка на нажатие Escape
+        // РќРѕРІР°СЏ С‡Р°СЃС‚СЊ: РїСЂРѕРІРµСЂРєР° РЅР° РЅР°Р¶Р°С‚РёРµ Escape
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (currentPanel == PanelState.SaveMenu || currentPanel == PanelState.SettingsMenu)
@@ -93,7 +93,7 @@ public class MenuButtonsControll : MonoBehaviour
     public void OnExitButtonClicked()
     {
         Application.Quit();
-        Debug.Log("Игра завершена");
+        Debug.Log("РРіСЂР° Р·Р°РІРµСЂС€РµРЅР°");
     }
 
     private IEnumerator FadeIn(CanvasGroup canvasGroup, float duration = 0.5f)

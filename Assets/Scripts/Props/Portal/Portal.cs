@@ -1,16 +1,16 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 // <summary>
-// Базовый класс портала
+// Р‘Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ РїРѕСЂС‚Р°Р»Р°
 // </summary>
 public abstract class Portal : MonoBehaviour
 {
     [Header("Portal Settings")]
-    public Transform exitPoint; // Точка выхода из портала
+    public Transform exitPoint; // РўРѕС‡РєР° РІС‹С…РѕРґР° РёР· РїРѕСЂС‚Р°Р»Р°
     public PortalController controller;
 
     // <summary>
-    // Получение позиции для выхода
+    // РџРѕР»СѓС‡РµРЅРёРµ РїРѕР·РёС†РёРё РґР»СЏ РІС‹С…РѕРґР°
     // </summary>
     public Vector2 GetExitPosition()
     {

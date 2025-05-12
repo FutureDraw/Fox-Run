@@ -1,4 +1,4 @@
-using JetBrains.Annotations;
+Ôªøusing JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +10,7 @@ public class DoorTrapController : MonoBehaviour
     private int frameCounter = 0;
     private bool isWorked = false;
 
-    [Header("«‚ÛÍ")]
+    [Header("–ó–≤—É–∫")]
     public AudioClip openSound;
     private AudioSource audioSource;
 
@@ -26,7 +26,7 @@ public class DoorTrapController : MonoBehaviour
     {
         if (frameCounter < 18 && isWorked == true)
         {
-            AnchorFront.transform.Rotate(Vector3.forward, -5f);  //œ–Œ÷≈ƒ”–Õ¿ﬂ ¿Õ»Ã¿÷»ﬂ ¿¿¿¿¿¿¿¿¿¿¿¿¿¿
+            AnchorFront.transform.Rotate(Vector3.forward, -5f);  //–ü–†–û–¶–ï–î–£–†–ù–ê–Ø –ê–ù–ò–ú–ê–¶–ò–Ø –ê–ê–ê–ê–ê–ê–ê–ê–ê–ê–ê–ê–ê–ê
             AnchorBack.transform.Rotate(Vector3.forward, 5f);
             frameCounter++;
         }

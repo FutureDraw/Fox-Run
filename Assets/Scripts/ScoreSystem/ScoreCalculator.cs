@@ -1,9 +1,9 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using System.IO;
 
 public class ScoreCalculator : MonoBehaviour
 {
-    public int levelIndex = 1; // установить в инспекторе
+    public int levelIndex = 1; // СѓСЃС‚Р°РЅРѕРІРёС‚СЊ РІ РёРЅСЃРїРµРєС‚РѕСЂРµ
 
     [System.Serializable]
     public class PlayerRecord
@@ -17,8 +17,8 @@ public class ScoreCalculator : MonoBehaviour
     public void CalculateResult()
     {
         string nick = "nickname"; // placeholder
-        float time = PlayerTimer.Instance.ElapsedTime;                  // сек.
-        float trophies = TrophyController.Instance.TrophiesCollected;   // шт.
+        float time = PlayerTimer.Instance.ElapsedTime;                  // СЃРµРє.
+        float trophies = TrophyController.Instance.TrophiesCollected;   // С€С‚.
 
         if (trophies == 0)
         {
@@ -28,10 +28,10 @@ public class ScoreCalculator : MonoBehaviour
 
         float score = ((trophies * 100) / (time * 1.5f)) * 100f;
 
-        Debug.Log($"=== Результаты уровня ===\n" +
-                  $"Время: {time:F2} сек\n" +
-                  $"Кубков: {trophies}\n" +
-                  $"Очки: {score:F0}");
+        Debug.Log($"=== Р РµР·СѓР»СЊС‚Р°С‚С‹ СѓСЂРѕРІРЅСЏ ===\n" +
+                  $"Р’СЂРµРјСЏ: {time:F2} СЃРµРє\n" +
+                  $"РљСѓР±РєРѕРІ: {trophies}\n" +
+                  $"РћС‡РєРё: {score:F0}");
 
         PlayerRecord record = new PlayerRecord
         {
@@ -42,32 +42,32 @@ public class ScoreCalculator : MonoBehaviour
         };
 
         string jsonPayload = JsonUtility.ToJson(record, true);
-        Debug.Log("JSON для сохранения: " + jsonPayload);
+        Debug.Log("JSON РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ: " + jsonPayload);
 
         string path = Path.Combine(Application.persistentDataPath, $"level_{levelIndex}.json");
 
         if (File.Exists(path))
         {
-            // Читаем текущий результат из файла
+            // Р§РёС‚Р°РµРј С‚РµРєСѓС‰РёР№ СЂРµР·СѓР»СЊС‚Р°С‚ РёР· С„Р°Р№Р»Р°
             string currentJson = File.ReadAllText(path);
             PlayerRecord currentRecord = JsonUtility.FromJson<PlayerRecord>(currentJson);
 
-            // Сравниваем время: если новое время меньше текущего, сохраняем новый результат
+            // РЎСЂР°РІРЅРёРІР°РµРј РІСЂРµРјСЏ: РµСЃР»Рё РЅРѕРІРѕРµ РІСЂРµРјСЏ РјРµРЅСЊС€Рµ С‚РµРєСѓС‰РµРіРѕ, СЃРѕС…СЂР°РЅСЏРµРј РЅРѕРІС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚
             if (time < currentRecord.timeInSeconds)
             {
                 File.WriteAllText(path, jsonPayload);
-                Debug.Log("Новый результат сохранён по пути: " + path);
+                Debug.Log("РќРѕРІС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚ СЃРѕС…СЂР°РЅС‘РЅ РїРѕ РїСѓС‚Рё: " + path);
             }
             else
             {
-                Debug.Log("Новое время больше или равно текущему, результат не сохранён.");
+                Debug.Log("РќРѕРІРѕРµ РІСЂРµРјСЏ Р±РѕР»СЊС€Рµ РёР»Рё СЂР°РІРЅРѕ С‚РµРєСѓС‰РµРјСѓ, СЂРµР·СѓР»СЊС‚Р°С‚ РЅРµ СЃРѕС…СЂР°РЅС‘РЅ.");
             }
         }
         else
         {
-            // Если файла ещё нет, создаём его и сохраняем результат
+            // Р•СЃР»Рё С„Р°Р№Р»Р° РµС‰С‘ РЅРµС‚, СЃРѕР·РґР°С‘Рј РµРіРѕ Рё СЃРѕС…СЂР°РЅСЏРµРј СЂРµР·СѓР»СЊС‚Р°С‚
             File.WriteAllText(path, jsonPayload);
-            Debug.Log("Файл сохранён по пути: " + path);
+            Debug.Log("Р¤Р°Р№Р» СЃРѕС…СЂР°РЅС‘РЅ РїРѕ РїСѓС‚Рё: " + path);
         }
     }
 }
