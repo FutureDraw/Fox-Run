@@ -395,7 +395,7 @@ public class PlayerController : MonoBehaviour
     //Отрисовка области проверки земли и стены
     //</Summary>
     
-    
+    /*
     private void OnDrawGizmosSelected()
     {
         if (groundCheck == null) return;
@@ -433,5 +433,5 @@ public class PlayerController : MonoBehaviour
             Gizmos.color = Color.white;
             Handles.Label(playerPos + Vector3.up * 2f, $"Grounded: {isGrounded}\nDashing: {isDashing}\nGrabbingWall: {isGrabbingWall}\nMoveSpeed: {currentMoveSpeed:F2}\nJumps: {JumpCount}");
         }
-    }
+    }*/
 }
