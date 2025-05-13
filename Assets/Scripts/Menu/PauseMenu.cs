@@ -1,6 +1,4 @@
-﻿#if UNITY_EDITOR
-using UnityEditor;
-#endif
+﻿using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
@@ -14,9 +12,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject settingsPanel;
     private bool isPaused = false;
 
-#if UNITY_EDITOR
-    public SceneAsset sceneAsset;
-#endif
+    public string sceneName;
 
     public float delayBeforeSceneLoad = 0.5f;
 
@@ -72,13 +68,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         yield return new WaitForSeconds(delayBeforeSceneLoad);
 
-#if UNITY_EDITOR
-        if (sceneAsset != null)
-        {
-            string sceneName = sceneAsset.name;
             SceneManager.LoadScene(sceneName);
-        }
-#endif
     }
 
     public void OnSettingsClicked()

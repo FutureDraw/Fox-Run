@@ -1,6 +1,4 @@
-﻿#if UNITY_EDITOR
-using UnityEditor;
-#endif
+﻿using UnityEditor;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,9 +8,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class SceneChanger : MonoBehaviour
 {
-#if UNITY_EDITOR
-    public SceneAsset sceneAsset;
-#endif
+    public string sceneName;
     public Animator animator;
     public AnimationClip fadeAnimationClip;
     public float delayBeforeSceneLoad = 0.5f;
@@ -31,12 +27,7 @@ public class SceneChanger : MonoBehaviour
     {
         yield return new WaitForSeconds(delayBeforeSceneLoad); // Время ошидания для смены сценны
 
-#if UNITY_EDITOR
-        if (sceneAsset != null)
-        {
-            string sceneName = sceneAsset.name;
-            SceneManager.LoadScene(sceneName);
-        }
-#endif
+
+        SceneManager.LoadScene(sceneName);
     }
 }
