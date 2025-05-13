@@ -11,7 +11,7 @@ public class VolumeInit : MonoBehaviour
     public List<string> volumeParameters = new List<string> { "MasterVolume", "Music", "Effects" };
     public AudioMixer audioMixer;
 
-    void Start()
+    void Awake()
     {
         foreach (var param in volumeParameters)
         {
